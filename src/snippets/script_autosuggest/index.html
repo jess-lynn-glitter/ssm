@@ -1,0 +1,17 @@
+<script type="text/javascript"
+    src="~~wompOmniAssetsPath~~/js/autosuggest.js"></script>
+
+<script id="autosuggestScripts"
+    type="text/javascript">
+
+      function startAutosuggestInit() {
+        if (window.makeSearchConfig && window.search) {
+          window.autosuggest = new Autosuggest('#inputSrch', '#srchSubmitBtn');
+        } else {
+          setTimeout(() => {
+            startAutosuggestInit();
+          }, 100);
+        }
+      }
+      startAutosuggestInit();
+    </script>

@@ -1,0 +1,339 @@
+{css_LDP}
+{base_scrollToTop}
+{site_header}
+{analytics_amp}
+{base_modal(wData.filterModalContent)}
+{base_modal(wData.videoModalContent)}
+
+<main class="container">
+  {site_breadcrumbs(wData.breadcrumbsContent)}
+  
+    <w-render data="wData.wompHealthResponse.locations[0]">
+      <section id="abtSctn">
+        <div id="divLocDetails">
+          <div id="hero"
+              class="flx relative">
+            {doNotWomp}
+            {{#ImageUrl}}
+              <div id="heroImg" class="flx-mid-ctr">
+                <img src="{{ImageUrl}}" alt="Location Image">
+              </div>
+            {{/ImageUrl}}
+            {endDoNotWomp}
+            {LDP_basicInfo}
+          </div>
+        </div>
+        <div class="mx-24 half-divider"></div>
+        <div class="mb-2 divider desktop-mr" w-if="wData.isQuickCare">
+          <h3>About</h3>
+          <p>~~quickCareAbout~~</p>
+          <h3>Video Visits</h3>
+          <p class="mt-1">Scheduled or on-demand video visits are now available from home, work, or while on-the-go. Video visits, also known as telehealth or virtual visits, allow you to meet with Piedmont providers from the comfort of your home via smart phone, tablet, or computer. Remember that a valid ID, insurance card and form of payment is required at time of service.</p>
+          <h3>All locations are cashless as of January 2023</h3>
+          <p class="mt-1">
+            We accept most major credit cards, debit cards, FSA/HSA cards, gift cards (Visa and Mastercard) and personal checks that represent the exact amount for services. Remember that a valid ID, insurance card and form of payment is required at time of services. Without these necessary documents, your visit will be rescheduled. 
+          </p>
+          <h3>Services and Costs</h3>
+          <p class="mt-1">
+            See a complete list of the treatments and services at Piedmont QuickCare at Walgreens locations, including approximate costs for self-pay pricing:
+          </p>
+          <a href="https://www.piedmont.org/locations/quickcare/quickcare-complete-services" target="_blank" class="btn-primary mt-1" role="button" aria-label="See Services and Costs" alt="See Services and Costs">
+            See our Services and Costs
+          </a>
+        </div>
+        {doNotWomp}
+          {{#AboutThisPractice}}
+            <div w-else class="mb-2 divider desktop-mr list">
+              <p>{{{AboutThisPractice}}}</p>
+            </div>
+          {{/AboutThisPractice}}
+          {{#PracticeServices}}
+            <div class="mb-2 divider desktop-mr list">
+              <h2 class="section-heading">Services Offered</h2>
+              <p>{{{PracticeServices}}}</p>
+            </div>
+          {{/PracticeServices}}
+        {endDoNotWomp}
+
+        <div class="mx-24 half-divider"></div>
+      </section>
+      <section id="wdgts" class="divider divider-bot">
+        <!-- Do not show tiles on Urgent Care pages -->
+        <div id="wdgtsWrapper" w-if="!wData.isUrgentCare">
+          {doNotWomp}
+          {{#UrlName}}
+            <div id="tilesWrapper">
+              <!-- Special snowflake hybrid location -->
+              <location-timeslots
+                w-if="wData.isHybrid"
+                api-key="~~apiDexCareKey~~"
+                api-origin="~~apiDexCare~~"
+                brand="piedmont"
+                class="location-timeslots"
+                clinic-type="retail"
+                custom-title="Book QuickCare Appointment"
+                department-ids="{{DepId}}"
+                fallback-html="insOpt02"
+                phone="{{Phone}}"
+                schedule-origin="~~apiOriginScheduling~~"
+                tile-type="currentLocation"
+                url-name="{{UrlName}}"
+                variant="details"
+                wrapping-styles="false"
+              ></location-timeslots>
+              <location-timeslots
+                w-if="wData.isHybrid"
+                api-key="~~apiDexCareKey~~"
+                api-origin="~~apiDexCare~~"
+                brand="piedmont"
+                class="location-timeslots"
+                clinic-type="primary care"
+                custom-title="Book Primary Care Appointment"
+                department-ids="{{DepId}}"
+                fallback-html="insOpt02"
+                phone="{{Phone}}"
+                schedule-origin="~~apiOriginScheduling~~"
+                tile-type="currentLocation"
+                url-name="{{UrlName}}"
+                variant="details"
+                wrapping-styles="false"
+              ></location-timeslots>
+              <!-- Normal locations -->
+              <location-timeslots
+                w-else
+                api-key="~~apiDexCareKey~~"
+                api-origin="~~apiDexCare~~"
+                brand="piedmont"
+                class="location-timeslots"
+                department-ids="{{DepId}}"
+                fallback-html="insOpt02"
+                phone="{{Phone}}"
+                schedule-origin="~~apiOriginScheduling~~"
+                tile-type="currentLocation"
+                url-name="{{UrlName}}"
+                variant="details"
+                wrapping-styles="false"
+              ></location-timeslots>
+              <!-- Nearby locations -->
+              <location-timeslots
+                w-if="wData.isPrimaryCare || wData.isQuickCare"
+                api-key="~~apiDexCareKey~~"
+                api-origin="~~apiDexCare~~"
+                brand="piedmont"
+                class="tab-v-only"
+                department-ids="{{DepId}}"
+                fallback-html="insOpt03"
+                page-origin="https://www.piedmont.org"
+                schedule-origin="~~apiOriginScheduling~~"
+                tile-type="nearestLocation"
+                url-name="{{UrlName}}"
+                variant="details"
+                wrapping-styles="false"
+              ></location-timeslots>
+            </div>
+          {{/UrlName}}
+          {{^UrlName}}
+            <span class="hidden">No UrlName</span>
+          {{/UrlName}}
+          <!-- <nearest-location-timeslots 
+            brand="thr"
+            child-brand="breeze"
+            class="widget-book-nearby"
+            schedule-origin="~~apiOriginScheduling~~"
+            wrapping-styles="false"
+          ></nearest-location-timeslots> -->
+          <div class="mb-2 divider" w-if="wData.isQuickCare">
+            <quick-care-widget 
+              api-origin="~~apiDexCare~~"
+              brand="piedmont"
+              heading="Piedmont On-Demand"
+              no-wait="true"
+              schedule-origin="~~apiOriginScheduling~~"
+              schedule-url="~~origin~~/virtual-care"
+              subhead="Talk with one of our providers on your computer now.<br/><br/>Video visit with a Piedmont provider. <br/><br/>Available Monday-Friday, 7am-8pm<br />Saturday-Sunday, 7am-5pm"
+              wrapping-styles="false"
+            >
+            </quick-care-widget>
+          </div>
+          {endDoNotWomp}
+        </div>
+        <!-- Show these hardcoded "tiles" instead -->
+        <div w-else
+            class="flx flx-just-ctr flx-wrap mx-auto urgent-care-tile-wrapper">
+            <div class="p-12 txt-ctr urgent-care-tile">
+              <h2 class="m-0 mb-2">Book Ahead & Virtual Visit</h2>
+              <a class="mx-auto flx-just-ctr py-1 btn-primary bold urgent-care-btn"
+                  href="~~urgentCareExternalUrl~~" target="_blank">Click Here</a>
+              </div>
+              
+              <!-- <div class="p-12 txt-ctr urgent-care-tile">
+            <h2 class="m-0">Walk-In Visits Available</h2>
+            <p class="px-4 pb-2">Reduce your wait time and check-in online.</p>
+            <a class="mx-auto flx-just-ctr py-1 btn-primary bold urgent-care-btn" href="#UPDATE_ME">Book Ahead</a>
+          </div>
+        
+          <div class="p-12 txt-ctr urgent-care-tile">
+            <h2 class="m-0">Online Visits Available Now</h2>
+            <p class="px-4 pb-2">Get evaluated by a provider at your convenience.</p>
+            <a class="mx-auto flx-just-ctr py-1 btn-primary bold urgent-care-btn" href="#UPDATE_ME">Schedule a Virtual Visit</a>
+          </div> -->
+        </div>
+      </section>
+
+      <!-- Only show the provider section if there are actually provider results to show. -->
+      <section id="prvdrs" w-if="wData.clinicHasProviders && !wData.isQuickCare && !wData.isUrgentCare">
+        <h2 class="section-heading mb-24">Meet our Staff</h2>
+        {doNotWomp}
+          <!-- Plug the providers in like this because this is all rendered inside a w-render -->
+          ~~providers~~
+        {endDoNotWomp}
+        <div w-if="wData.isGoogleBot">
+          <a href="~~origin~~~~pathname~~"
+              class="block txt-ctr">Click here to view providers at this location</a>
+        </div>
+      </section>
+      <section id="accrdns" class="mb-2">
+        <div class="insurance-accordion desktop-mr" w-if="wData.isQuickCare">{base_accordion(insuranceSection)}</div>
+
+        <h3 id="mapDirections" class="mt-4">Map & Directions</h3>
+        <div class="ctnt flx map-wrapper desktop-mr">
+          <div class="flx-grow">
+            {doNotWomp}
+            <div>
+              <h4 class="bold">{{Name}}</h4>
+              <p class="mt-05 mb-1"> {{Street1}}, {{#Street2}}{{Street2}},{{/Street2}} {{City}}, {{Region}} {{PostalCode}}</p>
+              {{#distanceMilesStr}}
+              <span class="txt-sm">
+                {{distanceMilesStr}}
+              </span>
+              {{/distanceMilesStr}}
+              <div class="hrs light flx flx-wrap mt-1"
+                  data-test="hours">
+                  <!-- Open hours hidden until/if they are provided in data -->
+                {{#OpenHourDay}}
+                  {{#CloseHourDay}}
+                    {{#Days}}
+                      <span>
+                        {{Days}}
+                      </span>
+                      <div>
+                        {{OpenHourDay}} - {{CloseHourDay}}
+                      </div>
+                      {{/Days}}
+                      {{/CloseHourDay}}
+                  {{/OpenHourDay}}
+                  {{^OpenHourDay}}
+                      {{#collapsedOpenHours}}
+                        <div class="flx flx-col">
+                          {{^sameEveryDay}}
+                            <span class="bold">{{day}}</span>
+                          {{/sameEveryDay}}
+                          <span class="normal">
+                            {{^closed}}
+                            {{hours}}
+                            {{/closed}}
+                            {{#closed}}
+                              <span class="closed-hours normal">Closed</span>
+                            {{/closed}}
+                            {{#sameEveryDay}}
+                            , <span class="nowrap normal">seven days a week</span>
+                            {{/sameEveryDay}}
+                          </span>
+                        </div>
+                      {{/collapsedOpenHours}}
+                {{/OpenHourDay}}
+              </div>
+              <div class="flx flx-col mt-1">
+                <span class="bold">
+                  Office Number
+                </span>
+                <a class="underline nowrap"
+                    href="tel:{{Phone}}"
+                    data-vars-phone-link="{{Phone}}" data-test="phone">
+                  {{Phone}}
+                </a>
+              </div>
+              {{#Fax}}
+              <div class="flx flx-col mt-1">
+                <span class="bold">
+                  Fax Number
+                </span>
+                <span class="nowrap">
+                  {{Fax}}
+                </span>
+              </div>
+              {{/Fax}}
+            </div>
+            <div class="w100 flx map-btn get-directions-desktop">
+              <a href="https://google.com/maps/place/{{Street1}}{{#Street2}} {{Street2}}{{/Street2}},{{City}}, {{Region}} {{Zip Code}}" class="btn-primary" role="button" aria-label="Get Directions to Location" alt="Get Directions" target="_blank" data-track-directions>
+                <svg id="icoDirect">
+                  <use xlink:href="#icon-directions"></use>
+                </svg>
+                Get Directions
+              </a>
+            </div>
+            {endDoNotWomp}
+          </div>
+          <div class="mt-2"></div>
+          {script_map(mapConfigOverride)}
+          
+          {doNotWomp}
+          <div class="w100 flx map-btn get-directions-mobile mt-2">
+            <a href="https://google.com/maps/place/{{Street1}}{{#Street2}} {{Street2}}{{/Street2}},{{City}}, {{Region}} {{Zip Code}}" class="btn-primary" role="button" aria-label="Get Directions to Location" alt="Get Directions" target="_blank" data-track-directions>
+              <svg id="icoDirect">
+                <use xlink:href="#icon-directions"></use>
+              </svg>
+              Get Directions
+            </a>
+          </div>
+          {endDoNotWomp}
+        </div>
+      </section>
+      <div class="mx-24 half-divider"></div>
+      {doNotWomp}
+      {{#UrlName}}
+      <div class="flx flx-just-ctr">
+        <!-- Nearby locations -->
+        <location-timeslots
+          w-if="wData.isPrimaryCare || wData.isQuickCare"
+          api-key="~~apiDexCareKey~~"
+          api-origin="~~apiDexCare~~"
+          brand="piedmont"
+          class="tab-v-hidden"
+          department-ids="{{DepId}}"
+          fallback-html="insOpt03"
+          page-origin="https://www.piedmont.org"
+          schedule-origin="~~apiOriginScheduling~~"
+          tile-type="nearestLocation"
+          url-name="{{UrlName}}"
+          variant="details"
+          wrapping-styles="false"
+        ></location-timeslots>
+      </div>
+      {{/UrlName}}
+      {endDoNotWomp}
+    </w-render>
+</main>
+{site_footer}
+
+{base_svgIcons}
+<script type="text/javascript" w-if="!wData.isGoogleBot">
+  const mapButton = document.querySelector('#addrBlock');
+  mapButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToMap();
+  });
+  function scrollToMap() {
+    const mapEl = document.querySelector('#mapDirections');
+    const mapPosition = mapEl.getBoundingClientRect().top;
+
+    window.scrollTo({
+      top: mapPosition,
+      behavior: 'instant'
+    });
+  };
+</script>
+{womp_amp_cleanup}
+<script src="~~wompOmniAssetsPath~~/js/care-tiles.js" defer></script>
+{#wompQuit}
+{#wompInvalidAmpOK}

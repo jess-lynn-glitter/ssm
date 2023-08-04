@@ -1,0 +1,158 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.widget-book-now {
+  background-color: #FCFCFC;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #B2B2B2;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 1px 10px 0px rgba(0, 0, 0, 0.1215686275), 0px 4px 5px 0px rgba(0, 0, 0, 0.1411764706);
+}
+.widget-book-now h3 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+.widget-book-now #dropdownModal {
+  top: 50px;
+  max-height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid #B2B2B2;
+}
+.widget-book-now #dropdownModal .btn {
+  border-top: none;
+  border-bottom: none;
+}
+.widget-book-now .dropdown-btn-height {
+  height: 50px;
+  font-size: 15px;
+}
+.widget-book-now .timeslots-dropdown {
+  background-color: #fff;
+}
+.widget-book-now .timeslots-dropdown #dropdownSelectorBtn {
+  top: 0;
+  left: 0;
+}
+.widget-book-now .timeslots-dropdown #dropdownSelectorBtn:focus {
+  box-shadow: inset 0 0 0 2px var(--clr-secondary);
+}
+.widget-book-now .timeslots-dropdown #dropdownModal button:focus {
+  box-shadow: none;
+}
+.widget-book-now .timeslots-dropdown:after {
+  content: "";
+  border-color: black transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px 10px 0px 10px;
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  right: 12px;
+  height: 0px;
+  width: 0px;
+  pointer-events: none;
+}
+.widget-book-now .spots-left > div:first-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.widget-book-now .slot-btns {
+  max-width: 305px;
+  min-height: 102px;
+}
+.widget-book-now .slot-btns > div:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+}
+.widget-book-now .slot-btns .btn-timeslot, .widget-book-now .slot-btns .btn-more, .widget-book-now .slot-btns .btn-less {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+  margin-bottom: 10px;
+  padding: 9px 12px;
+  width: 95px;
+  border: 1px solid #B2B2B2;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: 0;
+}
+.widget-book-now .slot-btns .btn-timeslot {
+  background: #4BA6CA;
+  color: white;
+  text-transform: lowercase;
+}
+.widget-book-now .slot-btns .btn-more, .widget-book-now .slot-btns .btn-less {
+  display: none;
+  background: transparent;
+  color: #4BA6CA;
+}
+.widget-book-now .slot-btns .btn-timeslot:focus, .widget-book-now .slot-btns .btn-more:focus, .widget-book-now .slot-btns .btn-less:focus {
+  border-color: transparent;
+  outline: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #009543;
+}
+.widget-book-now .slot-btns .btn-timeslot:hover, .widget-book-now .slot-btns .btn-more:hover, .widget-book-now .slot-btns .btn-less:hover {
+  background-color: #3a87ce;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #3a87ce;
+  box-shadow: 0 0 0 4px rgba(0, 149, 67, 0.2);
+}
+.widget-book-now .slot-btns .btn-timeslot:focus:hover, .widget-book-now .slot-btns .btn-more:focus:hover, .widget-book-now .slot-btns .btn-less:focus:hover {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--clr-secondary);
+}
+.widget-book-now .slot-btns .btn-timeslot:active:hover, .widget-book-now .slot-btns .btn-timeslot:active:focus, .widget-book-now .slot-btns .btn-more:active:hover, .widget-book-now .slot-btns .btn-more:active:focus, .widget-book-now .slot-btns .btn-less:active:hover, .widget-book-now .slot-btns .btn-less:active:focus {
+  background-color: #03335F;
+}
+.widget-book-now .slot-btns .checkbox-more, .widget-book-now .slot-btns .checkbox-more:not(:checked) + div .btn-less, .widget-book-now .slot-btns .checkbox-more:checked + div .btn-more, .widget-book-now .slot-btns .checkbox-more:not(:checked) + div .btn-timeslot:nth-child(1n+6) {
+  display: none;
+}
+.widget-book-now .slot-btns .checkbox-more:not(:checked) + div .btn-more:nth-child(1n+7), .widget-book-now .slot-btns .checkbox-more:checked + div .btn-less {
+  display: inline-block;
+}
+
+/* MEDIA QUERIES */
+/* odd sizes */
+@media only screen and (max-width: 349.98px) {
+  .widget-book-now .slot-btns {
+    max-width: 278px;
+  }
+  .widget-book-now .slot-btns .btn-timeslot, .widget-book-now .slot-btns .btn-more, .widget-book-now .slot-btns .btn-less {
+    width: 86px;
+  }
+}
+@media screen and (max-width: 375.98px) {
+  .widget-book-now {
+    min-height: 364px;
+  }
+}
+@media only screen and (min-width: 628px) and (max-width: 767.98px) {
+  .widget-book-now .slot-btns {
+    max-width: 380px;
+  }
+  .widget-book-now .slot-btns .btn-timeslot, .widget-book-now .slot-btns .btn-more, .widget-book-now .slot-btns .btn-less {
+    width: 120px;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 991.98px) {
+  .widget-book-now .slot-btns {
+    max-width: 326px;
+  }
+  .widget-book-now .slot-btns .btn-timeslot, .widget-book-now .slot-btns .btn-more, .widget-book-now .slot-btns .btn-less {
+    width: 102px;
+  }
+}

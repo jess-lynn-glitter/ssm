@@ -1,0 +1,42 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.super-header-wrap {
+  background-color: #03335F;
+  height: 35.75px;
+}
+.super-header-wrap .super-header {
+  font-size: 13px;
+  max-width: 1200px;
+  height: 100%;
+}
+.super-header-wrap .super-header * {
+  align-self: center;
+}
+.super-header-wrap .super-header a {
+  border-bottom: 3px solid transparent;
+}
+.super-header-wrap .super-header a:hover {
+  color: white;
+  border-bottom: 3px solid var(--clr-tertiary);
+}
+.super-header-wrap .super-header .divider {
+  border-right: 1px solid #fff;
+}
+.super-header-wrap .super-header #svgCard {
+  max-height: 12px;
+  transform: translateY(1px);
+}
+.super-header-wrap .super-header #svgUser {
+  max-width: 11px;
+  max-height: 11px;
+}

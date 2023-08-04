@@ -1,0 +1,7 @@
+.btn-more {
+  display: none;
+}
+
+.slot-btns .timeslot-btn:nth-child(1n+5) ~ .btn-more {
+  display: block;
+}

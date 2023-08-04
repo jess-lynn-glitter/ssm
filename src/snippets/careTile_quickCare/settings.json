@@ -1,0 +1,16 @@
+{
+  "Id": 10912,
+  "mSiteId": 7979,
+  "lastModified": "2023-07-27T01:27:22.197",
+  "signature": "careTile_quickCare",
+  "desc": null,
+  "testURL": "http://www.ssmhealth.com",
+  "isImportable": false,
+  "isDeleted": false,
+  "DBStrForFutureUse1": null,
+  "DBStrForFutureUse2": null,
+  "DBStrForFutureUse3": null,
+  "DBBoolFutureUse1": null,
+  "DBBoolFutureUse2": null,
+  "DBBoolFutureUse3": null
+}

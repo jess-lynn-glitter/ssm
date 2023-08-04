@@ -1,0 +1,49 @@
+<!--
+  NOTE 
+
+  This script is meant to be used with the quickCare widget.
+
+  Place at the top of the page where the quickCare widget is used.
+
+-->
+
+
+
+<amp-script id="script_waitTime" script="waitTimeScript" nodom></amp-script>
+
+<script id="waitTimeScript" type="text/plain" target="amp-script">
+const getWaitTime = async () => {
+  const waitTime = { 
+    showBtn: false,
+    timeToAppt: 0 
+  };
+
+  const url = "~~apiWaitTimes~~";
+
+  await fetch(url)
+    .then(res => res.json())
+    .then(res => {
+      res.forEach(item => {
+        if (item['estimatedWaitTimeSeconds'] || item['estimatedWaitTimeSeconds'] === 0) {
+          const timeInMins = (item["estimatedWaitTimeSeconds"].toFixed() / 60).toFixed();
+
+          waitTime.timeToAppt = timeInMins < 5 ? "Under 5 minutes" : timeInMins + ' min';
+          waitTime.showBtn = true;
+        }
+      });
+      if (!waitTime.showBtn) {
+        console.error('getWaitTime No Estimated WaitTime.');
+        waitTime.timeToAppt = false;
+      }
+    })
+    .catch((err) => {
+      console.error('getWaitTime Error:\n' + err);
+      waitTime.showBtn = false;
+      waitTime.timeToAppt = false;
+    });
+
+  return waitTime;
+};
+
+exportFunction("getWaitTime", getWaitTime);
+</script>

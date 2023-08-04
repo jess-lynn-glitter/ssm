@@ -1,0 +1,163 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 5px;
+  border-bottom: 1px solid #B2B2B2;
+  width: 100%;
+}
+.card .mbl-map {
+  display: none;
+}
+.card.selected {
+  box-shadow: 0 0 0 3px var(--clr-primary);
+  width: calc(100% - 3px);
+}
+.card.selected .loc-booking {
+  padding: 20px;
+  min-width: 330px;
+}
+.card .loc-info {
+  display: flex;
+  margin: 0;
+}
+.card .loc-img img {
+  width: 95px;
+  min-width: 95px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.card .loc-det .miles-away {
+  color: #535353;
+}
+.card .loc-det .svg-ico-clock {
+  color: var(--clr-primary);
+  width: 20px;
+  height: 20px;
+  transform: translateY(3px);
+}
+.card .loc-det .badges span {
+  background-color: #ECECEC;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+.card .card-btns {
+  gap: 8px;
+}
+.card .card-btns svg {
+  height: 16px;
+  width: 18px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.card .loc-booking {
+  text-align: center;
+  padding: 20px 23px 20px;
+  margin-top: 10px;
+  min-width: 336px;
+  min-height: 213px;
+}
+
+#results .map-card {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  #showMap:checked ~ main #resultsWrapper {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  #showMap:checked ~ main #results .card {
+    position: relative;
+    min-width: 215px;
+    min-height: 235px;
+  }
+  #showMap:checked ~ main #results .card h3 {
+    font-size: 16px;
+  }
+  #showMap:checked ~ main #results .card div, #showMap:checked ~ main #results .card span, #showMap:checked ~ main #results .card a {
+    font-size: 14px;
+  }
+  #showMap:checked ~ main #results .card .mbl-map-hidden {
+    display: none;
+  }
+  #showMap:checked ~ main #results .card .card-btns {
+    position: absolute;
+    bottom: 10px;
+  }
+  #showMap:checked ~ main #results .card .mbl-map {
+    display: flex;
+  }
+  #showMap:checked ~ main #results .card .tab-only {
+    display: block;
+  }
+  #showMap:checked ~ main #results .map-card {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.1), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
+  }
+  #showMap:checked ~ main #results .map-card .map-loc-img {
+    height: 80px;
+    width: 64px;
+    border: 1px solid #D6D6D6;
+    border-radius: 12px;
+  }
+  #showMap:checked ~ main #results .map-card .map-loc-img img {
+    height: 80px;
+    width: 64px;
+    object-fit: cover;
+  }
+  #showMap:checked ~ main #results .map-card .loc-info {
+    max-height: 110px;
+    flex-grow: 1;
+    column-gap: 8px;
+  }
+  #showMap:checked ~ main #results .map-card .loc-title {
+    font-size: 14px;
+  }
+  #showMap:checked ~ main #results .map-card .loc-det {
+    font-size: 14px;
+    flex-grow: 1;
+  }
+  #showMap:checked ~ main #results .map-card .card-btns {
+    justify-content: space-around;
+    position: relative;
+    bottom: 0;
+  }
+  #showMap:checked ~ main #results .map-card .card-btns .btn-primary {
+    padding: 12px;
+    border: none;
+  }
+}
+@media (max-width: 575.98px) {
+  .main {
+    margin: 40px 12px 0;
+  }
+  .card .card-btns {
+    margin-left: 105px;
+  }
+  #showMap:checked ~ main .card .card-btns {
+    margin-left: 0;
+    gap: 8px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .card .loc-booking {
+    min-width: 280px;
+    width: 280px;
+    padding: 20px 0;
+  }
+}

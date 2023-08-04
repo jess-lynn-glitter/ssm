@@ -1,0 +1,92 @@
+{css_SERP}
+{css_location_results}
+
+{base_scrollToTop}
+{site_header}
+{analytics_amp}
+
+<!-- <div w-if="!wData.features.areBreezeLocationsOpen"
+    id="locationSerpBanner"
+    class="w100vw py-05 px-15 txt-xl txt-white ">
+  Some locations are closed due to inclement weather. Please call prior to arriving.
+</div> -->
+{base_modal(wData.filterModalContent)}
+
+{LSP_searchHeader}
+
+{doNotWomp}
+
+
+<main id="main" class="mt-4 lsp-main main">
+  <section id="resultsWrapper" class="mr-2">
+    <div id="results">
+      <div class="loader">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <div id="pagination"
+        class="hidden">
+      <button id="loadMore"
+          class="btn"
+          disabled>LOAD MORE</button>
+    </div>
+  </section>
+  <section id="mapEl">
+    <div id="wmMap"></div>
+  </section>
+</main>
+
+{endDoNotWomp}
+
+{script_rewriteUrl}
+{script_searchLocation(searchConfigOverride)}
+
+
+<div id="wompInvalidAmpOK"></div>
+
+{site_footer}
+
+<!-- The schema graph will be plugged in here, and script will get type=application/ld+json -->
+<script id="schema"></script>
+
+{script_mapOffset}
+
+{base_svgIcons}
+
+{womp_amp_cleanup}
+{#wompRedirect}
+{script_bookingCustomElements}
+
+<script type="text/javascript" >
+
+  function styleResultsWrapperBasedOnBlueBannerExistence() {
+    const blueBannerElement = document.querySelector('#blueBanner');
+    const resultsWrapperElement = document.querySelector('#resultsWrapper');
+    if (blueBannerElement.classList.contains('hidden')) {
+      resultsWrapperElement.style.bottom = "110px";
+    } else {
+      resultsWrapperElement.style.bottom = "260px";
+    }
+  }
+
+  document.getElementById('showMap').addEventListener('change', function() {
+    if (this.checked) {
+      document.querySelector('.header__mob-ctas').style.display = 'none';
+      styleResultsWrapperBasedOnBlueBannerExistence();
+    } else {
+      document.querySelector('.header__mob-ctas').style.display = 'block';
+    }
+  });
+
+  document.querySelector('#closeBlueBannerBtn').addEventListener('click', function() {
+    const mapInputEl = document.querySelector('#showMap');
+    if(mapInputEl.checked){
+      styleResultsWrapperBasedOnBlueBannerExistence();
+    }
+  })
+</script>

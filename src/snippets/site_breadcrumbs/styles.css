@@ -1,0 +1,22 @@
+#breadcrumbs {
+  list-style: none;
+  padding: 0;
+  font-size: 16px;
+}
+#breadcrumbs li:not(:last-of-type) {
+  color: #495B6C;
+}
+#breadcrumbs li:not(:last-of-type)::after {
+  content: "/";
+  padding: 0 1rem;
+  color: #495B6C;
+}
+#breadcrumbs a {
+  color: inherit;
+}
+
+@media (min-width: 576px) {
+  #breadcrumbs {
+    display: flex;
+  }
+}

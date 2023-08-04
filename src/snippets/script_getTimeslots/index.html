@@ -1,0 +1,58 @@
+<!--
+  NOTE 
+
+  This script is meant to be used with careTile_timeslots.
+
+  Place at the top of the page where the widget is used.
+
+-->
+
+<amp-script id="script_Timeslots" script="getTimeslots" nodom></amp-script>
+
+<script id="getTimeslots" type="text/plain" target="amp-script">
+
+  const getTimeslots = async () => {
+    const timeslotsResponse = await fetch(
+      "~~apiDexCare~~/v1/departments/~~UrlName~~/timeslots"
+    );
+    const json = await timeslotsResponse.json();
+
+    json.scheduleDays = json.scheduleDays.filter(x=>x.timeSlots.length);
+    json.scheduleDays = json.scheduleDays.slice(0, 3);
+
+    for(const [index,value] of json.scheduleDays.entries()) {
+      const day = value;
+      day.formattedDate = (new Date(day.date).toLocaleDateString("en", {
+        dateStyle: "full",
+       })).replace(/, [0-9]+$/, '');
+
+      day.date = new Date(day.date).toISOString();
+      day.dayId = 'day' + index;
+
+      if (index === 0){
+        day.checked = true;
+      }
+
+      for(const slot of day.timeSlots){
+        slot.formattedTime = (new Date(slot.slotDateTime).toLocaleTimeString("en-US", {timeZone: 'America/Chicago'})).replace(/:[0-9]+\s(AM|PM)/i, ' $1');
+      }
+
+      if (day.timeSlots.length == 1) {
+        day.textSpots = 'Spot';
+      } else {
+        day.textSpots = 'Spots';
+      }
+    };
+
+    if(json.scheduleDays.length){
+      await AMP.setState({'dateSelectedFormatted':json.scheduleDays[0].formattedDate});
+    };
+
+     /*console.log('THE JSON ', json);*/
+
+    return {currentLocation: json};
+  };
+  
+  exportFunction("getTimeslots", getTimeslots);
+  
+</script>

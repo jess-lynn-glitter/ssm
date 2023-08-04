@@ -1,0 +1,60 @@
+<script w-if="!wData.isGoogleBot" type="text/javascript">
+
+  (async function () {
+    /* nearby locations fetched server-side */
+    const locationsResponse = ~~nearbyLocationsResponseStringified~~;
+
+    let availableDays = [], closestLocation;
+    for (const location of locationsResponse.locations) {
+      if (!availableDays.length && (location.UrlName != '~~UrlName~~') && location.distance < 10) {
+        availableDays = await fetchAvailableDays(location.UrlName);
+        if (availableDays.length) {
+          closestLocation = location;
+        }
+      }
+    };
+
+    if (!closestLocation) {
+      hideNearbyWidget();
+    };
+
+    async function fetchAvailableDays(UrlName) {
+      try {
+      const closestTimeslotsResponse = await fetch(
+        "~~apiDexCare~~/v1/departments/" +
+        UrlName +
+        "/timeslots"
+      );
+
+      const json = await closestTimeslotsResponse.json();
+
+        if (closestTimeslotsResponse.status != 200) {
+          throw new Error('timeslots api error.');
+        };
+        return json.scheduleDays.filter((x) => x.timeSlots.length);
+      } catch (err) {
+        console.error(err);
+        return [];
+      }
+    };
+  })();
+
+
+  function hideNearbyWidget() {
+    const bookingWidgets = document.querySelectorAll('.widget-booking');
+
+    if (bookingWidgets.length) {
+      bookingWidgets.forEach(function (widget) {
+        widget.classList.add('hide-nearby-widget');
+        widget.querySelector('.widget-book-nearby').remove();
+        const quickCare = widget.parentElement.querySelector('.widget-quick-care');
+        widget.appendChild(quickCare);
+      })
+    } else {
+      setTimeout(() => {
+        hideNearbyWidget()
+      }, 50);
+    }
+  };
+
+</script>

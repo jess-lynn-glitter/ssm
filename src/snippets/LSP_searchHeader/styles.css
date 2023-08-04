@@ -1,0 +1,621 @@
+@charset "UTF-8";
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.border-grey {
+  border: 1px solid #B2B2B2;
+}
+
+#searchHdr {
+  position: relative;
+  /*& #sortbyFilterBox, */
+}
+#searchHdr #searchFilters {
+  height: 0;
+  overflow: hidden;
+}
+#searchHdr #searchCont {
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: end;
+}
+#searchHdr #backToSrchBtn {
+  display: none;
+  position: absolute;
+  top: 1px;
+  left: 30px;
+  padding-left: 15px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#searchHdr #backToSrchBtn:before {
+  content: url("data:image/svg+xml,%3Csvg width='8' height='12' viewBox='0 0 8 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.49527 1.49609L2 5.91055L6.30086 10.5028' stroke='currentColor' stroke-width='2'/%3E%3C/svg%3E");
+  max-width: 8px;
+  max-height: 12px;
+  position: absolute;
+  top: 6px;
+  left: 2px;
+}
+#searchHdr #searchBox {
+  flex-direction: row;
+  align-items: end;
+  width: 100%;
+  visibility: hidden;
+}
+#searchHdr #inputSrch, #searchHdr #customLoc {
+  min-width: 307px;
+  height: 45px;
+}
+#searchHdr #srchSubmitBtn {
+  background-color: var(--clr-primary);
+  color: #fff;
+  font-size: 1.9rem;
+  padding: 9px 11px;
+  height: 45px;
+  min-width: 108px;
+}
+#searchHdr #srchSubmitBtn:hover, #searchHdr #srchSubmitBtn:focus-visible {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+#searchHdr #srchSubmitBtn:active:hover, #searchHdr #srchSubmitBtn:active:focus-visible {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+#searchHdr #autosuggest {
+  position: absolute;
+  top: 4.573rem;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  border: 1px solid #B2B2B2;
+  border-top: none;
+}
+#searchHdr #autosuggest h5 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 1rem 10px 0.5rem;
+}
+#searchHdr #autosuggest #prevSrchHeading {
+  margin-top: 20px;
+}
+#searchHdr #autosuggest div {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+#searchHdr div[data-autosuggest] {
+  cursor: pointer;
+}
+#searchHdr div[data-autosuggest].selected {
+  background-color: #F7F7F7;
+}
+#searchHdr div[data-autosuggest]:hover, #searchHdr div[data-autosuggest]:focus-visible {
+  background-color: #ECECEC;
+}
+#searchHdr #advFilters {
+  flex-direction: column;
+}
+#searchHdr .btn:not(.selected) {
+  color: var(--clr-primary);
+}
+#searchHdr .btn {
+  white-space: nowrap;
+}
+#searchHdr .un-btn.un-btn {
+  color: #000;
+  padding: 5px;
+  border: none;
+}
+#searchHdr label, #searchHdr legend {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.8;
+}
+#searchHdr input, #searchHdr select, #searchHdr button {
+  padding: 1em 1em;
+}
+#searchHdr input {
+  font-size: 1.3rem;
+}
+#searchHdr select, #searchHdr button, #searchHdr .filter-button {
+  font-size: 1.4rem;
+}
+#searchHdr input:focus-visible, #searchHdr select:focus-visible {
+  outline: 0;
+}
+#searchHdr input:hover, #searchHdr input:focus-visible:hover, #searchHdr select:hover, #searchHdr select:focus-visible:hover {
+  border: 1px solid #535353;
+}
+#searchHdr .svg-chevron-down {
+  max-width: 8px;
+  max-height: 9.142px;
+}
+#searchHdr .visit-type.wrap-me {
+  white-space: normal;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#searchHdr #dayFilter .btn {
+  flex-basis: 20%;
+}
+#searchHdr .filter-button.filter-button {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  color: #000;
+  padding: 10px 2.5em 10px 20px;
+  border: 1px solid #B2B2B2;
+  border-radius: 3rem;
+  margin: 0 10px 10px 0;
+}
+#searchHdr .filter-button.filter-button::after {
+  position: absolute;
+  right: 15px;
+  content: "✕";
+  color: #B2B2B2;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+#searchHdr .filter-button.ins {
+  padding-left: 39px;
+}
+#searchHdr #fullSrchLabel {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+  padding: 0 12px;
+}
+#searchHdr .mobile-btns .btn {
+  background-color: #fff;
+  font-size: 2rem;
+  padding: 0;
+  cursor: pointer;
+}
+#searchHdr .mobile-btns .btn:hover, #searchHdr .mobile-btns .btn:focus-visible, #searchHdr .mobile-btns .btn:active {
+  background-color: #ECECEC;
+}
+#searchHdr .mobile-btns .btn:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #009543;
+}
+#searchHdr .mobile-btns label {
+  font-weight: 300;
+}
+#searchHdr .btn-toggle .loader {
+  display: none;
+  height: auto;
+  max-height: 40px;
+  max-width: 40px;
+  margin-right: 10px;
+}
+#searchHdr .btn-toggle .loader .lds-ring, #searchHdr .btn-toggle .loader .lds-ring div {
+  max-width: 40px;
+  max-height: 40px;
+}
+#searchHdr .btn-toggle .loader .lds-ring div, #searchHdr .btn-toggle .loader .lds-ring div div {
+  border-width: 5px;
+  margin: 0;
+}
+#searchHdr .btn-toggle .toggle {
+  position: relative;
+  display: inline-block;
+  background: #000;
+  width: 40px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+#searchHdr .btn-toggle .toggle::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: block;
+  background: #fff;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+#searchHdr .btn-toggle.selected {
+  background: none;
+}
+#searchHdr .btn-toggle.selected .toggle {
+  background: #009543;
+}
+#searchHdr .btn-toggle.selected .toggle::before {
+  left: 25px;
+}
+#searchHdr .btn-toggle.disabled .toggle {
+  background: #B2B2B2;
+}
+#searchHdr .btn-switch {
+  display: inline-flex;
+}
+#searchHdr .btn-switch span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 95px;
+  height: 50px;
+}
+#searchHdr .btn-switch span.option-1 {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+#searchHdr #clearSrchBtn {
+  display: none;
+  height: 52px;
+  padding: 0 12px;
+  border: none;
+}
+#searchHdr #useMyLoc {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 30px;
+}
+#searchHdr #useMyLoc svg {
+  max-width: 14px;
+  max-height: 13px;
+}
+#searchHdr #useMyLocError {
+  position: absolute;
+  bottom: -5px;
+  right: 5px;
+  color: red;
+  font-size: 1.1rem;
+}
+#searchHdr .svg-ico-badge-check {
+  color: #009543;
+  max-width: 20px;
+  max-height: 20px;
+  margin-right: 5px;
+  transform: translateY(5px);
+  position: absolute;
+  top: 0;
+  left: 15px;
+}
+#searchHdr #useMyLocBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#searchHdr .break, #searchHdr .spacer, #searchHdr #filterBtns {
+  display: none;
+}
+
+body.no-locations #searchHdr #showMapLabel {
+  display: none;
+}
+body.show-map #searchHdr #showMapLabel {
+  display: inline-flex;
+}
+
+#searchHdrFtr > div {
+  font-size: 2rem;
+}
+
+/* MEDIA QUERIES */
+/* up to sm phone */
+@media screen and (max-width: 375.98px) {
+  #searchHdr #backToSrchBtn, #searchHdr select, #searchHdr button, #searchHdr .filter-button {
+    font-size: 1.3rem;
+  }
+  #searchHdr #visitTypeFilter .btn {
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+  #searchHdr .btn-switch span {
+    width: 65px;
+  }
+}
+@media screen and (max-width: 425.98px) {
+  #searchHdr #ageBtnsMob .btn {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+  #searchHdr .visit-type.btn.accpt-new {
+    line-height: 15px;
+  }
+}
+@media screen and (min-width: 449.98px) {
+  #searchHdr .mobile-btns .btn:first-child {
+    margin-right: 10px;
+  }
+}
+/* up to lg tablet */
+@media (max-width: 991.98px) {
+  #showMap:checked ~ #searchHdr #showMapLabel {
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+    color: #fff;
+  }
+  #showMap:checked ~ #searchHdr #showMapLabel span.option-1 {
+    background-color: #fff;
+    color: var(--clr-primary);
+  }
+  #showMap:checked ~ #searchHdr #showMapLabel span.option-2 {
+    background-color: var(--clr-primary);
+    color: #fff;
+  }
+  #showMap:checked ~ #searchHdr #blueBanner {
+    margin-top: -10px;
+  }
+  #showMap:checked ~ main #resultsWrapper {
+    position: absolute;
+    bottom: 120px;
+    max-width: 100%;
+    margin-top: 0;
+    z-index: 1;
+  }
+  #showMap:checked ~ main #results {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 0;
+    scroll-snap-type: x mandatory;
+  }
+  #showMap:checked ~ main #results .card {
+    background-color: #fff;
+    margin: 0 5px;
+    padding: 12px 6px 6px;
+  }
+  #showMap:checked ~ main #results .card:first-of-type {
+    margin-left: 0;
+  }
+  #showMap:checked ~ main #results .card:last-of-type {
+    margin-right: 0;
+  }
+  #showMap:checked ~ main #results .card .prov-img {
+    margin-top: 0;
+  }
+  #showMap:checked ~ main #results .card .prov-booking {
+    display: none;
+  }
+  #showMap:checked ~ main #mapEl {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+  }
+  #showMap:checked ~ main #pagination .btn {
+    background-color: #fff;
+  }
+  #showMap:checked ~ main #pagination .btn:hover, #showMap:checked ~ main #pagination .btn:focus-visible, #showMap:checked ~ main #pagination .btn:active {
+    background-color: #ECECEC;
+  }
+  #showMap:checked ~ main #pagination .selected {
+    background-color: #b2b2b2;
+  }
+  #showMap:checked ~ footer {
+    display: none;
+  }
+  #fullSrch:checked ~ #searchHdr #searchFilters {
+    height: auto;
+    overflow: unset;
+    padding-bottom: 60px;
+    margin-top: 1rem;
+  }
+  #fullSrch:checked ~ #searchHdr #searchCont {
+    display: flex;
+  }
+  #fullSrch:checked ~ #searchHdr #backToSrchBtn {
+    display: inline-block;
+  }
+  #fullSrch:checked ~ #searchHdr #searchBox {
+    visibility: visible;
+  }
+  #fullSrch:checked ~ #searchHdr #fullSrchLabel, #fullSrch:checked ~ #searchHdr #showMapLabel {
+    display: none;
+  }
+  #fullSrch:checked ~ #searchHdr #clearSrchBtn {
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+  #fullSrch:checked ~ #searchHdr #useMyLoc {
+    display: inline-block;
+  }
+  #fullSrch:checked ~ #searchHdr #filterBtns {
+    display: inline-block;
+  }
+  #fullSrch:checked ~ main, #fullSrch:checked ~ footer {
+    display: none;
+  }
+}
+/* phone */
+@media (min-width: 576px) {
+  #searchHdr #searchCont {
+    padding-top: 5rem;
+  }
+  #searchHdr select, #searchHdr button, #searchHdr .filter-button {
+    font-size: 1.5rem;
+  }
+  #searchHdr #srchSubmitBtn {
+    padding: 9px 23px;
+  }
+  #searchHdr .input-group {
+    flex-direction: row;
+  }
+  #filterBtns {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 575.98px) {
+  #searchHdr {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #searchHdr #backToSrchBtn {
+    left: 15px;
+  }
+  #searchHdr #useMyLoc {
+    right: 15px;
+  }
+  #blueBanner {
+    margin: 0 -15px;
+  }
+  #blueBanner > div {
+    padding-top: 1rem;
+    font-size: 16px;
+  }
+  #blueBanner a {
+    margin-bottom: 12px;
+  }
+  #blueBanner .text-wrapper {
+    margin-right: 0;
+    max-width: 85%;
+  }
+  #blueBanner .txt-lg {
+    font-size: 20px;
+  }
+}
+@media (max-width: 767.98px) {
+  #searchHdr #inputSrch {
+    margin-right: 0;
+  }
+}
+/* sm tablet */
+@media (min-width: 768px) {
+  #searchHdr .input-group input {
+    margin-right: 30px;
+  }
+  #searchHdr .input-group input:last-child {
+    margin-right: 0;
+  }
+  #searchHdr #backToSrchBtn {
+    top: 10px;
+    left: 30px;
+  }
+  #searchHdr #useMyLoc {
+    right: 30px;
+  }
+  #searchHdr #useMyLocBtn {
+    height: 4.573rem;
+  }
+  #searchHdr #useMyLocError {
+    bottom: 0;
+  }
+}
+/* lg tablet */
+@media (min-width: 992px) {
+  #searchHdr {
+    margin-top: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #searchHdr #searchFilters {
+    height: unset;
+    overflow: unset;
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.2);
+  }
+  #searchHdr #searchCont {
+    display: flex;
+    padding-top: 0;
+  }
+  #searchHdr #backToSrchBtn {
+    display: none;
+  }
+  #searchHdr #searchBox {
+    visibility: visible;
+    flex-grow: 1;
+    width: unset;
+    max-width: 1000px;
+  }
+  #searchHdr #useMyLoc {
+    display: block;
+    position: relative;
+    top: unset;
+    right: unset;
+  }
+  #searchHdr #advFilters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  #searchHdr #timeFilter {
+    margin-top: 10px;
+  }
+  #searchHdr .tab-mt-16, #searchHdr #ageFilterBox, #searchHdr #availabilityFilterBox, #searchHdr #clearFilters, #searchHdr #degreeFilter, #searchHdr #genderFilterBox, #searchHdr #insuranceFilter, #searchHdr #hospitalFilter, #searchHdr #languageFilter, #searchHdr #primarySpecialtyFilter, #searchHdr #visitTypeFilterBox {
+    margin-top: 16px;
+  }
+  #searchHdr .tab-mt-16 .btn, #searchHdr #ageFilterBox .btn, #searchHdr #availabilityFilterBox .btn, #searchHdr #clearFilters .btn, #searchHdr #degreeFilter .btn, #searchHdr #genderFilterBox .btn, #searchHdr #insuranceFilter .btn, #searchHdr #hospitalFilter .btn, #searchHdr #languageFilter .btn, #searchHdr #primarySpecialtyFilter .btn, #searchHdr #visitTypeFilterBox .btn {
+    width: auto;
+  }
+  #searchHdr #sortbyFilterBox {
+    display: none; /* inline-flex, if we want this back */
+    margin-top: 16px;
+  }
+  #searchHdr #sortbyFilterBox .btn {
+    width: auto;
+  }
+  #searchHdr #ageFilterBox, #searchHdr #availabilityFilterBox, #searchHdr #degreeFilter, #searchHdr #genderFilterBox, #searchHdr #hospitalFilter, #searchHdr #insuranceFilter, #searchHdr #languageFilter, #searchHdr #primarySpecialtyFilter, #searchHdr #sortbyFilterBox, #searchHdr #visitTypeFilterBox {
+    position: relative;
+  }
+  #searchHdr #sortbyFilterBox legend {
+    display: none;
+  }
+  #searchHdr #ageFilterBox, #searchHdr #degreeFilter, #searchHdr #genderFilter, #searchHdr #hospitalFilter, #searchHdr #sortbyFilter, #searchHdr #visitTypeFilter {
+    display: inline-flex;
+  }
+  #searchHdr #ageFilterBox .btn, #searchHdr #degreeFilter .btn, #searchHdr #genderFilter .btn, #searchHdr #hospitalFilter .btn, #searchHdr #sortbyFilter .btn, #searchHdr #visitTypeFilter .btn {
+    flex-grow: 0;
+  }
+  #searchHdr .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #B2B2B2;
+  }
+  #searchHdr #ageFilterBox.active .dropdown-menu, #searchHdr #availabilityFilterBox.active .dropdown-menu, #searchHdr #genderFilterBox.active .dropdown-menu {
+    display: block;
+    background-color: #fff;
+  }
+  #searchHdr .break {
+    display: inline-block;
+    flex-basis: 100%;
+  }
+  #searchHdr .spacer {
+    display: inline-block;
+    flex-grow: 1;
+  }
+  #searchHdr #clearSrchBtn {
+    display: inline-block;
+    position: relative;
+  }
+  #searchHdr .tab-mr-1 {
+    margin-right: 10px;
+  }
+  #searchHdr #filterBtns {
+    display: inline-block;
+    margin-top: 2rem;
+  }
+  #searchHdr #searchResultCnt {
+    margin-left: 32px;
+  }
+  #genderLabel.tab-flx {
+    display: flex;
+  }
+}
+/* desktop */
+@media (min-width: 1280px) {
+  #searchHdr .break {
+    display: none;
+  }
+  #searchHdr #searchCont {
+    margin: 0 auto;
+  }
+}

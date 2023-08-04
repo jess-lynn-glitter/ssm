@@ -1,0 +1,10 @@
+.error-content {
+    background: #FCFDFF;
+    text-align: center;
+    padding: 40px;
+    margin-top: 51px;
+}
+
+.error-content img {
+    max-width: 499px;
+}

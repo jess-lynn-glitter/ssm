@@ -1,0 +1,144 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+body.no-locations .map-lnk {
+  display: none;
+}
+body.show-map main #mapEl #wmMap {
+  display: block;
+}
+body.show-map-checked #resultMessage, body.show-map-checked #scrollToTop {
+  display: none;
+}
+
+main #mapEl {
+  display: none;
+  background-color: #D5E9DA;
+  align-self: center;
+  width: 100%;
+  max-height: 100vh;
+  max-width: 90%;
+  overflow: hidden;
+  margin: -44px -12px 0;
+  min-width: 100vw;
+}
+main #mapEl #wmMap, main #mapEl #virtualOnly {
+  width: 100%;
+  height: 100%;
+  min-height: 50vh;
+}
+main #mapEl #virtualOnly {
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #F6F6F6;
+}
+main #mapEl #virtualOnly:not(.hidden) {
+  display: flex;
+}
+main #mapEl #virtualOnly #imgCont {
+  width: 100%;
+  max-width: 380px;
+}
+main #mapEl #virtualOnly amp-img, main #mapEl #virtualOnly img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+main #mapEl #wmMap {
+  display: none;
+}
+main #mapEl .gm-style iframe + div {
+  border-color: transparent !important;
+}
+main #mapEl .gm-style .gm-style-iw-c {
+  border-radius: 0;
+}
+main #mapEl .gm-style .gm-style-iw-c:focus {
+  border: 1px solid #ECECEC;
+}
+main #mapEl .gm-style-iw.gm-style-iw-c:focus-visible {
+  outline: 0;
+}
+main #mapEl button:focus {
+  box-shadow: none;
+}
+main #mapEl button:focus-visible {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--clr-secondary);
+}
+main #mapEl .poi-info-window {
+  min-width: 210px;
+}
+main #mapEl .poi-info-window h3 {
+  font-weight: 700;
+  font-size: 1em;
+}
+main #mapEl .prov-info {
+  clear: left;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+main #mapEl .prov-img {
+  float: left;
+  margin-right: 10px;
+}
+main #mapEl .prov-img .provider-img, main #mapEl .prov-img .relative {
+  width: 45px;
+  min-width: 45px;
+  height: 55px;
+}
+main #mapEl .prov-img .provider-img {
+  object-fit: cover;
+  vertical-align: bottom;
+}
+main #mapEl .prov-img .svg-ico-videocam {
+  display: none; /* hiding temporarily */
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  background-color: white;
+  max-width: 21px;
+  max-height: 15px;
+  padding: 2px;
+}
+
+@media (min-width: 576px) {
+  main #mapEl {
+    margin: -44px -32px 0;
+    min-width: 100vw;
+  }
+}
+/* up to lg tablet */
+@media (max-width: 991.98px) {
+  #showMap:checked ~ main {
+    flex-direction: column-reverse;
+  }
+}
+/* lg tablet */
+@media (min-width: 992px) {
+  main #mapEl {
+    position: sticky;
+    top: 0;
+    display: block;
+    align-self: unset;
+    min-width: unset;
+    max-width: 45%;
+    justify-self: flex-end;
+    flex-grow: 0;
+    margin: 0 -32px 0 0;
+  }
+}
+/* desktop */
+@media (min-width: 1280px) {
+  main #mapEl {
+    max-width: 35%;
+  }
+}

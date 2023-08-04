@@ -1,0 +1,80 @@
+<!-- Map widget -->
+<div id="mapEl">
+  <div id="wmMap" w-if="wData.isGoogleBot">
+    {doNotWomp}
+    <amp-img w-render
+        data="wData.wompHealthResponse.locations[0]"
+      alt="map"
+      layout="fill"
+      src="https://maps.googleapis.com/maps/api/staticmap?size=640x420&amp;zoom=15&amp;center={{Address}}&amp;markers={{Address}}&amp;key=AIzaSyCBMxL0BbkB81x980QosjGg02FtV6ZoFXs&amp;format=png&amp;visual_refresh=true&amp;scale=2&amp;style=feature:poi%7Celement:labels%7Cvisibility:off">
+    </amp-img>
+    {endDoNotWomp}
+  </div>
+  <div w-else id="wmMap"></div>
+</div>
+
+<div w-if="!wData.isGoogleBot" id="wm_mapScripts">
+  <script id="searchJs" src="~~wompOmniAssetsPath~~/js/search.js" type="text/javascript"></script>
+  <script id="searchScripts" type="text/javascript">
+
+    /**
+     * TO LOAD A MAP AS STANDALONE:
+     * 
+     * 1) wait for #mapEl to be available (in case it's added to DOM dynamically, like in an amp-list)
+     * 2) Create instance of search
+     * 3) Initialize a map, fetching only results for the single location, filtering by pathname
+     */
+    (async function () {
+      let attempts = 0;
+
+      async function startSearchInit() {
+        if (window.makeSearchConfig) {
+          attempts++;
+          
+          const config = window.makeSearchConfig();
+
+          const extraParams = `&Url=${location.pathname.toLowerCase()}&providers=false`;
+
+          /* Create LocationSearch instance and init */
+          window.search = new LocationSearch(config);
+          if (config.mapType === 'providerDet') {
+            await window.search.helpers.map.init(config);
+          }
+          else if (config.mapType === 'locationDet') {
+            await window.search.helpers.map.init(extraParams);
+          }
+        } else if (attempts == 10) {
+          window.search = new LocationSearch(window.searchConfigDefault);
+          await window.search.helpers.map.init("&Url=" + encodeURIComponent(location.pathname).toLowerCase());
+        }
+        else {
+          setTimeout(() => {
+            startSearchInit();
+          }, 100);
+        }
+      }
+
+      waitForElement("#mapEl", async () => {
+        startSearchInit();
+      });
+    })();
+
+    function mapRequirement() {
+      /* google's javascript api requires a callback */
+      console.log('Google Map Loaded');
+    }
+
+    function waitForElement(selector, callback) {
+      if (document.querySelector(selector)) {
+        /* console.log("found selector", selector); */
+        callback();
+      } else {
+        setTimeout(() => {
+          waitForElement(selector, callback);
+        }, 100);
+      }
+    };
+
+  </script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyCBMxL0BbkB81x980QosjGg02FtV6ZoFXs&libraries=visualization,places&callback=mapRequirement"></script>
+</div>

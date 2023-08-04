@@ -1,0 +1,185 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+main {
+  max-width: 1400px;
+}
+main #divLocDetTop .hrs svg, main #divLocDetTop .addr svg, main #divLocDetTop .svg-ico-phone {
+  max-width: 24px;
+  max-height: 24px;
+}
+main #locTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 15px;
+}
+main #widgets {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+main #widgets .widget-book-now {
+  border-bottom: 1px solid transparent;
+}
+main #widgets .widget-book-nearby:not(.amp) {
+  margin-top: -2px;
+}
+main #widgets .widget-quick-care.amp {
+  margin-top: 28px;
+}
+main #widgets .widget-book-now, main #widgets .widget-book-nearby, main #widgets .widget-quick-care {
+  display: block;
+}
+main #details {
+  margin: 0 24px 60px;
+}
+main #details .mt-6 {
+  margin-top: 6rem;
+}
+main #details h2 {
+  font-size: 4.3rem;
+}
+main #details #mapEl {
+  height: 330px;
+}
+main #details #wmMap {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main #details #wmMap amp-img img {
+  object-fit: cover;
+}
+main #details #btnGetDirections {
+  display: block;
+  margin: 24px auto 0;
+}
+
+#locationDetailsBanner {
+  margin-top: 2rem;
+  padding: 2rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background-color: #F86E08;
+}
+
+/* MEDIA QUERIES */
+/* phone */
+@media (min-width: 576px) {
+  main #widgets .widget-book-now, main #widgets .widget-book-nearby, main #widgets .widget-quick-care {
+    max-width: 70%;
+  }
+}
+/* tablet */
+@media (min-width: 768px) {
+  main #divListWrapper {
+    margin-top: 24px;
+  }
+  main #imgPrimary {
+    max-width: 300px;
+    max-height: 225px;
+  }
+  main #divLocDetTop {
+    flex-grow: 1;
+    margin-left: 17.5px;
+    margin-right: 0;
+  }
+  main #widgets {
+    padding-top: 24px;
+  }
+  main #widgets .widget-book-now, main #widgets .widget-book-nearby {
+    max-width: 47%;
+  }
+  main #widgets .widget-booking.hide-nearby-widget .widget-quick-care {
+    margin-top: 0;
+    max-width: 47%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  main #details #aboutUs {
+    margin: 30px 0 0 0;
+  }
+  main #details #emergency ul {
+    flex-direction: row;
+  }
+  main #details #emergency .emerg-item-wrapper {
+    width: 50%;
+  }
+}
+/* lg tablet */
+@media (min-width: 992px) {
+  main #divListWrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+  }
+  main #divLocDet {
+    display: grid;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+  }
+  main #hero, main #details {
+    grid-column: 1/1;
+  }
+  main #hero {
+    grid-row: 1/1;
+  }
+  main #details {
+    grid-row: 2/2;
+  }
+  main #locTitle {
+    margin-top: 0;
+  }
+  main #widgets {
+    grid-column: 2/2;
+    grid-row: 1/span 2;
+    margin-top: 0;
+    margin-right: 10px;
+    padding-top: 0;
+    padding-bottom: 20px;
+    max-width: 391px;
+  }
+  main #widgets .widget-booking {
+    display: block;
+  }
+  main #widgets .widget-book-now, main #widgets .widget-book-nearby, main #widgets .widget-quick-care {
+    width: 375px;
+    max-width: 100%;
+  }
+  main #widgets .widget-booking.hide-nearby-widget .widget-quick-care, main #widgets .widget-quick-care {
+    margin-top: 28px;
+    max-width: 100%;
+  }
+  main #widgets .widget-book-now {
+    border-bottom: 1px solid transparent;
+  }
+  main #details #btnGetDirections {
+    margin-right: 0;
+  }
+}
+/* awkward middle size */
+@media only screen and (min-width: 992px) and (max-width: 1099.98px) {
+  main #hero.tabV-flx {
+    display: block;
+  }
+  main #hero.tabV-flx #divLocDetTop {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  main .widget-book-nearby:not(.amp) {
+    margin-top: 0;
+  }
+}

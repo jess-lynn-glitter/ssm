@@ -1,0 +1,281 @@
+{{#Name}}
+  <h4 id="{{Npi}}" class="bold txt-md px-12 ldp-only">{{Name}}{{#Degrees}}, {{.}}{{/Degrees}}</h4>
+  {{#Specialties.0}}
+    <p class="mt-08 semibold px-12 ldp-only">{{#Specialties}}{{Specialties}}{{/Specialties}}</p>
+  {{/Specialties.0}}
+{{/Name}}
+<div id="{{id}}"
+    class="card card-body provider"
+    data-location="{{closestLocation.id}}"
+    data-npi="{{Npi}}">
+  <div class="prov-info w100">
+    <div class="tab-only">
+      <h3 class="bold mt-0">
+        <a href="{{#childBrand}}https://orthoatlanta.piedmont.org{{ProfileUrl}}{{/childBrand}}{{^childBrand}}{{origin}}{{ProfileUrl}}{{/childBrand}}" 
+          aria-label="go to Provider detail page" alt="go to Provider detail page">{{providerNameClean}}</a>
+      </h3>
+      {{#ProviderTitle}}
+        <p class="prov-title mt-05 mb-1 mbl-hddn">
+          {{.}}
+          {{#locations.0}}
+            &bull; {{locationsCount}} Locations
+          {{/locations.0}}
+        </p>
+      {{/ProviderTitle}}
+      {{^ProviderTitle}}
+        {{#Specialties.0}}
+          <p class="prov-title mt-05 mb-1 mbl-hddn">
+            {{.}}
+            {{#locations.0}}
+              &bull; {{locationsCount}} Locations
+            {{/locations.0}}
+          </p>
+        {{/Specialties.0}}
+      {{/ProviderTitle}}
+    </div>
+    <div class="prov-wrap">
+      <div class="flx flx-grow">
+        <div class="prov-img">
+          <div class="relative">
+            {{#hasVideoBio}}
+            <a class="lnk-play-video" href="https://www.youtube.com/watch?v={{VideoBio}}" aria-label="watch Provider video" alt="watch Provider video" target="_blank">
+              <svg class="svg-ico-play-video no-tap" title="play video icon">
+                <use class="no-tap" xlink:href="#icon-play-video"></use>
+              </svg>
+            </a>
+            {{/hasVideoBio}}
+            <a class="img-lnk lnk-prov-img" href="{{#childBrand}}https://orthoatlanta.piedmont.org{{ProfileUrl}}{{/childBrand}}{{^childBrand}}{{origin}}{{ProfileUrl}}{{/childBrand}}" 
+               aria-label="got to Provider detail page" alt="go to Provider detail page">
+              <img class="provider-img rad12" src="{{ImageUrl}}" alt="{{Name}}, {{DegreesString}}">
+            </a>
+          </div>
+          {{#isInNetwork}}
+          <div class="prov-bdg" data-test >
+            <svg class="no-tap">
+              <use xlink:href="#piedmontMember"></use>
+            </svg>
+          </div>
+          {{/isInNetwork}}
+          {{#Rating}}
+          <div class="reviews mt-05">
+            <span class="stats">{{Rating}}</span>
+            <div class="stars" style="--rating: {{Rating}};" role="presentation" aria-label="Rating of this provider is {{Rating}} out of 5."></div>
+            {{#RatingCount}}
+            <span class="txt-sm txt-ctr block">{{RatingCount}} Reviews</span>
+            {{/RatingCount}}
+          </div>
+          {{/Rating}}
+        </div>
+        <div class="prov-det txt-sm flx flx-col">
+            <div class="tab-hidden">
+              <h3 class="bold mt-0">
+                <a href="{{#childBrand}}https://orthoatlanta.piedmont.org{{ProfileUrl}}{{/childBrand}}{{^childBrand}}{{origin}}{{ProfileUrl}}{{/childBrand}}" aria-label="go to Provider detail page" alt="go to Provider detail page">{{providerNameClean}}</a>
+              </h3>
+              {{#ProviderTitle}}
+              <p class="prov-title mt-05 mb-1">
+                {{.}}
+                {{#locations.0}}
+                  &bull; {{locationsCount}} Locations
+                {{/locations.0}}
+              </p>
+              {{/ProviderTitle}}
+              {{^ProviderTitle}}
+                {{#Specialties.0}}
+                  <p class="prov-title mt-05 mb-1 mbl-hddn">
+                    {{.}}
+                    {{#locations.0}}
+                      &bull; {{locationsCount}} Locations
+                    {{/locations.0}}
+                  </p>
+                {{/Specialties.0}}
+              {{/ProviderTitle}}
+            </div>
+            <div class="prov-abt">
+              {{^isVirtual}}
+              {{#locations.0}}
+                <div id="locSelector-{{Npi}}" class="loc-select-wrap">
+                  <div class="selector-dropdown relative w100 btn flx" data-value="{{id}}" role="menu">
+                    <span id="locName-{{Npi}}" class="selected-option semibold no-tap">
+                      {{Caption}}
+                    </span>
+                    <svg class="no-tap loc-chevron">
+                      <use xlink:href="#fa-chevron-down"/>
+                    </svg>
+                  </div>
+                  <div class="relative h-0">
+                    <ul class="selector-options w100 hidden">
+                      {{#locations}}
+                        {{#.}}
+                          <li class="selector-option-wrapper w100">
+                            <button id="{{Npi}}-cb_{{id}}" class="location-select btn p-0 hidden" name="{{Caption}}" value="{{id}}" data-phone="{{Phone}}" data-address="{{Address}}" data-distance="{{distance}}"></button>
+                            <label class="cursor-pointer btn-label w100 block" for="{{Npi}}-cb_{{id}}" role="menuitem" aria-label="select {{Caption}}">
+                              {{Caption}}<br/>
+                              <small>{{{addressClean}}}</small>
+                            </label>
+                          </li>
+                        {{/.}}
+                      {{/locations}}
+                    </ul>
+                  </div>
+                </div>
+                {{#closestLocation.address}}
+                  <div class='light mt-0 psp-only'>{{{closestLocation.address}}}</div>
+                {{/closestLocation.address}}
+              {{/locations.0}}
+              {{^locations.0}}
+                {{#closestLocation}}
+                  {{#closestLocation.name}}
+                    <h4 class="mt-0 semibold txt-md psp-only">{{{closestLocation.name}}}</h4>
+                  {{/closestLocation.name}}
+                  {{#closestLocation.address}}
+                    <div class='light mt-0 psp-only'>{{{closestLocation.address}}}</div>
+                  {{/closestLocation.address}}
+                {{/closestLocation}}
+              {{/locations.0}}
+              {{#distanceMilesStr}}
+                <p class="psp-only miles">{{distanceMilesStr}}</p>
+              {{/distanceMilesStr}}
+              {{/isVirtual}}
+
+              {{#closestLocation.phone}}
+                <div class="phone-section">
+                  <p class="bold psp-only">Office Number</p>
+                  <a class="psp-only phone-lnk"
+                    href="tel:{{closestLocation.phone}}"
+                    alt="Call Provider"
+                    data-vars-phone-link="{{closestLocation.phone}}"
+                  >{{closestLocation.phone}}</a>
+                </div>
+              {{/closestLocation.phone}}
+              {{^closestLocation.phone}}
+                <div class="phone-section hidden">
+                  <p class="bold psp-only">Office Number</p>
+                </div>
+              {{/closestLocation.phone}}
+              {{#Bio}}
+                <p class="bold ldp-only mt-0">About</p>
+                <!-- Must be a div so we don't get nested p tags -->
+                <div class="mt-1 ldp-only line-clamp-5">{{{Bio}}}</div>
+              {{/Bio}}
+            </div>
+            <ul class="bkng-types txt-sm">
+              {{#AcceptingNewPatients}}
+              <li class="flx">
+                <svg id="icoChk" class="ico-chk my-auto mr-05">
+                  <use xlink:href="#icon-checkmark"></use>
+                </svg>
+                <span>New Patient Visits</span>
+              </li>
+              {{/AcceptingNewPatients}}
+              {{#VirtualCare}}
+              <li>Virtual Visits</li>
+              {{/VirtualCare}}
+            </ul>
+
+            <ul class="bkng-types txt-sm bkng-types-mbl mt-0">
+              {{#AcceptingNewPatients}}
+              <li class="flx txt-14">
+                <svg id="icoChk" class="ico-chk my-auto mr-05">
+                  <use xlink:href="#icon-checkmark"></use>
+                </svg>
+                <span>New Patient Visits</span>
+              </li>
+              {{/AcceptingNewPatients}}
+            </ul>
+          <div class="prov-btns mt-1">
+            <a href="{{#childBrand}}https://orthoatlanta.piedmont.org{{ProfileUrl}}{{/childBrand}}{{^childBrand}}{{origin}}{{ProfileUrl}}{{/childBrand}}" 
+               class="btn-primary" role="button" aria-label="See Provider Details Page" alt="See Provider Details Page">
+            <svg class="reg-map-txt no-tap" id="icon-person" viewBox="0 0 14 16" fill="none">
+            <path d="M7 0C4.79086 0 3 1.79086 3 4C3 6.20914 4.79086 8 7 8C9.20914 8 11 6.20914 11 4C11 1.79086 9.20914 0 7 0ZM4 4C4 2.34315 5.34315 1 7 1C8.65685 1 10 2.34315 10 4C10 5.65685 8.65685 7 7 7C5.34315 7 4 5.65685 4 4ZM2.00873 9C0.903151 9 0 9.88687 0 11C0 12.6912 0.83281 13.9663 2.13499 14.7966C3.41697 15.614 5.14526 16 7 16C8.85474 16 10.583 15.614 11.865 14.7966C13.1672 13.9663 14 12.6912 14 11C14 9.89557 13.1045 9.00001 12 9.00001L2.00873 9ZM1 11C1 10.4467 1.44786 10 2.00873 10L12 10C12.5522 10 13 10.4478 13 11C13 12.3088 12.3777 13.2837 11.3274 13.9534C10.2568 14.636 8.73511 15 7 15C5.26489 15 3.74318 14.636 2.67262 13.9534C1.62226 13.2837 1 12.3088 1 11Z" fill="white"/>
+            </svg>
+                <span class="reg-map-txt no-tap">See Profile</span> <span class="mbl-map-txt no-tap">Provider</span>
+            </a>
+            <button id="{{id}}" class="map-lnk tab-only btn-primary" aria-label="See Provider on Map" data-location="{{closestLocation.id}}" data-npi="{{Npi}}" data-position="1">
+            <svg class="reg-map-txt no-tap" id="icon-map" viewBox="0 0 19 18" fill="none">
+              <path d="M6.20435 0.998816L6.2514 0.997559L6.29715 0.998767C6.31959 1.00006 6.34207 1.00239 6.36453 1.0058L6.38061 1.0096C6.46602 1.02332 6.55089 1.05383 6.63179 1.10175L6.68366 1.13529L11.754 4.70056L16.821 1.13864C17.2887 0.809848 17.9225 1.10537 17.9954 1.64772L18.0023 1.7522V12.3847C18.0023 12.5941 17.915 12.7921 17.7642 12.9329L17.6837 12.9983L12.1837 16.8647C11.9168 17.0523 11.5958 17.0366 11.3558 16.8878L6.251 13.2966L1.18132 16.8613C0.713608 17.1901 0.0798662 16.8946 0.00692677 16.3523L0 16.2478V5.61523C0 5.40591 0.087352 5.20783 0.23812 5.06706L0.318678 5.00167L5.81868 1.13529C5.88268 1.0903 5.94979 1.057 6.01815 1.03442L6.14062 1.00642L6.20435 0.998816ZM16.5023 3.19621L12.5023 6.00812V14.8071L16.5023 11.9952V3.19621ZM5.5 3.19287L1.5 6.00478V14.8038L5.5 11.9918V3.19287ZM7.00234 3.19287V11.9918L11.0023 14.8038V6.00478L7.00234 3.19287Z" fill="white"/>
+            </svg>
+              <span class="reg-map-txt no-tap">Show On Map</span> <span class="mbl-map-txt no-tap">See On Map</span>
+            </button>
+          </div>
+
+          {{#ts_isTest}}
+            <div id="test__organizations" class="mt-32">
+              {{#Tier}}
+                <div class="tier bold"><span>Tier: {{Tier}}</span></div>
+              {{/Tier}}
+              {{#searchScore}}
+                  <h4 class="bold">Search Score</h4>
+                  {{{searchScore}}}
+              {{/searchScore}}
+              {{#searchFeatures}}
+                  <h4 class="bold">Search Features</h4>
+                  {{{searchFeatures}}}
+              {{/searchFeatures}}
+              {{#searchHighlights}}
+                  <h4 class="bold">Search Highlights</h4>
+                  {{{searchHighlights}}}
+              {{/searchHighlights}}
+            </div>
+          {{/ts_isTest}}
+
+        </div>
+      </div>
+
+      <div class="prov-abt-mbl">
+        {{^isVirtual}}
+        {{#closestLocation.name}}
+          <h4 class="mt-0 semibold txt-15">{{{closestLocation.name}}}</h4>
+        {{/closestLocation.name}}
+        {{#distanceMilesStr}}
+          <p class="mt-0 mb-1 txt-14">{{distanceMilesStr}}</p>
+        {{/distanceMilesStr}}
+        {{#closestLocation}}
+          {{#closestLocation.address}}
+            <div class='mt-0 txt-14'>{{{closestLocation.address}}}</div>
+          {{/closestLocation.address}}
+        {{/closestLocation}}
+        {{/isVirtual}}
+      </div>
+
+      {{#VirtualCare}}
+      <div class="prov-care">
+        <!-- TODO: Insert Care Tiles-->
+      </div>
+      {{/VirtualCare}}
+      <!-- childReplacement pspTimeslots -->
+      <div class="timeslots-wrap">
+        <provider-timeslots
+          id="providerTimeslots"
+          context="details"
+          provider="{{Npi}}"
+          pass-class="search-override"
+          brand="piedmont"
+          phone="{{closestLocation.phone}}"
+          fallback-html="insOpt01"
+          api-key="{{apiDexCareSlotsV5Key}}"
+          api-origin="{{apiDexCareNoProtocol}}"
+          schedule-origin="{{scheduleOrigin}}"
+          location="{{City}}, {{Region}}"
+          wrapping-styles="false"
+        >
+        </provider-timeslots>
+      </div>
+      <!-- end childReplacement pspTimeslots -->
+      <!-- {{^VirtualCare}}
+        {{#Phone}}
+        <div class="prov-care  my-4">
+          <div class="w100 h100 flx-col flx-mid-ctr">
+            <p class="mb-1 txt-sm">Call Us to Schedule</p>
+            <a href="tel:{{Phone}}" class="btn-primary" role="button" aria-label="Call Provider" alt="Call Provider">
+              <svg class="no-tap" width="16" height="22" viewBox="0 0 16 22" fill="none">
+                <path d="M3.05694 1.41807L4.22394 1.06631C5.54645 0.667673 6.95945 1.31191 7.5258 2.57174L8.42747 4.57746C8.91021 5.65129 8.65582 6.91329 7.79476 7.71624L6.30046 9.1097C6.25678 9.15042 6.22913 9.20544 6.2225 9.26479C6.17814 9.66193 6.44737 10.4353 7.06763 11.5097C7.51868 12.2909 7.92693 12.8388 8.27442 13.1469C8.51653 13.3616 8.6498 13.408 8.70654 13.3911L10.7169 12.7765C11.8425 12.4324 13.0623 12.8428 13.751 13.7973L15.0317 15.5723C15.8378 16.6895 15.6928 18.2308 14.6926 19.1781L13.8062 20.0175C12.8498 20.9232 11.4882 21.2608 10.2195 20.9066C7.46539 20.1379 4.99608 17.8138 2.78421 13.9827C0.56926 10.1463 -0.207932 6.84186 0.50852 4.07007C0.836389 2.80158 1.80252 1.79619 3.05694 1.41807ZM3.48984 2.85425C2.73719 3.08112 2.15751 3.68435 1.96079 4.44544C1.35814 6.77696 2.047 9.70581 4.08325 13.2327C6.11678 16.7549 8.30572 18.8151 10.6227 19.4619C11.384 19.6743 12.2009 19.4718 12.7748 18.9284L13.6611 18.089C14.1158 17.6584 14.1817 16.9578 13.8153 16.4499L12.5346 14.675C12.2215 14.2411 11.667 14.0546 11.1554 14.211L9.14007 14.8271C7.97036 15.1758 6.90869 14.2344 5.7686 12.2597C5.00029 10.9289 4.6422 9.90024 4.73177 9.09829C4.77817 8.68286 4.97174 8.29775 5.27746 8.01267L6.77176 6.61921C7.16315 6.25423 7.27878 5.68059 7.05936 5.19249L6.15769 3.18677C5.90026 2.61412 5.25798 2.32129 4.65684 2.50248L3.48984 2.85425Z" fill="white"/>
+              </svg>
+              {{Phone}}
+            </a>
+          </div>
+        </div>
+        {{/Phone}}
+      {{/VirtualCare}} -->
+    </div>
+  </div>
+</div>

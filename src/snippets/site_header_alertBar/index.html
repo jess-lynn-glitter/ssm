@@ -1,0 +1,25 @@
+  <!-- Alert bar -->
+  <div class="w100 py-05 px-15 txt-md txt-white alert-bar">
+    <svg id="svgAlert" xmlns="http://www.w3.org/2000/svg" class="i-block">
+      <use xlink:href="#fa-exclamation-triangle">
+    </svg>
+    
+    <span class="semibold">
+      COVID-19: Here for You and Your Safety
+    </span>
+    |
+    {if(!wData.isBreeze)}
+      <a class="txt-white underline" href="~~originNoWomp~~/About-Texas-Health/Here-for-You-and-Your-Safety/COVID-19-Testing">COVID-19 Testing</a>
+      |
+      <a class="txt-white underline" href="~~originNoWomp~~/About-Texas-Health/Here-for-You-and-Your-Safety/Vaccine-Information">Vaccine Info</a>
+      |
+      <a class="txt-white underline" href="~~originNoWomp~~/About-Texas-Health/Here-for-You-and-Your-Safety">Emerging Disease Resources &amp; Visitor Guidelines</a>
+    {endif}
+
+    {if(wData.isBreeze)}
+      <a class="txt-white underline" href="https://www.texashealth.org/About-Texas-Health/Right-There-With-You-Whatever-Comes/Here-for-You-and-Your-Safety/Vaccine-Information">Vaccine Info</a>
+      |
+      <a class="txt-white underline" href="~~originNoWomp~~/COVID-19">Testing and Other Info</a>
+    {endif}
+  </div>
+  

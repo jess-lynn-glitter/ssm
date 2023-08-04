@@ -1,0 +1,151 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.widget-book-nearby.amp h3 {
+  text-align: center;
+}
+
+.widget-book-nearby {
+  background-color: #FCFCFC;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #B2B2B2;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 1px 10px 0px rgba(0, 0, 0, 0.1215686275), 0px 4px 5px 0px rgba(0, 0, 0, 0.1411764706);
+}
+.widget-book-nearby h3 {
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+.widget-book-nearby .addr {
+  text-align: left;
+  color: #003798;
+}
+.widget-book-nearby .addr svg {
+  max-width: 24px;
+  max-height: 24px;
+  margin-right: 13px;
+}
+.widget-book-nearby [class*=mphtml-fill-content] > div {
+  position: relative;
+  height: 100%;
+}
+.widget-book-nearby div.nearby-date > div:first-of-type {
+  display: block;
+}
+.widget-book-nearby .slot-btns {
+  min-height: 102px;
+  max-width: 305px;
+}
+.widget-book-nearby .slot-btns > div:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+}
+.widget-book-nearby .slot-btns .btn-timeslot, .widget-book-nearby .slot-btns .btn-more, .widget-book-nearby .slot-btns .btn-less {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+  margin-bottom: 10px;
+  padding: 9px 12px;
+  width: 95px;
+  border: 1px solid #B2B2B2;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: 0;
+}
+.widget-book-nearby .slot-btns .btn-timeslot {
+  background: #4BA6CA;
+  color: white;
+  text-transform: lowercase;
+}
+.widget-book-nearby .slot-btns .btn-more, .widget-book-nearby .slot-btns .btn-less {
+  display: none;
+  background: transparent;
+  color: #4BA6CA;
+}
+.widget-book-nearby .slot-btns .btn-timeslot:focus, .widget-book-nearby .slot-btns .btn-more:focus, .widget-book-nearby .slot-btns .btn-less:focus {
+  border-color: transparent;
+  outline: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #009543;
+}
+.widget-book-nearby .slot-btns .btn-timeslot:hover, .widget-book-nearby .slot-btns .btn-more:hover, .widget-book-nearby .slot-btns .btn-less:hover {
+  background-color: #3a87ce;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #3a87ce;
+  box-shadow: 0 0 0 4px rgba(0, 149, 67, 0.2);
+}
+.widget-book-nearby .slot-btns .btn-timeslot:focus:hover, .widget-book-nearby .slot-btns .btn-more:focus:hover, .widget-book-nearby .slot-btns .btn-less:focus:hover {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--clr-secondary);
+}
+.widget-book-nearby .slot-btns .btn-timeslot:active:hover, .widget-book-nearby .slot-btns .btn-timeslot:active:focus, .widget-book-nearby .slot-btns .btn-more:active:hover, .widget-book-nearby .slot-btns .btn-more:active:focus, .widget-book-nearby .slot-btns .btn-less:active:hover, .widget-book-nearby .slot-btns .btn-less:active:focus {
+  background-color: #03335F;
+}
+.widget-book-nearby .slot-btns .checkbox-more, .widget-book-nearby .slot-btns .checkbox-more:not(:checked) + div .btn-less, .widget-book-nearby .slot-btns .checkbox-more:checked + div .btn-more, .widget-book-nearby .slot-btns .checkbox-more:not(:checked) + div .btn-timeslot:nth-child(1n+6) {
+  display: none;
+}
+.widget-book-nearby .slot-btns .checkbox-more:not(:checked) + div .btn-more:nth-child(1n+7), .widget-book-nearby .slot-btns .checkbox-more:checked + div .btn-less {
+  display: inline-block;
+}
+.widget-book-nearby #searchMoreLocations {
+  font-size: 25px;
+  font-weight: 300;
+  border-top: 1px solid #B2B2B2;
+  border-bottom: 3px solid transparent;
+  margin-top: 30px;
+}
+.widget-book-nearby #searchMoreLocations:focus {
+  box-shadow: inset 0 0 0 2px var(--clr-secondary);
+}
+
+/* MEDIA QUERIES */
+/* odd sizes */
+@media only screen and (max-width: 349.98px) {
+  .widget-book-nearby .slot-btns {
+    max-width: 278px;
+  }
+  .widget-book-nearby .slot-btns .btn-timeslot, .widget-book-nearby .slot-btns .btn-more, .widget-book-nearby .slot-btns .btn-less {
+    width: 86px;
+  }
+}
+@media screen and (max-width: 375.98px) {
+  .widget-book-nearby {
+    min-height: 420px;
+  }
+  .widget-book-nearby h3 {
+    font-size: 3rem;
+  }
+  .widget-book-nearby #searchMoreLocations {
+    font-size: 19px;
+  }
+  .widget-book-nearby #searchMoreLocations svg {
+    margin-top: 6px;
+  }
+}
+@media only screen and (min-width: 628px) and (max-width: 767.98px) {
+  .widget-book-nearby .slot-btns {
+    max-width: 380px;
+  }
+  .widget-book-nearby .slot-btns .btn-timeslot, .widget-book-nearby .slot-btns .btn-more, .widget-book-nearby .slot-btns .btn-less {
+    width: 120px;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 991.98px) {
+  .widget-book-nearby .slot-btns {
+    max-width: 326px;
+  }
+  .widget-book-nearby .slot-btns .btn-timeslot, .widget-book-nearby .slot-btns .btn-more, .widget-book-nearby .slot-btns .btn-less {
+    width: 102px;
+  }
+}

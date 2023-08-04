@@ -1,0 +1,59 @@
+{doNotWomp}
+
+<script id="setMapOffset"
+    type="text/javascript">
+
+      (function addScrollListener() {
+        let lastKnownScrollPosition = 0;
+        let ticking = false;
+
+        document.addEventListener('scroll', (e) => {
+          lastKnownScrollPosition = window.scrollY;
+
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              setMapOffset.call(lastKnownScrollPosition);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      })();
+
+      function setMapOffset(scrollPos) {
+        try {
+          if (window.search && window.search.helpers) {
+            const { els: wsh_els } = window.search.helpers;
+            let offset = wsh_els.mainEl.getBoundingClientRect().top;
+            offset = offset > 0 ? offset : 0;
+            if (window.innerWidth >= window.search.config.mobileViewBreakpoint) {
+              /* non-mobile view */
+              wsh_els.mapEl.setAttribute('style', `top:${offset}px;height:calc(100vh - ${offset}px);`);
+              wsh_els.mapEl.style.top = `${offset}px`;
+              wsh_els.mapEl.style.height = `calc(${window.innerHeight}px - ${offset}px)`;
+            } else {
+              wsh_els.mapEl.removeAttribute('style');
+            }
+          } else {
+            setTimeout(() => {
+              setMapOffset(scrollPos);
+            }, 100);
+          }
+        } catch (err) {
+          console.error('setMapOffset Error:\n' + err);
+        }
+      }
+
+      const delay = ms => new Promise(res => setTimeout(res, ms));
+
+      async function delayedStart() {
+        await delay(1000);
+        setMapOffset();
+      }
+      delayedStart();
+
+      window.addEventListener('resize', function () {
+        throttleCallback(setMapOffset);
+      });
+    </script>
+{endDoNotWomp}

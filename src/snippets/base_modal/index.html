@@ -1,0 +1,60 @@
+{doNotWomp}
+<w-render snippet="base_modal" data-props>
+  {{#.}}
+    {{#isAmp}}
+    <div 
+      id="univModal{{#modalId}}_{{modalId}}{{/modalId}}"
+      class="univ-modal fixed fill z-100 hidden"
+      [class]="'univ-modal fixed fill z-100 ' + ({{triggerState}} ? '' : 'hidden')"
+    >
+    {{/isAmp}}
+    {{^isAmp}}
+    <div id="univModal" class="univ-modal fixed fill z-100 hidden{{#usePanelMobW}} use-panel{{/usePanelMobW}}">
+    {{/isAmp}}
+      <!-- background shading -->
+      <div class="modal-backdrop absolute fill bg-black opacity-50"></div>
+
+      <!-- modal box itself -->
+      <div class="relative top mx-auto my-64 bg-white opacity-100 z-100 base-modal {{modalClasses}}"
+        tabindex="-1"
+        aria-label="modal">
+        <button class="univ-modal-close modal-close-btn absolute cursor-pointer"
+          on="{{#isAmp}}tap:AMP.setState({'{{triggerState}}':false}){{/isAmp}}">
+          <svg class="modal-close-btn no-tap">
+            <use xlink:href="#icon-modal-close"></use>
+          </svg>
+          <div class="p-05 pl-15 bold no-tap modal-back-btn">Back</div>
+        </button>
+
+        <!-- Either pass in html... -->
+        {{#html}}
+          {{{html}}}
+        {{/html}}
+
+        <!-- Or use the predefined layout -->
+        {{^html}}
+          <div class="txt-ctr">
+            {{#heading}}
+              <h2>{{heading}}</h2>
+            {{/heading}}
+            {{#subheading}}
+              <span class="bold">{{subheading}}</span>
+            {{/subheading}}
+
+            {{#sections}}
+              {{{.}}}
+            {{/sections}}
+
+          </div>
+        {{/html}}
+      </div>
+    {{#isAmp}}
+    </div>
+    {{/isAmp}}
+    {{^isAmp}}
+    </div>
+    {{/isAmp}}
+  {{/.}}
+</w-render>
+
+{endDoNotWomp}

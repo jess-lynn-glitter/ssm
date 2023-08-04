@@ -1,0 +1,359 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+main .card .prov-det .psp-only {
+  display: none;
+}
+main .urgent-care-tile {
+  display: block;
+  background: #fff;
+  width: 350px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin: 2rem 1rem;
+}
+main .urgent-care-tile .urgent-care-btn {
+  width: 295px;
+}
+main #mapEl {
+  width: 100%;
+  height: 100%;
+}
+main #mapEl #wmMap {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+}
+main .map-wrapper {
+  flex-direction: column;
+}
+main .map-btn {
+  justify-content: center;
+}
+main h3, main .accordion .accordion-heading h3 {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: unset;
+}
+main .ctnt {
+  padding: 12px 14px;
+}
+main location-timeslots {
+  display: inline-block;
+  min-height: 44.073rem;
+}
+main quick-care-widget {
+  min-height: 41.127rem;
+}
+main #tilesWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+main #hero {
+  flex-direction: column;
+}
+main #heroImg {
+  width: 100vw;
+  border: 1px solid #ECECEC;
+  height: 181px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden;
+}
+main #heroImg img {
+  width: 50%;
+}
+main #divLocDetails {
+  margin-bottom: 2rem;
+}
+main #wompRedirect {
+  display: none;
+}
+main #locTitle {
+  font-size: 34px;
+  line-height: 40px;
+}
+main #addrBlock {
+  font-size: 16px;
+  padding: 8px 12px;
+}
+main #icoMapBtn {
+  width: 19px;
+  height: 18px;
+}
+main #icoPerson {
+  width: 14px;
+  height: 16px;
+}
+main #provInsurList div {
+  line-height: 24px;
+}
+main .addr {
+  display: inline-block;
+}
+main .subtitle {
+  display: none;
+  font-size: 20px;
+  font-weight: 400;
+}
+main .hrs {
+  gap: 2rem;
+}
+main .section-heading {
+  font-size: 3rem;
+}
+main .dividing-line {
+  border-top: 1px solid #ACACAC;
+  width: 85%;
+  margin: 0 auto;
+}
+main .insurance-accordion {
+  margin-top: -4rem;
+}
+main .list li {
+  list-style-type: disc;
+}
+@media screen and (max-width: 768px) {
+  main #wdgts #wdgtsWrapper #tilesWrapper .location-timeslots {
+    border-bottom: 2px solid #ECECEC;
+  }
+}
+
+#patResWrapper .img-spread-wrapper {
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+#patResWrapper .img-spread {
+  max-width: 252px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+#patResWrapper .img-spread a:hover {
+  border-bottom-color: transparent;
+}
+#patResWrapper .img-cont {
+  height: 200px;
+}
+#patResWrapper .img-cont img {
+  width: 100%;
+  height: 100%;
+}
+
+/* MEDIA QUERIES */
+/* sm phone */
+@media screen and (min-width: 375px) {
+  main quick-care-widget {
+    min-height: 33.081rem;
+  }
+}
+/* phone */
+@media (min-width: 576px) {
+  #patResWrapper {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  #patResWrapper #patResTitle {
+    margin-bottom: 25px;
+  }
+  #patResWrapper .img-cont {
+    height: 112px;
+  }
+  #patResWrapper .img-spread-wrapper {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  #patResWrapper .img-spread {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: unset;
+  }
+}
+/* sm tablet */
+@media (min-width: 768px) {
+  main .prov-info {
+    display: flex;
+  }
+  main .color-headings .nowrap {
+    white-space: normal;
+  }
+  main .prov-btns {
+    align-self: center;
+  }
+  main #aboutUs, main #divLocDetTop, main .section-heading {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  main #locTitle {
+    text-align: left;
+  }
+  main #tilesWrapper {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+  }
+  main .section-heading {
+    font-size: 3rem;
+    text-align: left;
+  }
+  main #provInsurList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #patResWrapper {
+    max-width: 650px;
+  }
+}
+/* Mobile Dividers */
+@media (max-width: 991.98px) {
+  main .divider, main .divider-bot {
+    position: relative;
+    padding: 12px 0;
+  }
+  main .divider .divider::before, main .divider .divider::after, main .divider-bot .divider::before, main .divider-bot .divider::after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 12px;
+    background-color: #ECECEC;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  main .divider ::before, main .divider-bot ::before {
+    top: 0;
+  }
+  main .divider-bot ::after {
+    bottom: 0;
+  }
+  main .half-divider::before, main .half-divider::after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 12px;
+    background-color: #ECECEC;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  main .get-directions-desktop {
+    display: none;
+  }
+}
+/* lg tablet */
+@media (min-width: 992px) {
+  main #mapEl {
+    width: 100%;
+    height: 100%;
+    margin-left: 26px;
+    max-width: 50%;
+  }
+  main #mapEl #wmMap {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+  }
+  main .map-wrapper {
+    flex-direction: row;
+  }
+  main .map-btn {
+    justify-content: end;
+  }
+  main #hero {
+    flex-direction: row;
+    padding-top: 0;
+    gap: 2rem;
+  }
+  main #hero #heroImg {
+    position: relative;
+    transform: none;
+    border-radius: 12px;
+    top: unset;
+    left: unset;
+    width: 192px;
+    height: 245px;
+  }
+  main #hero #heroImg img {
+    width: 100%;
+  }
+  main .subtitle {
+    display: block;
+  }
+  main #divLocDetails {
+    margin-top: 2rem;
+  }
+  main .get-directions-mobile {
+    display: none;
+  }
+  #patResWrapper {
+    max-width: 960px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  #patResWrapper .img-cont {
+    height: 168px;
+  }
+}
+/* desktop */
+@media (min-width: 1280px) {
+  #patResWrapper {
+    max-width: 1200px;
+  }
+  main {
+    position: relative;
+    display: grid;
+    column-gap: 24px;
+  }
+  main #breadcrumbs, main #breadcrumbReturnBtn {
+    grid-column: 1/span 2;
+  }
+  main #abtSctn, main #prvdrs, main #accrdns {
+    grid-column: 1/span 1;
+  }
+  main #wdgts {
+    grid-column: 2/span 1;
+    grid-row: 2/span 99;
+  }
+  main #wdgts #wdgtsWrapper {
+    display: block;
+    background: #fff;
+    width: 350px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  main #wdgts #wdgtsWrapper #tilesWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  main #wdgts #wdgtsWrapper #tilesWrapper location-timeslots {
+    border-bottom: 2px solid #ECECEC;
+  }
+  main #wdgts #wdgtsWrapper .divider {
+    border-top: none;
+  }
+  main #wdgts .urgent-care-tile {
+    margin: 0 0 2rem;
+  }
+  main .desktop-mr {
+    margin-right: 6.3rem;
+  }
+}

@@ -1,0 +1,85 @@
+<!--
+  NOTE 
+
+  Be sure to include the script_getNearestTimeslots snippet at the top of the page where this widget is used!
+
+-->
+
+<amp-state id="showMoreCheckboxBookNearby"></amp-state>
+
+<div class="relative widget-book-nearby amp">
+  <amp-list 
+    id="widgetBookNearby"
+    class="mt-175 ml-175 mr-175"
+    src="amp-script:script_nearestTimeslots.getNearestTimeslots"
+    template="nearbyTimeslotsTemplate"
+    layout="fixed-height"
+    height="358"
+    binding="refresh"
+    single-item
+    items="."></amp-list>
+</div>
+
+<template id="nearbyTimeslotsTemplate" w-move="body" type="amp-mustache">
+  {doNotWomp}
+  {{#scheduleDays.0}}
+  <h3 class="mt-0">More Locations Available</h3>
+  {{#closestLocation}}
+    <div class="addr bold mt-15">
+      <a class="flx a-block" href="~~origin~~{{closestLocation.Url}}" aria-label="link to nearby location">
+        <svg>
+          <use xlink:href="#fa-location-pin"></use>
+        </svg>
+        <span>{{Street1}}{{#Street2}}, {{Street2}}{{/Street2}}
+        {{City}}, {{Region}} {{PostalCode}}</span>
+      </a>
+    </div>
+    <div class="flx my-175 ">
+      <div class="txt-left">{{milesAway}} {{textMiles}} away</div>
+      <div class="ml-auto nearby-date">
+        {{#scheduleDays}}
+          <div class="hidden"
+              [class]="timeSlotsDateSelected ? '' : 'hidden'"
+              [hidden]="{{timeSlots.length}} < 1 || (timeSlotsDateSelected ? '{{date}}'.split('T')[0] != timeSlotsDateSelected : false)">{{formattedDate}}</div>
+        {{/scheduleDays}}
+      </div>
+    </div>
+    {{/closestLocation}}
+    
+    {{#scheduleDays.length}}
+      <div class="slot-btns mx-a">
+        {{#scheduleDays}}
+      {{#timeSlots.length}}
+        <input type="checkbox" class="checkbox-more" tabindex="-1" [checked]="showMoreCheckboxBookNearby.{{dayId}} == 'true' ? 'checked' : ''">
+        <div class="hidden"
+          [class]="timeSlotsDateSelected ? '' : 'hidden'"
+          [hidden]="{{timeSlots.length}} < 1 || (timeSlotsDateSelected ? '{{date}}'.split('T')[0] != timeSlotsDateSelected : false)">
+          <!-- If `UrlName` is present in parent (closestLocation, for nearestLocation), use that; otherwise use the stringReplacement one (for parent location) -->
+          {{#timeSlots}}
+            <a id="{{slotDateTime}}"
+              data-vars-booking
+              target="_blank"
+              href="~~apiOriginScheduling~~/retail?timeSlot={{slotDateTime}}&departmentUrlName={{#closestLocation.UrlName}}{{closestLocation.UrlName}}{{/closestLocation.UrlName}}{{^closestLocation.UrlName}}~~UrlName~~{{/closestLocation.UrlName}}&brand=~~brand~~"
+              class="btn-primary btn-timeslot">
+              {{formattedTime}}
+            </a>
+          {{/timeSlots}}
+          <button class="btn-more" on="tap:AMP.setState({showMoreCheckboxBookNearby: {'{{dayId}}' : 'true'}}),widgetBookNearby.changeToLayoutContainer()">More</button>
+          <button class="btn-less" on="tap:AMP.setState({showMoreCheckboxBookNearby: {'{{dayId}}' : 'false'}}),widgetBookNearby.changeToLayoutContainer()">Less</button>
+        </div>
+      {{/timeSlots.length}}
+    {{/scheduleDays}}
+  </div>
+  {{/scheduleDays.length}}
+
+  <a id="searchMoreLocations" class="flx w100 p-24" href="~~origin~~/Locations{{#closestLocation}}?location-search_g={{closestLocation.PostalCode}}{{/closestLocation}}" aria-label="search locations{{#closestLocation}} near {{closestLocation.PostalCode}}{{/closestLocation}}">
+
+    <span>Search more locations</span>
+    <svg class="ml-auto mt-1 h16 w16 rotate-90 no-tap">
+      <use xlink:href="#fa-angle-up"></use>
+    </svg>
+  </a>
+  {{/scheduleDays.0}}
+</template>
+
+{endDoNotWomp}

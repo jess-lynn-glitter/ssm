@@ -1,0 +1,32 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.alert-bar {
+  background-color: #F86E08;
+}
+.alert-bar #svgAlert {
+  max-width: 18px;
+  max-height: 18px;
+  transform: translateY(2px);
+  margin-right: 4px;
+}
+.alert-bar a:hover {
+  color: white;
+}
+
+@media (min-width: 576px) {
+  .alert-bar.alert-bar {
+    padding: 5px 2rem 5px 4rem;
+    font-size: 18px;
+    line-height: 2.7rem;
+  }
+}

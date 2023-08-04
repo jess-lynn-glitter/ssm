@@ -1,0 +1,166 @@
+<div id="{{id}}"
+    class="card card-body flx-wrap txt-sm"
+    data-location="{{id}}">
+  <div>
+    {{#Url}}
+      <a 
+        href="{{Url}}" 
+        {{^AvidId}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        {{/AvidId}}
+      >
+        <h3 class="w100 mt-0 txt-md txt-black semibold">
+          {{Name}}
+        </h3>
+      </a>
+    {{/Url}}
+    {{^Url}}
+      <h3 class="w100 mt-0 txt-md txt-black semibold">
+        {{Name}}
+      </h3>
+    {{/Url}}
+    <div class="loc-info w100">
+      {{#locationImage}}
+      <div class="loc-img">
+        <img src="{{locationImage}}"
+            alt="{{Name}}">
+      </div>
+      {{/locationImage}}
+      <div class="loc-det">
+        {{#ts_isTest}}
+          {{#location.Tier}}
+            <div class="tier"><span>Tier: {{Tier}}</span></div>
+          {{/location.Tier}}
+        {{/ts_isTest}}
+        <div class="read-more-wrap">
+          {{#distanceMilesStr}}
+            <div class="mt-1 mbl-map">{{distanceMilesStr}}</div>
+          {{/distanceMilesStr}}
+          <div class="addr mt-1">
+            {{{formattedAddress}}}
+          </div>
+          {{#distanceMilesStr}}
+            <div class="mt-1 semibold mbl-map-hidden">{{distanceMilesStr}}</div>
+          {{/distanceMilesStr}}
+          <div class="flx mt-1 ml-auto w100">
+            <!-- TODO: Convert hours, phone, badges, button to css grid ? -->
+            <!-- TODO refactor the inline styles to proper css-->
+            <div class="open-hours-wrapper flx flx-wrap"
+                style="min-width: 110%;">
+              {{#OpenHourDay}}
+                {{#CloseHourDay}}
+                  {{#Days}}
+                    <div>
+                      {{OpenHourDay}} - {{CloseHourDay}}, {{Days}}
+                    </div>
+                  {{/Days}}
+                {{/CloseHourDay}}
+              {{/OpenHourDay}}
+
+              {{^OpenHourDay}}
+                {{#collapsedOpenHours}}
+                  {{#hours}}
+                    <div class="mb-1 mbl-map-hidden"
+                        style="min-width: 50%">
+                      <div class="collapsed-days bold nowrap">{{day}}</div>
+                      <div class="collapsed-hours nowrap">
+                        {{^closed}}
+                          {{hours}}
+                        {{/closed}}
+                        {{#closed}}
+                          <span class="closed-hours">Closed</span>
+                        {{/closed}}
+                      </div>
+                    </div>
+                  {{/hours}}
+                {{/collapsedOpenHours}}
+              {{/OpenHourDay}}
+
+              {{#Phone}}
+                <div class="mb-1 mbl-map-hidden"
+                    style="min-width: 50%;">
+                  <span class="txt-black semibold">Phone Number</span>
+                  <a class="block nowrap"
+                      href="tel:{{Phone}}"
+                      data-vars-phone-link="{{Phone}}">{{Phone}}</a>
+                </div>
+                <div class="mb-1 mbl-map">
+                  <span class="txt-black semibold mr-025">Phone:</span>
+                  <a class="block nowrap" href="tel:{{Phone}}" data-vars-phone-link="{{Phone}}">{{Phone}}</a>
+                </div>
+              {{/Phone}}
+            </div>
+          </div>
+          <div class="bold mbl-map-hidden">{{{badgesStr}}}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="flx flx-wrap card-btns mbl-map-hidden">
+        {{#Url}}
+        <a 
+          class="btn-primary semibold unsetCase txt-sm mt-2 mr-24"
+          href="{{Url}}"
+          {{^AvidId}}
+            target="_blank" 
+            rel="noopener noreferrer"
+          {{/AvidId}}
+        >
+        <svg class="mr-05"
+        title="see location icon">
+            <use xlink:href="#seeLocationIcon"></use>
+          </svg>
+          See Location
+        </a>
+        {{/Url}}
+        <button class="btn-primary semibold unsetCase txt-sm mt-2 tab-only">
+          <svg class="mr-05 no-tap"
+              title="map icon">
+            <use xlink:href="#mapIcon"></use>
+          </svg>
+          See on Map
+        </button>
+      </div>
+    </div>
+    <div class="flx flx-col">
+      <div class="flx card-btns mbl-map">
+        <button class="btn-primary semibold unsetCase txt-sm">
+          See on Map
+        </button>
+        {{#Url}}
+          <a 
+            href="{{.}}" 
+            class="btn-primary semibold unsetCase txt-sm"
+            {{^AvidId}}
+              target="_blank" 
+              rel="noopener noreferrer"
+            {{/AvidId}}
+          >
+            Location
+          </a>
+        {{/Url}}
+      </div>
+    </div>
+  </div>
+  {{#UrlName}}
+    <div class="loc-booking">
+      <location-timeslots 
+        api-key="{{apiDexCareKey}}"
+        api-origin="{{apiDexCare}}"
+        brand="{{brand}}"
+        fallback-html="insOpt02"
+        phone="{{Phone}}"
+        {{#childBrand}}child-brand="{{childBrand}}"{{/childBrand}}
+        clinic-type="retail, primary care"
+        schedule-origin="{{scheduleOrigin}}"
+        tile-type="currentLocation"
+        url-name="{{UrlName}}"
+      >
+      </location-timeslots>
+    </div>
+  {{/UrlName}}
+  {{^UrlName}}
+    <span class="hidden">No UrlName</span>
+  {{/UrlName}}
+</div>

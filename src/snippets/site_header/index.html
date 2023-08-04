@@ -1,0 +1,265 @@
+<amp-state id="modal"></amp-state>
+<!-- childReplacement site_header -->
+<header class="container">    
+  <div class="header flx-mid-just">
+    <!-- Logo -->
+    <!-- Default logo id is #logoPrimary. Family Care clinic pages have a different logo (#logoFamilyCare). wData.logoId is changed to FamilyCare -->
+    <a class="logo shadow-nav-hover" href="~~originNoWomp~~/">
+      <svg id="svgLogoPrimary">
+        <use xlink:href="#~~logoId~~"></use>
+      </svg>
+    </a>
+
+    <div class="lvlOne flx-mid-just">
+      <w-render data="wData.headerItemsLvOne">
+        {doNotWomp}
+        {{#.}}
+          <a class="hidden relative nav-item flx-a tab-flx flx-self-ctr h100 shadow-nav-hover txt-ctr {{class}}" href="{{href}}" data-test="nav{{txt}}">
+            {{#icon}}
+            <svg class="h16 w16 ml-08 mr-08" stroke-width="2">
+              <use xlink:href="#{{icon}}"></use>
+            </svg>
+            {{/icon}}
+            <span class="dsk-only">{{hideTxt}}</span>
+            &nbsp;{{txt}}
+          </a>
+        {{/.}}
+        {endDoNotWomp}
+      </w-render>
+
+      <button id="searchBtn" class="nav-item" on="tap:AMP.setState({modal:modal == 'search' ? '' : 'search'}), searchWrapper.toggleClass(class='hidden')">
+      <svg id="svgSearchDesktop">
+        <use xlink:href="#icon-search"></use>
+      </svg>
+      <span class="search-txt ml-08 orange">Search</span>
+      </button>
+    </div>
+    
+    <div class="lvlTwo flx-mid-just">
+      <w-render data="wData.headerItemsLvTwo">
+        {doNotWomp}
+        {{#.}}
+          {{^serviceFlyout}}
+          {{^resourceFlyout}}
+            <a class="hidden relative nav-item flx-a tab-flx flx-self-ctr h100 shadow-nav-hover txt-ctr {{class}}" href="{{href}}" data-test="nav{{txt}}">
+              {{#icon}}
+              <svg class="h16 w16 ml-08 mr-08" stroke-width="2">
+                <use xlink:href="#{{icon}}"></use>
+              </svg>
+              {{/icon}}
+              <span class="dsk-only">{{hideTxt}} </span>
+              &nbsp;{{txt}}
+            </a>
+          {{/resourceFlyout}}
+          {{/serviceFlyout}}
+          {{#serviceFlyout}}
+              <li id="medServiceLink" class="nav__item has-dropdown">
+                <a on="tap:medServiceLink.toggleClass(class='open')" role="button" tabindex="2" class="hidden relative nav-item flx-a tab-flx flx-self-ctr h100 shadow-nav-hover txt-ctr" data-test="nav{{txt}}">
+                  <span class="dsk-only">{{hideTxt}} </span>
+                  &nbsp;{{txt}}
+                  {{#dropIcon}}
+                  <svg class="h16 w16">
+                    <use xlink:href="#{{dropIcon}}"></use>
+                  </svg>
+                  {{/dropIcon}}
+                </a>
+                {endDoNotWomp}
+                {site_header_ServiceSubMenu}
+                {doNotWomp}
+              </li>
+          {{/serviceFlyout}}
+          {{#resourceFlyout}}
+          <li id="patResourceLink" class="nav__item has-dropdown">
+            <a on="tap:patResourceLink.toggleClass(class='open')" role="button" tabindex="2" class="hidden relative nav-item flx-a tab-flx flx-self-ctr h100 shadow-nav-hover txt-ctr" data-test="nav{{txt}}">
+              <span class="dsk-only">{{hideTxt}} </span>
+              &nbsp;{{txt}}
+              {{#dropIcon}}
+              <svg class="h16 w16">
+                <use xlink:href="#{{dropIcon}}"></use>
+              </svg>
+              {{/dropIcon}}
+            </a>
+            {endDoNotWomp}
+            {site_header_ResourceSubMenu}
+            {doNotWomp}
+          </li>
+          {{/resourceFlyout}}
+        {{/.}}
+        {endDoNotWomp}
+      </w-render>
+    </div>
+
+          
+    <div class="header__mobile">
+      <a class="nav-item" style="font-size: 14px;font-weight: 400;"id="chartBtn" href="https://mychart.piedmont.org/prd/Authentication/Login">
+        <svg id="myChart">
+          <use xlink:href="#user-icon-mobile"></use>
+        </svg>
+        <span class="ml-08">MyChart</span>
+      </a>
+
+      <a id="searchBtn" class="nav-item" on="tap:searchWrapper.toggleClass(class='hidden')" role="button" tabindex="0">
+        <svg id="svgSearch">
+          <use xlink:href="#icon-search"></use>
+        </svg>
+      </a>
+
+      <button id="navBurger"
+          class="nav-item"
+          on="tap:modalNav.toggle"
+          tabindex="0">
+        <svg id="svgBurger" class="txt-black">
+          <use xlink:href="#fa-bars"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="header__mob-ctas">
+    <ul>
+        <li class="header__cta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="#F78E1F">
+            <path d="M142.4 21.9c5.6 16.8-3.5 34.9-20.2 40.5L96 71.1V192c0 53 43 96 96 96s96-43 96-96V71.1l-26.1-8.7c-16.8-5.6-25.8-23.7-20.2-40.5s23.7-25.8 40.5-20.2l26.1 8.7C334.4 19.1 352 43.5 352 71.1V192c0 77.2-54.6 141.6-127.3 156.7C231 404.6 278.4 448 336 448c61.9 0 112-50.1 112-112V265.3c-28.3-12.3-48-40.5-48-73.3c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V336c0 97.2-78.8 176-176 176c-92.9 0-168.9-71.9-175.5-163.1C87.2 334.2 32 269.6 32 192V71.1c0-27.5 17.6-52 43.8-60.7l26.1-8.7c16.8-5.6 34.9 3.5 40.5 20.2zM480 224a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/>
+          </svg>
+            <a href="~~origin~~/providers">Find Doctors</a>
+        </li>
+        <li class="header__cta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="#F78E1F">
+            <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+          </svg>
+            <a href="~~origin~~/locations/locations-map">Find Locations</a>
+        </li>
+        <li class="header__cta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#F78E1F">
+            <path d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"/>
+          </svg>
+            <a href="https://piedmontcareers.org/">Careers</a>
+        </li>
+        <li class="header__cta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#F78E1F">
+            <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM329 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-95 95-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L329 305z"/>
+          </svg>
+            <a href="~~origin~~/providers">Book Appt</a>
+        </li>
+    </ul>
+  </div>
+</header>
+
+<div id="searchWrapper" class="hidden">
+  <a on="tap:searchWrapper.toggleClass(class='hidden')" role="button" tabindex="-1" class="close">
+    <span>×</span>
+    <span></span>
+  </a>
+  <div id="formWrap">
+    <form id="searchform" action="https://www.piedmont.org/search/search-results" method="get" target="_top" role="search" on="input-debounced:AMP.setState({searchState: {searchQuery: event.value}})">
+        <input type="text" name="query" maxlength="256" id="searchBox" accesskey="0" class="header-search-input" role="combobox" title="search field" autocomplete="on" placeholder="Search">
+    </form>
+    <div id="searchAutocomplete">
+        {doNotWomp}
+        <amp-state id="searchState">
+          <script type="application/json">
+              {
+                  "searchQuery": "",
+                  "searchExpand": false
+              }
+          </script>
+      </amp-state>
+        <amp-list layout="fixed-height" height="260" items="." single-item src="https://liveapi-cached.yext.com/v2/accounts/me/answers/autocomplete?input=&experienceKey=answers&api_key=9d149f10d836dd4ae1332578c0c2d033&v=20190101&version=PRODUCTION&locale=en&sessionTrackingEnabled=true&jsLibVersion=v1.9.2"
+        [src]="'https://liveapi-cached.yext.com/v2/accounts/me/answers/autocomplete?input='  + (searchState.searchQuery ? searchState.searchQuery : '') + '&experienceKey=answers&api_key=9d149f10d836dd4ae1332578c0c2d033&v=20190101&version=PRODUCTION&locale=en&sessionTrackingEnabled=true&jsLibVersion=v1.9.2'">
+            <template type="amp-mustache">
+                <ul id="searchAutocompleteTerms">
+                    {{#response.results}}
+                    <li class="searchAutocompleteTerm">
+                        <a href="https://www.piedmont.org/search/search-results?=&query={{value}}">{{value}}</a>
+                    </li>
+                    {{/response.results}}
+                </ul>
+            </template>
+            <div overflow class="amp-list-overflow hidden"></div>
+        </amp-list>
+        {endDoNotWomp}
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<amp-sidebar 
+  id="modalNav"
+  class="header"
+  layout="nodisplay"
+  side="right"
+>
+  <div class="relative h100 bg-white tran-150 nav-modal-content">
+
+    <!-- First set of horizontal links is always present -->
+    <div id="header-ctas">
+      <w-render data="wData.sideNavItems">
+        {doNotWomp}
+        {{#.}}
+        <li class="cta-item">
+          <svg class="h16 w16" stroke-width="2">
+            <use xlink:href="#{{icon}}"></use>
+          </svg>
+          <a title="{{txt}}" href="{{href}}" class="pt-08" target="_blank" tabindex="0">
+            {{txt}}
+          </a>
+        </li>
+        {{/.}}
+        {endDoNotWomp}
+      </w-render>
+    </div>
+
+    <div id="sideNav">
+      <w-render data="wData.sideNavItemsMenu">
+        {doNotWomp}
+        {{#.}}
+        {{^serviceFlyout}}
+        {{^resourceFlyout}}
+        <li class="sideNavItem">
+          <a title="{{txt}}" href="{{href}}" target="_blank" tabindex="0">
+            <svg class="h16 w16 ml-08"
+                stroke-width="2">
+              <use xlink:href="#{{icon}}"></use>
+            </svg>
+            {{txt}}
+          </a>
+        </li>
+        {{/resourceFlyout}}
+        {{/serviceFlyout}}
+        {{#serviceFlyout}}
+        <li id="sideMedServiceLink" class="nav__item has-dropdown sideNavItem">
+          <a on="tap:sideMedServiceLink.toggleClass(class='open')" role="button" tabindex="2" style="margin-left: 27px;">
+            {{txt}}
+            {{#dropIcon}}
+            <svg class="h16 w16">
+              <use xlink:href="#{{dropIcon}}"></use>
+            </svg>
+            {{/dropIcon}}
+          </a>
+          {endDoNotWomp}
+          {site_header_ServiceSubMenu}
+          {doNotWomp}
+        </li>
+        {{/serviceFlyout}}
+        {{#resourceFlyout}}
+        <li id="sidePatResourceLink" class="nav__item has-dropdown sideNavItem">
+          <a on="tap:sidePatResourceLink.toggleClass(class='open')" role="button" tabindex="2" style="margin-left: 27px;">
+            {{txt}}
+            {{#dropIcon}}
+            <svg class="h16 w16">
+              <use xlink:href="#{{dropIcon}}"></use>
+            </svg>
+            {{/dropIcon}}
+          </a>
+          {endDoNotWomp}
+          {site_header_ResourceSubMenu}
+          {doNotWomp}
+        </li>
+        {{/resourceFlyout}}
+        {{/.}}
+        {endDoNotWomp}
+      </w-render>
+    </div>
+
+  </div>
+</amp-sidebar>
+<!-- end childReplacement site_header -->

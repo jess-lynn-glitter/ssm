@@ -1,0 +1,352 @@
+{doNotWomp}
+
+<!-- <amp-analytics type="googleanalytics" config="~~phiProtectGoogelAnalyticsJSON~~" data-credentials="include" id="newGoogleAnalytics">
+    <script type="application/json">
+        {
+            "vars":{
+               "GA4_MEASUREMENT_ID":"~~GA4TrackingID~~",
+               "GA4_ENDPOINT_HOSTNAME":"phiprotect.dexcare.com",
+               "DEFAULT_PAGEVIEW_ENABLED":true,
+               "GOOGLE_CONSENT_ENABLED":false,
+               "WEBVITALS_TRACKING":false,
+               "PERFORMANCE_TIMING_TRACKING":false,
+               "SEND_DOUBLECLICK_BEACON":false
+            },
+            "linkers": {
+                "_gl": {
+                    "enabled": true,
+                    "destinationDomains": ~~linkerDestinationDomains~~,
+                    "ids": {
+                        "_ga": "CLIENT_ID(_ga)"
+                    },
+                    "proxyOnly": false
+                }
+            },
+            "cookies": {
+                "enabled": true,
+                "_ga": {
+                    "value": "LINKER_PARAM(_gl, _ga)"
+                }
+            },
+            "triggers": {
+                "timeslotClick": {
+                    "on": "click",
+                    "selector": "[data-vars-booking]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "Timeslot_Click"
+                    },
+                    "extraUrlParams": {
+                        "event__category": "Directory Journeys",
+                        "event__action": "~~analyticsDirectory~~",
+                        "event__label": "Timeslot Clicks"
+                    }
+                },
+                "quickCareClicks": {
+                    "on": "click",
+                    "selector": "[data-vars-quick-care]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "Virtual_Care_Click"
+                    },
+                    "extraUrlParams": {
+                        "event__category": "Directory Journeys",
+                        "event__action": "~~analyticsDirectory~~",
+                        "event__label": "Virtual Care Click"
+                    }
+                },
+                "phoneLinkClick": {
+                    "on": "click",
+                    "selector": "[data-vars-phone-link]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "Click_to_Call"
+                    },
+                    "extraUrlParams": {
+                        "event__category": "Direct Contact",
+                        "event__action": "Phone Click-to-Call",
+                        "event__label": "${phoneLink}"
+                    }
+                },
+                "directionsLinkClick": {
+                    "on": "click",
+                    "selector": "[data-track-directions]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "Directions_Click"
+                    },
+                    "extraUrlParams": {
+                        "ec": "Key Engagements",
+                        "ea": "Maps & Directions Click",
+                        "el": "${eventLabel}"  
+                    }
+                }
+            }
+        }
+    </script>
+</amp-analytics> 
+
+<amp-analytics type="googleanalytics" config="~~phiProtectGoogelAnalyticsJSON~~" data-credentials="include" id="dexCareAnalytics">
+    <script type="application/json">
+        {
+            "vars":{
+               "GA4_MEASUREMENT_ID":"~~DexCareAnalytics~~",
+               "GA4_ENDPOINT_HOSTNAME":"phiprotect.dexcare.com",
+               "DEFAULT_PAGEVIEW_ENABLED":true,
+               "GOOGLE_CONSENT_ENABLED":false,
+               "WEBVITALS_TRACKING":false,
+               "PERFORMANCE_TIMING_TRACKING":false,
+               "SEND_DOUBLECLICK_BEACON":false
+            },
+            "linkers": {
+                "_gl": {
+                    "enabled": true,
+                    "destinationDomains": ~~linkerDestinationDomains~~,
+                    "ids": {
+                        "_ga": "CLIENT_ID(_ga)"
+                    },
+                    "proxyOnly": false
+                }
+            },
+            "cookies": {
+                "enabled": true,
+                "_ga": {
+                    "value": "LINKER_PARAM(_gl, _ga)"
+                }
+            },
+            "triggers": {
+                "timeslotClick": {
+                    "on": "click",
+                    "selector": "[data-vars-booking]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "Timeslot_Click"
+                    },
+                    "extraUrlParams": {
+                        "ec": "Directory Journeys",
+                        "ea": "~~analyticsDirectory~~",
+                        "el": "Timeslot Clicks"
+                    }
+                },
+                "quickCareClicks": {
+                    "on": "click",
+                    "selector": "[data-vars-quick-care]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "click"
+                    },
+                    "extraUrlParams": {
+                        "ec": "Directory Journeys",
+                        "ea": "~~analyticsDirectory~~",
+                        "el": "Quick Care Clicks"
+                    }
+                },
+                "phoneLinkClick": {
+                    "on": "click",
+                    "selector": "[data-vars-phone-link]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "click"
+                    },
+                    "extraUrlParams": {
+                        "ec": "Direct Contact",
+                        "ea": "Phone Click-to-Call",
+                        "el": "${phoneLink}"
+                    }
+                },
+                "directionsLinkClick": {
+                    "on": "click",
+                    "selector": "[data-track-directions]",
+                    "request": "ga4Event",
+                    "vars": {
+                        "ga4_event_name": "click"
+                    },
+                    "extraUrlParams": {
+                        "ec": "Key Engagements",
+                        "ea": "Maps & Directions Click",
+                        "el": "${eventLabel}"  
+                    }
+                }
+            }
+        }
+    </script>
+</amp-analytics>  -->
+
+<!-- <amp-analytics id="wmAnalytics">
+    <script type="application/json">
+    {
+        "requests": {
+            "pageview": "~~apiWompAnalytics~~?brand=~~brand~~&cid=${clientId(wmCid)}&dp=${sourceUrl}",
+            "event": "~~apiWompAnalytics~~?brand=~~brand~~&cid=${clientId(wmCid)}&dp=${sourceUrl}&t=event"
+        },
+        "transport": {
+            "beacon": false,
+            "xhrpost": false,
+            "image": true
+        },
+        "cookies": {
+            "enabled": true,
+            "_wmCid": {
+                "value": "LINKER_PARAM(_wmCid)"
+            }
+        },
+        "linkers": {
+            "_wmCid": {
+                "enabled": true,
+                "destinationDomains": ~~linkerDestinationDomains~~,
+                "ids": {
+                    "_ga": "CLIENT_ID(_ga)"
+                },
+                "proxyOnly": false
+            }
+        },
+        "cookies": {
+            "enabled": true,
+            "amp_pvid": {
+                "value": "LINKER_PARAM(amp_pvid, pid)"
+            }
+            ,"_ga": {
+                "value": "LINKER_PARAM(_gl, _ga)"
+            }
+        },
+        "triggers": {
+            "trackPageview": {
+              "on": "visible",
+              "request": "pageview",
+              "event_name": "page_view"
+            },
+            "timeslotClick": {
+                "on": "click",
+                "selector": "[data-vars-booking]",
+                "request": "event",
+                "extraUrlParams": {
+                    "ec": "Directory Journeys",
+                    "ea": "~~analyticsDirectory~~",
+                    "el": "Timeslot Clicks",
+                    "event_name": "timeslot_click"
+                }
+            },
+            "quickCareClicks": {
+                "on": "click",
+                "selector": "[data-vars-quick-care]",
+                "request": "event",
+                "extraUrlParams": {
+                    "ec": "Directory Journeys",
+                    "ea": "~~analyticsDirectory~~",
+                    "el": "quick_care_click"
+                }
+            },
+            "phoneLinkClick": {
+                "on": "click",
+                "selector": "[data-vars-phone-link]",
+                "request": "event",
+                "extraUrlParams": {
+                    "ec": "Direct Contact",
+                    "ea": "Phone Click-to-Call",
+                    "el": "${phoneLink}",
+                    "event_name": "click_to_call"
+                }
+            },
+            "directionsLinkClick": {
+                "on": "click",
+                "selector": "[data-track-directions]",
+                "request": "event",
+                "extraUrlParams": {
+                    "ec": "Key Engagements",
+                    "ea": "Maps & Directions Click",
+                    "el": "${eventLabel}",
+                    "event_name": "map_and_directions_click"
+                }
+            }
+        }
+    }
+    </script>
+</amp-analytics> -->
+
+<!-- Global site tag (gtag.js) - Google Analytics, Google Ads, etc. -->
+<script async src="https://phiprotect.dexcare.com/www.googletagmanager.com/gtag/js?id=~~GA4TrackingID~~" defer></script>
+<script defer>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+  gtag('config', '~~GA4TrackingID~~', { groups: ['external', 'ga'] });
+  gtag('config', '~~DexCareAnalytics~~', { groups: ['internal', 'ga'] });
+
+  if (!window.wmLinkers) {
+    window.wmLinkers = {};
+  }
+
+  window.wmLinkers.destinationDomains = ~~linkerDestinationDomains~~;
+  window.analyticsConfig = {
+    brand: 'piedmont',
+    childBrand: null,
+    triggers: {
+        timeslotClick: {
+            on: "click",
+            selector: "[data-vars-booking]",
+            vars: {
+                event_name: "Timeslot_Click",
+                ec: "Directory Journeys",
+                ea: "~~analyticsDirectory~~",
+                el: "Timeslot Clicks"
+            }
+        },
+        sameDayCareClick: {
+            on: "click",
+            selector: "[data-vars-same-day-care]",
+            vars: {
+                event_name: "Same_Day_Care_Click",
+                ec: "Directory Journeys",
+                ea: "~~analyticsDirectory~~",
+                el: "Same Day Care Clicks"
+            }
+        },
+        quickCareClick: {
+            on: "click",
+            selector: "[data-vars-quick-care]",
+            vars: {
+                event_name: "Virtual_Care_Click",
+                ec: "Directory Journeys",
+                ea: "~~analyticsDirectory~~",
+                el: "Virtual Care Clicks"
+            }
+        },
+        phoneLinkClick: {
+            on: "click",
+            selector: "[data-vars-phone-link]",
+            vars: {
+                event_name: "Click_to_Call",
+                ec: "Direct Contact",
+                ea: "Phone Click-to-Call",
+                el: "${varsPhoneLink}"
+            }
+        },
+        directionsLinkClick: {
+            on: "click",
+            selector: "[data-track-directions]",
+            vars: {
+                event_name: "Map_and_Directions_Click",
+                ec: "Key Engagements",
+                ea: "Maps & Directions Click",
+                el: "${varsEventLabel}"  
+            }
+        },
+        showOnMapClick: {
+            on: "click",
+            selector: "[data-track-showonmap]",
+            vars: {
+                event_name: "Show_on_Map_Click",
+                ec: "Key Engagements",
+                ea: "Maps & Directions Click",
+                el: "${varsEventLabel}"  
+            }
+        }
+    }
+  };
+</script>
+
+<script src="~~wompAssetPath~~/js/analytics.js" defer></script>
+<script src="~~wompOmniAssetsPath~~/js/linkers.js" defer></script>
+
+{endDoNotWomp}

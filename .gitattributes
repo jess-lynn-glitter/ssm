@@ -1,0 +1,8 @@
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+# Declare files that will always have LF line endings on checkout.
+*.html text eol=crlf
+*.css text eol=crlf
+*.js text eol=crlf
+*.json text eol=crlf

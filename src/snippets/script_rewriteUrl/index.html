@@ -1,0 +1,37 @@
+<script id="rewriteUrl" type="text/javascript">
+
+  function rewriteUrl() {
+    const url = new URL(window.location.href);
+    let updated = false;
+
+    if (url.searchParams.has('filter')) {
+      const filterStr = url.searchParams.get('filter');
+      /**
+       * This code assumes there is only one filter and one value,
+       * We will need to refactor if we can receive multiple of either.
+       * I just don't have an example source yet.
+      */
+      const filterArr = filterStr.split(":");
+      if (filterArr[0] === "insurance_plans") {
+        url.searchParams.delete('filter');
+        url.searchParams.set('InsuranceAccepted', filterArr[1]);
+        updated = true;
+      }
+    }
+    /* Params we aren't using but might receive from outside */
+    const paramsToDelete = [
+      'display_location',
+      'sort'
+    ];
+    for (let param of paramsToDelete) {
+      if (url.searchParams.has(param)) {
+        url.searchParams.delete(param);
+        updated = true;
+      }
+    }
+    updated ? window.history.replaceState({}, 'Health Search', url) : '';
+  }
+
+  window.rewriteUrl = rewriteUrl();
+
+</script>

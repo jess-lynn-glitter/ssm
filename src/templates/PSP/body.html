@@ -1,0 +1,245 @@
+{css_SERP}
+
+{base_scrollToTop}
+{site_header}
+{base_modal(wData.filterModalContent)}
+{base_modal(wData.videoModalContent)}
+{analytics_amp}
+
+
+{PSP_searchHeader}
+
+{doNotWomp}
+
+<main id="main" class="mt-4 psp-main main">
+  <section id="resultsWrapper" class="mr-2">
+    <div id="results">
+      <div class="loader">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <div id="pagination"
+        class="hidden">
+      <button id="loadMore"
+          class="btn"
+          disabled>LOAD MORE</button>
+    </div>
+  </section>
+  <section id="mapEl">
+    <div id="virtualOnly"
+        class="hidden">
+      <div id="imgCont">
+        <img src="https://wompme.blob.core.windows.net/7942/virtual-visits_sm.png"
+            alt="Virtual Visit Options"
+            width="380"
+            height="608"
+            layout="fixed">
+      </div>
+    </div>
+    <div id="wmMap"></div>
+  </section>
+</main>
+
+{endDoNotWomp}
+
+{script_rewriteUrl}
+{script_searchProvider(searchConfigOverride)}
+{script_autosuggest}
+{script_bookingCustomElements}
+
+<div id="wompInvalidAmpOK"></div>
+
+{site_footer}
+
+<!-- The schema graph will be plugged in here, and script will get type=application/ld+json -->
+<script id="schema"></script>
+
+{script_mapOffset}
+
+{base_svgIcons}
+{womp_amp_cleanup}
+
+
+<script type="text/javascript" >
+  document.getElementById('showMap').addEventListener('change', function() {
+    if (this.checked) {
+      document.querySelector('.header__mob-ctas').style.display = 'none';
+    } else {
+      document.querySelector('.header__mob-ctas').style.display = 'block';
+    }
+  });
+</script>
+
+{doNotWomp}
+<script id="dropdownScript" type="text/javascript">
+  /* Listen for providers being rendered */
+  window.addEventListener('results-rendered', () => {
+    /* Add click listeners to all provider cards */
+    const providers = document.querySelectorAll('.provider');
+
+    if (providers) {
+      providers.forEach(provider => provider.addEventListener('click', (e) => handleDropdown(e, provider)))
+    }
+  });
+
+  async function handleDropdown (e, provider) {
+    const dropdown = provider.querySelector('.selector-options');
+    const dropdownToggle = provider.querySelector('.selector-dropdown');
+    const options = provider.querySelectorAll('.location-select');
+
+    if (dropdown && dropdownToggle && options) {
+      /* Set selected styles */
+      options.forEach(option => {
+        if (option.value === dropdownToggle.dataset.value) {
+          option.parentElement.classList.add('selected');
+        } else if (option.parentElement.classList.contains('selected')) {
+          option.parentElement.classList.remove('selected');
+        }
+      });
+  
+      /* Toggle the dropdown */
+      if (e.target.classList.contains('selector-dropdown')) {
+        toggleHidden(dropdown);
+      }
+  
+      /* Handle selecting new location */
+      if (e.target.classList.contains('location-select')) {
+        if (e.target.value === dropdownToggle.dataset.value) {
+          toggleHidden(dropdown);
+        } else {
+          /* Provider npi */
+          const npi = provider.dataset.npi;
+    
+          /* Elements to update */
+          const dropdownText = provider.querySelector(`#locName-${npi}`);
+          const showMapLinks = provider.querySelectorAll('.map-lnk');
+          const phoneWrap = provider.querySelector('.phone-section');
+          const phoneLink = provider.querySelector('.phone-lnk');
+          const street = provider.querySelector('.addr-span-street');
+          const city = provider.querySelector('.addr-span-city');
+          const state = provider.querySelector('.addr-span-state');
+          const zip = provider.querySelector('.addr-span-zip');
+          const timeslots = provider.querySelector('provider-timeslots');
+          const miles = provider.querySelector('.miles');
+    
+          /* Data for render */
+          const name = e.target.name;
+          const id = e.target.value;
+          const phone = e.target.dataset.phone;
+          const distance = e.target.dataset.distance;
+          const addressFull = e.target.dataset.address;
+          const addressArr = addressFull.split(',');
+          const address = addressArr[4]
+            ? {
+              City: addressArr[0],
+              State: addressArr[1],
+              Street: `${addressArr[2]}, ${addressArr[3]}`,
+              PostalCode: addressArr[4]
+              }
+            : {
+              City: addressArr[0],
+              State: addressArr[1],
+              Street: addressArr[2],
+              PostalCode: addressArr[3]
+              };
+    
+          /* Update elements */
+          dropdownToggle.dataset.value = id;
+          provider.dataset.location = id;
+          provider.id = `${npi}-${id}`;
+          dropdownText.innerText = name;
+  
+          if (phoneLink) {
+            if (phone) {
+              phoneLink.innerText = phone;
+              phoneLink.href = `tel:${phone}`;
+              phoneWrap.classList.remove('hidden');
+            } else {
+              phoneWrap.classList.add('hidden');
+            }
+          } else {
+            if (phone) {
+              phoneWrap.innerHTML += /* html */ `
+                <a class="psp-only phone-lnk"
+                  href="tel:${phone}"
+                  alt="Call Provider"
+                  data-vars-phone-link="${phone}"
+                >${phone}</a>
+              `;
+              phoneWrap.classList.remove('hidden');
+            }
+          }
+  
+          if (street) {
+            street.innerText = address.Street;
+          }
+  
+          if (city) {
+            city.innerText = address.City;
+          }
+  
+          if (state) {
+            state.innerText = address.State;
+          }
+  
+          if (zip) {
+            zip.innerText = address.PostalCode;
+          }
+  
+          if (miles) {
+            miles.innerText = `${parseFloat(distance).toFixed(1)} miles`;
+          }
+  
+          if (showMapLinks) {
+            showMapLinks.forEach(showMap => {
+              showMap.dataset.location = id;
+            });
+          }
+          
+          if (timeslots) {
+            const slotsWrap = provider.querySelector('.timeslots-wrap');
+            try {
+              timeslots.setAttribute('location', addressFull);
+              timeslots.setAttribute('phone', phone);
+              /* Set styles to prevent wonky CLS */
+              slotsWrap.style.minHeight = timeslots.offsetHeight.toString() + 'px';
+              slotsWrap.style.minWidth = timeslots.offsetWidth.toString() + 'px';
+              timeslots.outerHTML = timeslots.outerHTML;
+              /* Ensure DOM has time to refresh slots */
+              setTimeout(() => {
+                slotsWrap.style.minHeight = 'auto';
+                slotsWrap.style.minWidth = 'auto';
+              }, 100);
+            } catch (err) {
+              console.error('Error setting timeslots: ', err);
+            }
+          }
+    
+          /* Toggle the dropdown */
+          toggleHidden(dropdown);
+    
+          /* Select map pin */
+          if (google.maps) {
+            window.search.helpers.map.selectMarker(id);
+          }
+        }
+      }
+    }
+
+  }
+
+  function toggleHidden(el) {
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden')
+      }
+    }
+</script>
+{endDoNotWomp}
+

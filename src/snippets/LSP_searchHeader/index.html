@@ -1,0 +1,279 @@
+<amp-bind-macro id="replaceFSText" arguments="str" expression="str ? 'Cancel' : 'Filter Results'"></amp-bind-macro>
+
+<input id="fullSrch" type="checkbox" class="hidden">
+<input id="showMap" type="checkbox" class="hidden">
+
+<div id="searchHdr">
+  <div id="searchFilters"
+      class="tran-200 pb-1 relative">
+    <div id="searchCont" class="pt-4 cpnt">
+      <button id="backToSrchBtn" class="btn un-btn" aria-label="return to results">Return to results</button>
+      <fieldset id="searchBox" class="flx flx-wrap mt-05 tab-mr-1">
+        <div class="flx flx-col flx-grow relative">
+          <input id="inputSrch"
+              class="text-input mr-15"
+              name="q"
+              type="text"
+              placeholder="Search location name, address, or location type"
+              aria-label="Search input"
+              spellcheck="true"
+              autocomplete="off">
+        </div>
+
+        <input id="customLoc"
+            class="form-control text-input tab-mr-1 flx flx-grow"
+            name="q"
+            type="text"
+            placeholder="City or Zip"
+            aria-label="Search box"
+            spellcheck="true"
+            autocomplete="off">
+
+        <button id="srchSubmitBtn"
+            class="btn h100"
+            aria-label="submit search">Search</button>
+      </fieldset>
+
+      <div id="useMyLoc" class="selector ml-1">
+        <button type="button" id="useMyLocBtn" class="btn un-btn btn-toggle" aria-label="use my location">
+          <span id="umlToggle" class="tran-200 no-tap toggle"></span><span id="umlLoader" class="loader no-tap">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </span><span id="umlText" class="no-tap">Use my location</span>
+        </button>
+      </div>
+
+      <div id="advFilters" class="flx w100 mt-1">
+        <div id="visitTypeFilterBox" class="flx flx-col mt-2 tab-mr-1">
+          <div id="visitTypeFilter" class="flx flx-nowrap btn-group">
+            <button type="button"
+                class="visit-type btn flx-grow selected ignore"
+                data-option-value="all"
+                aria-label="all locations">
+              All Locations
+            </button>
+            <button type="button" class="visit-type btn flx-grow wrap-me accpt-new" data-option-value="clinicVisits" aria-label="accepting new patients">
+              <span class="nowrap no-tap">Accepting New</span> Patients
+            </button>
+            <button type="button" class="visit-type flx-grow btn" data-option-value="videoVisits" aria-label="video visit">
+              Video Visit
+            </button>
+          </div>
+        </div>
+
+        <div id="primarySpecialtyFilter" class="selector facet tab-mr-1 mt-2">
+          <button type="button" id="SpecialtiesLabel" class="btn  flx w100" aria-label="primary specialty" data-modal-info="Specialties" data-modal-title="<span class='tab-only'>Filter by </span>Specialty">
+            Specialty
+          </button>
+        </div>
+
+        <!-- <div id="insuranceFilter"
+            class="selector facet tab-mr-1 mt-2">
+          <button type="button"
+              id="InsuranceAcceptedLabel"
+              class="btn  flx w100"
+              aria-label="insurance"
+              data-modal-info="InsuranceAccepted"
+              data-modal-title="<span class='tab-only'>Filter by </span>Insurance">
+            Insurance
+          </button>
+        </div> -->
+
+        <div id="locationTypeFilter" class="selector facet relative tab-mr-1 mt-2 tab-mt-16 ">
+          <button type="button" id="LocationTypeLabel" class="btn  flx w100" aria-label="facility type" data-modal-info="Type" data-modal-title="<span class='tab-only'>Filter by </span>Facility Type">
+            Facility Type
+          </button>
+        </div>
+
+        <!-- <div id="genderFilterBox"
+            class="selector facet tab-mr-1 mt-2">
+          <button type="button" class="btn tab-only w100" aria-label="provider gender" data-modal-info="Gender" data-modal-title="Filter by Gender" data-modal-content-type="button">
+            Gender
+          </button>
+          <div id="genderBtnsMob" class="flx flx-nowrap flx-gap-1 tab-hidden" data-modal-info="Gender">
+            <button type="button" class="gender btn flx-grow selected" data-option-value="any" aria-label="any genders">
+              Any
+            </button>
+          </div>
+        </div> -->
+
+        <!-- <div id="ageFilterBox" class="selector facet tab-mr-1 mt-2">
+          <button type="button" id="ageLabel" class="btn tab-only w100" aria-label="provider age" data-modal-info="Age" data-modal-title="Filter by Age" data-modal-content-type="button">
+            Age
+          </button>
+          <div id="ageBtnsMob" class="flx flx-nowrap flx-gap-1 tab-hidden">
+            <button type="button" class="age flx-grow btn" data-option-value="~29">
+              < 29
+            </button>
+            <button type="button" class="age flx-grow btn" data-option-value="30~39">
+              30 - 39
+            </button>
+            <button type="button" class="age flx-grow btn" data-option-value="40~49">
+              40 - 49
+            </button>
+            <button type="button" class="age flx-grow btn" data-option-value="50~59">
+              50 - 59
+            </button>
+            <button type="button" class="age flx-grow btn" data-option-value="60~">
+              > 60
+            </button>
+          </div>
+        </div> -->
+
+        <!-- <div id="languageFilter" class="selector facet tab-mr-1 mt-2">
+          <button type="button" id="languageLabel" class="btn flx w100" aria-label="language" data-modal-info="Languages" data-modal-title="<span class='tab-only'>Filter by </span><span class='tab-hidden'>Provider </span>Language">
+            Language
+          </button>
+        </div> -->
+
+        <!-- !!! availability is behind `availabilityFilter` feature flag -->
+        <!-- <div id="availabilityFilterBox" w-if="wData.features.availabilityFilter" class="selector facet tab-mr-1 mt-2">
+          <button type="button" id="availabilityLabel" class="btn tab-only " aria-label="availability">
+            Availability <span class="no-tap"></span>
+          </button>
+          <div id="dayFilter" class="flx flx-col">
+            <div class="flx flx-nowrap flx-gap-05">
+              <button type="button" class="specific-day flx-grow btn" data-option-value="Monday" aria-label="Monday">
+                Mon
+              </button>
+              <button type="button" class="specific-day flx-grow btn" data-option-value="Tuesday" aria-label="Tuesday">
+                Tue
+              </button>
+              <button type="button" class="specific-day flx-grow btn" data-option-value="Wednesday" aria-label="Wednesday">
+                Wed
+              </button>
+              <button type="button" class="specific-day flx-grow btn" data-option-value="Thursday" aria-label="Thursday">
+                Thu
+              </button>
+              <button type="button" class="specific-day flx-grow btn" data-option-value="Friday" aria-label="Friday">
+                Fri
+              </button>
+            </div>
+          </div>
+          <div id="timeFilter" class="flx flx-col mt-2">
+            <div class="flx flx-nowrap btn-group">
+              <button type="button" class="time-of-day btn flx-grow selected ignore" data-option-value="any" aria-label="any time">
+                Any Time
+              </button>
+              <button type="button" class="time-of-day flx-grow btn" data-option-value="morning" aria-label="morning">
+                Morning
+              </button>
+              <button type="button" class="time-of-day flx-grow btn" data-option-value="afternoon" aria-label="afternoon">
+                Afternoon
+              </button>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div id="hospitalFilter"
+            class="selector facet tab-mr-1 mt-2">
+          <button type="button" id="hospitalLabel" class="btn flx w100" aria-label="hospital" data-modal-info="HospitalAffiliation" data-modal-title="<span class='tab-only'>Filter by </span>Hospital Affiliation">
+            Hospital Affiliation
+          </button>
+        </div>
+
+        <div id="degreeFilter" class="selector facet tab-mr-1 mt-2">
+          <button type="button" id="degreeLabel" class="btn flx w100" aria-label="degree" data-modal-info="Degrees" data-modal-title="<span class='tab-only'>Filter by </span>Medical Degree">
+            Medical Degree
+          </button>
+        </div> -->
+
+        <div id="sortbyFilterBox"
+            class="selector sort tab-mr-1 mt-2">
+          <button type="button"
+              id="sortbyLabel"
+              class="btn "
+              aria-label="sort by">
+            Sort by: <span class="no-tap">Relevance</span>
+          </button>
+          <div id="sortbyFilter"
+              class="flx flx-col">
+            <legend>Sort by</legend>
+            <div class="flx flx-nowrap flx-gap-05">
+              <button type="button"
+                  class="sort-by flx-grow btn selected"
+                  data-option-value="Relevance"
+                  aria-label="relevance">
+                Relevance
+              </button>
+              <button type="button"
+                  class="sort-by flx-grow btn"
+                  data-option-value="Distance"
+                  aria-label="distance">
+                Distance
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="spacer"></div>
+        </div>
+        </div>
+        
+        <div id="filterBtns"
+            class="mt-2"></div>
+        
+        <div id="clearFilters"
+            class="i-block mt-2 hidden">
+          <button type="button"
+              id="clearSrchBtn"
+              class="btn"
+              aria-label="clear all filters">
+            Clear all
+          </button>
+        </div>
+        </div>
+        
+  <div id="blueBanner"
+      style="background-color: #E4EDF5">
+    <div class="relative w100 px-2 pt-2 flex flx-wrap flx-mid-ctr">
+      <div class="mr-4 mb-2 text-wrapper">
+        <div class="mb-04 txt-lg bold">Need Immediate Care?</div>
+        <div>See the first available appointments and wait times for Primary Care, Urgent Care, and ER near you.</div>
+      </div>
+      <a class="mb-2 py-1 px-12 bg-white txt-black border-grey"
+          href="https://www.piedmont.org/locations/get-care">Find Immediate Care</a>
+      <div id="closeBlueBannerBtn"
+          class="absolute top right mt-1 mr-15 cursor-pointer">
+        <svg title="close banner"
+            class="w25 h25 no-tap">
+          <use xlink:href="#close-circle"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div id="searchHdrFtr"
+      class="tab-only mt-2 x-absolute w100">
+    <div id="searchResultCnt"
+        class="cpnt">
+      <span id="resultsCnt"
+          class="nowrap">0 Results</span>
+    </div>
+  </div>
+
+  <div class="absolute left z-50 w100 pt-2 pb-2 txt-ctr tab-hidden">
+    <div class="mobile-btns mx-a">
+      <label for="fullSrch" id="fullSrchLabel" class="i-block btn btn-label" role="button" tabindex="0">Search and Filter</label>
+      <label for="showMap" id="showMapLabel" class="i-block btn btn-label btn-switch" role="button" tabindex="0"><span class="tran-200 option-1">List</span><span class="tran-200 option-2">Map</span></label>
+    </div>
+  </div>
+</div>
+<!-- Logic for saving blue banner open/close state to session storage -->
+<script id="storeBannerState"
+    type="text/javascript">
+      const hideBanner = sessionStorage.getItem("hideBlueBanner");
+      const blueBanner = document.getElementById("blueBanner");
+      if (hideBanner === "true") {
+        blueBanner.classList.add("hidden");
+      }
+      const closeBlueBannerBtn = document.getElementById('closeBlueBannerBtn');
+      closeBlueBannerBtn.addEventListener('click', () => {
+        blueBanner.classList.add("hidden");
+        sessionStorage.setItem("hideBlueBanner", true);
+      });
+    </script>

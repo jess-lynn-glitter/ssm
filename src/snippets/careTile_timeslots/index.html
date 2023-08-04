@@ -1,0 +1,58 @@
+<!--
+  DOCUMENTATION
+
+  https://developers.dexcarehealth.com/api/timeslots/
+-->
+<!--
+  NOTE 
+
+  Be sure to include the script_getTimeslots snippet at the top of the page where this widget is used!
+
+-->
+
+<amp-state id="showMoreCheckboxBookNow"></amp-state>
+
+<!-- <div class="relative widget-book-now amp"> -->
+  <amp-list
+    id="widgetBookNow" 
+    class="m-175 relative widget-book-now amp"
+    src="amp-script:script_Timeslots.getTimeslots"
+    template="timeslotsTemplate"
+    layout="fixed-height"
+    height="395"
+    binding="refresh"
+    single-item
+    items="."
+    data-test="widgetBookNow">
+    <template id="timeslotsTemplate"
+    class="uses-amp-date-display"
+    w-move="body"
+    type="amp-mustache">
+    {doNotWomp}
+    ~~careTileTemplate_locationTimeslots_details_current~~
+    {endDoNotWomp}
+    </template>
+  </amp-list>
+  <!-- </div> -->
+
+
+  <template id="dayMonthDateTemplate"
+      w-move="body"
+      type="amp-mustache">
+    <div class="h100 txt-left">
+    {doNotWomp}
+    {{dayName}} {{monthName}} {{day}}
+    {endDoNotWomp}
+  </div>
+</template>
+
+<template id="timeTemplate"
+w-move="body"
+type="amp-mustache">
+<div>
+    {doNotWomp}
+    {{hour12}}:{{minuteTwoDigit}} {{dayPeriod}}
+    {endDoNotWomp}
+  </div>
+</template>
+

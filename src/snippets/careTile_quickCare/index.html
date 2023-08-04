@@ -1,0 +1,33 @@
+<!--
+  NOTE 
+
+  Be sure to include the script_getWaitTime snippet at the top of the page where this widget is used!
+
+-->
+{doNotWomp}
+
+<div class="widget-quick-care amp mx-a" w-if="wData.features.isQuickCareAvailable">
+  <amp-list 
+    id="amp-list"
+    class="bold"
+    width="auto"
+    height="270"
+    layout="flex-item"
+    src="amp-script:script_waitTime.getWaitTime"
+    template="quickCareWidgetTemplate"
+    items="."
+    single-item
+  >
+    <template id="quickCareWidgetTemplate" type="amp-mustache" w-move="body">
+      {{#.}}
+        ~~careTileTemplate_quickCare~~
+      {{/.}}
+    </template>
+  </amp-list>
+</div>
+
+<!-- If the hideQuickCare flag is true, this hidden empty widget is be put in instead. We need something otherwise the booking-widgets.js script will throw errors when it can't find the widget -->
+<div w-else class="widget-quick-care" hidden></div>
+
+{endDoNotWomp}
+<!-- <div id="wompInvalidAmpOK"></div> -->

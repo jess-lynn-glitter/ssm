@@ -1,0 +1,28 @@
+{doNotWomp}
+<w-render snippet="site_breadcrumbs" data-props>
+  <ul class="hidden mobW-block" id="breadcrumbs">
+  {{#links}}
+    <li>
+      {{#href}}
+        <a href="{{href}}">{{text}}</a>
+      {{/href}}
+      {{^href}}
+        <span>{{text}}</span>
+      {{/href}}
+    </li>
+  {{/links}}
+  </ul>
+  {{#returnHref}}
+  <a
+    href="{{returnHref}}"
+    id="breadcrumbReturnBtn"
+    class="mobW-hidden mt-1 flx txt-md txt-black">
+    <svg class="txt-black h16 w16 my-auto mr-1 rotate-90">
+      <use xlink:href="#fa-chevron-down">
+      </use>
+    </svg>
+    Return</a>
+  {{/returnHref}}
+</w-render>
+
+{endDoNotWomp}

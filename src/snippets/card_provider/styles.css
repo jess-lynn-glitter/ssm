@@ -1,0 +1,597 @@
+@charset "UTF-8";
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 3px solid #ECECEC;
+  width: 100%;
+}
+.card .timeslots-wrap {
+  display: inline-block;
+}
+.card .loc-chevron {
+  transform: none;
+  width: 14px;
+  max-height: 14px;
+}
+.card .selector-dropdown {
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  border: none;
+  border-bottom: 1px solid var(--clr-primary);
+  cursor: pointer;
+}
+.card .selector-dropdown:hover {
+  background: unset;
+}
+.card .selector-dropdown .selected-option {
+  line-height: 2rem;
+}
+.card .selector-options {
+  padding: 0;
+  position: absolute;
+  top: -7px;
+  left: 0;
+  background-color: #FFF;
+  border: 1px solid #B2B2B2;
+  margin: 0;
+  z-index: 100;
+}
+.card .selector-options .selector-option-wrapper {
+  font-weight: 700;
+  list-style: none;
+  padding: 1rem;
+}
+.card .selector-options .selector-option-wrapper:hover {
+  background-color: #CBCBCB;
+}
+.card .selector-options .selector-option-wrapper small {
+  font-weight: 500;
+  color: #535353;
+}
+.card .selector-options .selected {
+  background-color: #ECECEC;
+}
+.card .bkng-types {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  color: #535353;
+}
+.card .bkng-types li {
+  font-weight: 700;
+  float: left;
+}
+.card .bkng-types li:first-of-type {
+  margin-left: 0;
+}
+.card .bkng-types li:not(:first-of-type):before {
+  content: "●";
+  margin: 0 8px;
+}
+.card .bkng-types .ico-chk {
+  width: 20px;
+  height: 20px;
+}
+.card .prov-img .provider-img {
+  width: 100px;
+  height: 125px;
+  border: 1px solid #ECECEC;
+  object-fit: cover;
+}
+.card .prov-bdg {
+  margin-top: 10px;
+}
+.card .prov-bdg svg {
+  max-width: 100px;
+  max-height: 100px;
+}
+.card .reviews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4px;
+  margin-bottom: 2rem;
+}
+.card.selected {
+  box-shadow: inset 0 0 0 3px var(--clr-primary);
+  width: 100%;
+}
+.card.selected .prov-booking {
+  padding: 20px;
+  min-width: 330px;
+}
+.card .mbl-hddn {
+  display: none;
+}
+.card .prov-abt {
+  margin-top: 2rem;
+}
+.card .prov-abt .txt-md, .card .prov-abt p {
+  font-size: 16px;
+}
+.card .prov-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.card .prov-info h3 a {
+  color: #000;
+  font-size: 20px;
+}
+.card .prov-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.card .lnk-prov-img {
+  display: block;
+  width: auto;
+  border: none;
+}
+.card .prov-img {
+  margin-right: 19px;
+  width: 100px;
+  flex-shrink: 0;
+}
+.card .prov-img .relative {
+  width: 90.57px;
+  max-width: 90.57px;
+  height: 125px;
+}
+.card .prov-img img {
+  object-fit: contain;
+  vertical-align: bottom;
+}
+.card .prov-img .lnk-play-video {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  max-width: 32px;
+  max-height: 32px;
+}
+.card .prov-img .svg-ico-play-video {
+  max-width: 32px;
+  max-height: 32px;
+}
+.card .prov-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.card .in-net-logo {
+  width: 110px;
+  max-width: 90.57px;
+  height: 37px;
+  margin-top: 3px;
+}
+.card .in-net-logo-no-text {
+  width: 97px;
+  max-width: 90.57px;
+  height: 22px;
+}
+.card .prov-det {
+  color: #222529;
+  flex-grow: 1;
+}
+.card .prov-det h3 a {
+  font-weight: 500;
+}
+.card .prov-det h3 {
+  font-size: 1.6rem;
+}
+.card .prov-det .stats {
+  font-size: 16px;
+}
+.card .prov-det .color-headings {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+.card .prov-det .virtual-visits, .card .prov-det .new-patients {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.card .prov-det .svg-ico-check {
+  color: #00666C;
+  max-width: 15px;
+  max-height: 10px;
+  margin-right: 5px;
+}
+.card .prov-det .svg-ico-videocam {
+  max-width: 21px;
+  max-height: 14px;
+  margin-right: 5px;
+  transform: translateY(2px);
+}
+.card .prov-det .loc-name, .card .prov-det .distance-mi {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.card .prov-det .loc-addr-primary {
+  font-size: 1.1rem;
+}
+.card .prov-det .svg-ico-map-pin {
+  width: 13px;
+  height: 17.33px;
+  transform: translateY(3px);
+  margin-right: 5px;
+}
+.card .prov-det .svg-ico-phone {
+  color: var(--clr-primary);
+  width: 15px;
+  height: 17px;
+  margin-right: 5px;
+  transform: translateY(3px);
+}
+.card .prov-det .svg-ico-clock {
+  color: var(--clr-primary);
+  width: 20px;
+  height: 20px;
+  transform: translateY(3px);
+}
+.card .prov-det .badges, .card .prov-det .in-net-logo, .card .prov-det .in-net-logo-no-text, .card .prov-det .new-patients, .card .prov-det .remaining-data, .card .prov-det .read-more-state, .card .prov-det .read-more-target, .card .prov-det .read-more-trigger {
+  display: none;
+}
+.card .prov-booking {
+  text-align: center;
+  color: #B2B2B2;
+  padding: 20px 23px 20px;
+  margin-top: 10px;
+  min-width: 336px;
+  min-height: 213px;
+}
+.card .prov-btns {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+.card .prov-btns .mbl-map-txt {
+  display: none;
+}
+.card .prov-btns > * {
+  width: 151px;
+  text-align: center;
+  justify-content: center;
+}
+.card .btn-call {
+  padding: 17px 60px;
+}
+.card .stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  position: relative;
+  display: inline-block;
+  font-family: Times;
+  border-bottom: 3px solid transparent;
+  vertical-align: middle;
+}
+.card .stars::before {
+  content: "★★★★★";
+  letter-spacing: -2px;
+  font-size: 1.5rem;
+  line-height: 2;
+  background: linear-gradient(90deg, var(--clr-secondary) var(--percent), transparent var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.card .stars::after {
+  content: "☆☆☆☆☆";
+  position: absolute;
+  left: 0;
+  letter-spacing: -2px;
+  font-size: 1.5rem;
+  line-height: 2;
+  background: var(--clr-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.card .bkng-types-mbl {
+  display: none;
+}
+.card .prov-abt-mbl {
+  display: none;
+}
+
+/* MEDIA QUERIES */
+/* sm phone */
+@media screen and (max-width: 319.98px) {
+  .card .prov-det .color-headings {
+    margin-top: 7px;
+  }
+  .card .prov-booking {
+    padding: 20px 0;
+    min-width: 274px;
+  }
+  .card.selected .prov-booking {
+    padding: 20px 0;
+    min-width: 280px;
+  }
+}
+@media screen and (min-width: 320px) {
+  .card .prov-det .color-headings {
+    transform: translateY(-0.25em);
+    margin-bottom: -0.25em;
+  }
+}
+/* phone */
+@media screen and (min-width: 576px) and (max-width: 992px) {
+  #showMap:checked ~ main #results, #showMap:checked ~ main #pagination {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+/* tablet */
+@media (min-width: 992px) {
+  .card {
+    flex-direction: row;
+  }
+  .card .mbl-hddn {
+    display: block;
+  }
+  .card .prov-img .relative {
+    width: 110.25px;
+    max-width: 110.25px;
+    height: 135px;
+  }
+  .card .in-net-logo {
+    max-width: 90px;
+    margin-top: 8px;
+  }
+  .card .prov-wrap {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .card .prov-abt {
+    display: block;
+  }
+  .card .prov-abt .txt-md {
+    font-size: 20px;
+  }
+  .card .reviews {
+    margin-bottom: 0;
+  }
+  .card .prov-btns {
+    column-gap: 4rem;
+    margin-bottom: 0;
+  }
+  .card .prov-det {
+    margin-right: 10px;
+  }
+  .card .prov-det h3 {
+    font-size: 2rem;
+  }
+  .card .prov-det .virtual-visits, .card .prov-det .new-patients {
+    font-size: 1.3rem;
+  }
+  .card .prov-det .loc-name, .card .prov-det .distance-mi {
+    font-size: 1.4rem;
+  }
+  .card .prov-det .loc-addr-primary {
+    font-size: 1.2rem;
+  }
+  .card .prov-booking {
+    margin-top: 0;
+    min-height: 246px;
+  }
+}
+/* awkward middle size */
+@media only screen and (min-width: 992px) and (max-width: 1279.98px) {
+  .card .prov-wrap {
+    min-width: 290px;
+  }
+  .card .prov-booking {
+    min-width: 306px;
+    min-height: 276px;
+  }
+  .card.selected .prov-booking {
+    min-width: 300px;
+    min-height: 276px;
+  }
+}
+/* up to lg tablet */
+@media (max-width: 991.98px) {
+  #showMap:checked ~ main .card {
+    border-radius: 5px;
+    border-bottom: none;
+  }
+  #showMap:checked ~ main .card .prov-abt, #showMap:checked ~ main .card .reviews, #showMap:checked ~ main .card .map-hddn, #showMap:checked ~ main .card .bkng-types, #showMap:checked ~ main .card .prov-bdg {
+    display: none;
+  }
+  #showMap:checked ~ main .card .prov-wrap {
+    position: relative;
+    display: block;
+    height: 256px; /* hardcoded to force alignment buttons */
+    overflow-y: auto; /* just in case of overflow */
+  }
+  #showMap:checked ~ main .card .prov-img {
+    float: left;
+    width: 64px;
+    margin-bottom: 2rem;
+  }
+  #showMap:checked ~ main .card .prov-img img, #showMap:checked ~ main .card .prov-img .relative {
+    width: 64px;
+    min-width: 64px;
+    height: 78.36px;
+  }
+  #showMap:checked ~ main .card .prov-img .lnk-play-video {
+    bottom: 2px;
+    right: 0;
+    max-width: 24px;
+    max-height: 24px;
+  }
+  #showMap:checked ~ main .card .prov-img .in-net-logo-no-text {
+    position: absolute;
+    top: 64px;
+    left: 0;
+  }
+  #showMap:checked ~ main .card .prov-img .in-net-logo {
+    display: none;
+  }
+  #showMap:checked ~ main .card .prov-care {
+    display: none;
+  }
+  #showMap:checked ~ main .card .prov-det {
+    margin-right: 0;
+  }
+  #showMap:checked ~ main .card .prov-det h3 a {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    transform: translateY(0);
+    margin-bottom: 0;
+  }
+  #showMap:checked ~ main .card .prov-det h3 a .nowrap {
+    white-space: normal;
+  }
+  #showMap:checked ~ main .card .prov-det .prov-title {
+    font-size: 12px;
+    line-height: 1;
+  }
+  #showMap:checked ~ main .card .prov-det .in-net-logo-no-text {
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    max-width: 69px;
+  }
+  #showMap:checked ~ main .card .prov-det .distance-mi, #showMap:checked ~ main .card .prov-det .loc-name, #showMap:checked ~ main .card .prov-det .loc-addr-primary, #showMap:checked ~ main .card .prov-det .new-patients, #showMap:checked ~ main .card .prov-det .reviews, #showMap:checked ~ main .card .prov-det .svg-ico-videocam {
+    display: none;
+  }
+  #showMap:checked ~ main .card .prov-det .svg-ico-videocam {
+    display: none; /* hiding temporarily */
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background-color: white;
+    max-width: 21px;
+    max-height: 15px;
+    padding: 2px;
+  }
+  #showMap:checked ~ main .card .prov-btns {
+    width: 100%;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+  }
+  #showMap:checked ~ main .card .prov-btns .mbl-map-txt {
+    display: block;
+  }
+  #showMap:checked ~ main .card .prov-btns .reg-map-txt {
+    display: none;
+  }
+  #showMap:checked ~ main .card .prov-btns .provider-cta {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+  #showMap:checked ~ main .card .prov-btns .btn, #showMap:checked ~ main .card .prov-btns .map-lnk {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 16px;
+  }
+  #showMap:checked ~ main .card .prov-btns h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+    margin: 0;
+  }
+  #showMap:checked ~ main .card .prov-btns > * {
+    width: auto;
+    flex-basis: 100%;
+    line-height: 1.2;
+    padding: 8px 2px;
+  }
+  #showMap:checked ~ main #providerTimeslots {
+    display: none;
+  }
+  #showMap:checked ~ main .prov-abt-mbl {
+    display: block;
+    max-height: 95px;
+    overflow-y: scroll;
+  }
+  #showMap:checked ~ main .txt-14 {
+    font-size: 14px;
+  }
+  #showMap:checked ~ main .txt-15 {
+    font-size: 15px;
+  }
+  #showMap:checked ~ main .txt-12 {
+    font-size: 12px;
+  }
+  #showMap:checked ~ main .ico-chk {
+    width: 16px;
+    height: 16px;
+  }
+  #showMap:checked ~ main .bkng-types-mbl {
+    display: block !important;
+  }
+}
+/* lg tablet */
+@media (min-width: 992px) {
+  .card {
+    min-height: 444.5px; /* for CLS and scrolling accuracy */
+  }
+  .card .prov-img .relative {
+    width: 113.89px;
+    max-width: 113.89px;
+    height: 125px;
+  }
+  .card .in-net-logo {
+    max-width: 113.89px;
+    margin-top: 10px;
+  }
+  .card .prov-det h3 {
+    font-size: 2.2rem;
+  }
+  .card .prov-det .loc-addr-primary, .card .prov-det .new-patients {
+    display: none;
+  }
+  .card .prov-det .loc-name {
+    color: #000;
+  }
+  .card .prov-det .loc-name, .card .prov-det .distance-mi, .card .prov-det .map-lnk, .card .prov-det .phone-lnk {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+  .card .prov-det .phone-lnk {
+    display: inline-block;
+  }
+  .card .prov-care {
+    margin: 0;
+    padding-bottom: 15%;
+  }
+  .card .ldp-only {
+    max-width: 445px;
+  }
+}
+/* desktop */
+@media (min-width: 1280px) {
+  .card {
+    min-height: 402px; /* for CLS and scrolling accuracy */
+  }
+}
+.page-LDP .prov-abt {
+  margin-top: 0;
+}

@@ -1,0 +1,47 @@
+<div id="top">
+  <amp-position-observer on="enter:hideScrollToTop.start; exit:showScrollToTop.start" layout="nodisplay"></amp-position-observer>
+</div>
+
+<button id="scrollToTop" class="btn-round" on="tap:top.scrollTo(duration=200)">
+  <svg id="svgIcoUp" title="back to top icon">
+    <use xlink:href="#fa-angle-up"></use>
+  </svg>
+</button>
+
+<amp-animation id="showScrollToTop" layout="nodisplay">
+  <script type="application/json">
+    {
+      "duration": "200ms",
+      "fill": "both",
+      "iterations": "1",
+      "direction": "alternate",
+      "animations": [
+        {
+          "selector": "#scrollToTop",
+          "keyframes": [
+            { "opacity": "1", "visibility": "visible" }
+          ]
+        }
+      ]
+    }
+  </script>
+</amp-animation>
+
+<amp-animation id="hideScrollToTop" layout="nodisplay">
+  <script type="application/json">
+    {
+      "duration": "200ms",
+      "fill": "both",
+      "iterations": "1",
+      "direction": "alternate",
+      "animations": [
+        {
+          "selector": "#scrollToTop",
+          "keyframes": [
+            { "opacity": "0", "visibility": "hidden" }
+          ]
+        }
+      ]
+    }
+  </script>
+</amp-animation>

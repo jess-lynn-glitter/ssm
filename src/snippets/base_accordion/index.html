@@ -1,0 +1,36 @@
+{doNotWomp}
+{{#.}}
+  <div class="flx flx-col mt-1 pt-2 pb-1 accordion">
+    <div class="flx my-auto accordion-heading no-select" tabindex="0" role="button" on="tap:AMP.setState({ {{stateName}}: {{stateName}} == 'accordion' ? null : 'accordion'})">
+        <h3 class="mx-0 flx-grow">{{heading}}</h3>
+        <svg class="mt-auto mb-025 accordion-icon svg-round">
+          <use xlink:href="#fa-chevron-down"
+            [hidden]="{{stateName}} == 'accordion'">
+          </use>
+          <use xlink:href="#fa-chevron-up"
+            hidden [hidden]="{{stateName}} != 'accordion'">
+          </use>
+        </svg>
+    </div>
+  </div>
+  <div class="w100 accordion-content" hidden [hidden]="{{stateName}} != 'accordion'">
+      {{#contentList.length}}
+      <ul>
+        {{#contentList}}
+          <li>{{.}}</li>
+        {{/contentList}}
+      </ul>
+      {{/contentList.length}}
+      {{#linkList.length}}
+        <ul>          
+          {{#linkList}}
+            <li  class="{{class}}">
+              <a href="{{url}}" alt="{{alt}}" aria-label="{{ariaLabel}}">{{txt}}</a>
+            </li>
+          {{/linkList}}
+        </ul>
+      {{/linkList.length}}
+      {{{contentHtml}}}
+  </div>
+{{/.}}
+{endDoNotWomp}

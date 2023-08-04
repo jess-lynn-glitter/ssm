@@ -1,0 +1,150 @@
+<!-- childReplacement site_footer -->
+<footer id="ftr" w-if="!wData.isGozio">
+  <div id="ftrTop">
+    <div class="cpnt relative">
+      <img id="mblApp" src="https://piedmontfiles.org/img/kyruus/app-cta-bar.png" alt="Piedmont mobile app preview">
+      <div id="ftrTopInfo">
+        <div class="i-block flx-grow">
+          <h3>Download the Piedmont Now app</h3>
+          <ul>
+            <li class="flx flx-gap-1 mt-1">
+              <svg class="svgChk" title="Check mark">
+                <use xlink:href="#fa-check"></use>
+              </svg>
+              <span>
+                Directions
+              </span>
+            </li>
+            <li class="flx flx-gap-1 mt-1">
+              <svg class="svgChk" title="Check mark">
+                <use xlink:href="#fa-check"></use>
+              </svg>
+              <span>
+                Find &amp; Save Physicians
+              </span>
+            </li>
+            <li class="flx flx-gap-1 mt-1">
+              <svg class="svgChk" title="Check mark">
+                <use xlink:href="#fa-check"></use>
+              </svg>
+              <span>
+                Indoor Hospital Navigation
+              </span>
+            </li>
+            <li class="flx flx-gap-1 mt-1">
+              <svg class="svgChk" title="Check mark">
+                <use xlink:href="#fa-check"></use>
+              </svg>
+              <span>
+                Online Scheduling
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="i-block">
+          <h6>Download the app today!</h6>
+          <div class="flx flx-gap-1">
+            <a class="" href="https://play.google.com/store/apps/details?id=apps.piedmontnow" target="_blank">
+              <img src="https://www.piedmont.org/_img/google-play-download.svg" alt="Get the Piedmont app now on Google Play">
+            </a>
+            <a class="" href="https://itunes.apple.com/us/app/piedmont-now/id973488807?mt=8" target="_blank">
+              <img src="https://www.piedmont.org/_img/app-store-download.svg" alt="Get the Piedmont app now on iTunes App Store">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="ftrMid">
+    <div class="cpnt">
+      <div id="ftrMidInfo" class="txt-sm">
+        <div id="ftrMidDsk">
+          <w-render data="wData.footerItems">
+            {doNotWomp}
+              {{#.}}
+              <div>
+                <h6>{{heading}}</h6>
+                {{#linkList}}
+                <div class="ftr-mid-links">
+                    <a href="{{url}}" alt="{{txt}}" aria-label="{{txt}}">{{txt}}</a>
+                </div>
+                {{/linkList}}
+              </div>
+              {{/.}}
+            {endDoNotWomp}
+          </w-render>
+        </div>
+        <div id="ftrMidMbl">
+          <w-render data="wData.footerItems">
+            {doNotWomp}
+             {{#.}}
+             {endDoNotWomp}
+                 {base_accordion}
+              {doNotWomp}
+              {{/.}}
+             {endDoNotWomp}
+           </w-render>
+        </div>
+        <div id="ftrSocial">
+          <span>Connect with us</span>
+          <div id="ftrSocialLinks" >
+            <a id="svgIcoLnkFacebook" href="https://www.facebook.com/PiedmontHealthcare" data-variantitemid="{92FB2F96-3346-482F-9B3B-E7AE19FB6541}" data-variantfieldname="Link" aria-label="Facebook">
+              <svg id="svgIcoFacebook" title="Facebook icon">
+                <use xlink:href="#fa-facebook"></use>
+              </svg>
+            </a>
+            <a id="svgIcoLnkInstagram" href="https://www.instagram.com/piedmonthealth/" data-variantitemid="{96AA3308-4C9C-475C-82D0-C3F9E4DAE8BC}" data-variantfieldname="Link" aria-label="Instagram">
+              <svg id="svgIcoInstagram" title="Instagram icon">
+                <use xlink:href="#fa-instagram"></use>
+              </svg>
+            </a>
+            <a id="svgIcoLnkTwitter" href="https://twitter.com/PiedmontHealth" data-variantitemid="{6F9D9303-A3EE-42EF-8C3F-90CFF0E0D1FC}" data-variantfieldname="Link" aria-label="Twitter">
+              <svg id="svgIcoTwitter" title="Twitter icon">
+                <use xlink:href="#fa-twitter"></use>
+              </svg>
+            </a>
+            <a id="svgIcoLnkYouTube" href="https://www.youtube.com/user/piedmonthealthcare" data-variantitemid="{F7B16AC0-B6EC-4D1C-BDAE-11390FCEA6E0}" data-variantfieldname="Link" aria-label="YouTube">
+              <svg id="svgIcoYouTube" title="YouTube icon">
+                <use xlink:href="#fa-youtube"></use>
+              </svg>
+            </a>
+          </div>
+          <div id="ftrCopyright">
+            <p>
+              All videos and content are the exclusive property of Piedmont Healthcare and may not be used by any third parties for any other purposes.
+            </p>
+            <p class="mt-2">
+              Copyright © ~~currentYear~~ Piedmont Healthcare
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="ftrBtm">
+    <div class="cpnt">
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/patient-tools/piedmont-financial-assistance/financial-disclosures" data-variantitemid="{80E601E8-77A9-4BB7-9B5F-D9350866CF85}" data-variantfieldname="Link">Disclosures</a>
+      </div>
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/about-piedmont-healthcare/contact-us" data-variantitemid="{F25C2AE5-C924-4128-83F0-0159267C9F90}" data-variantfieldname="Link">Contact Us</a>
+      </div>
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/about-piedmont-healthcare/joint-notices/privacy-policy" data-variantitemid="{3D0340A3-11B8-4D82-952C-413480F830F6}" data-variantfieldname="Link">Privacy</a>
+      </div>
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/about-piedmont-healthcare/non-discrimination-policy" data-variantitemid="{3D0340A3-11B8-4D82-952C-413480F830F6}" data-variantfieldname="Link">Non-Discrimination</a>
+      </div>
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/about-piedmont-healthcare/compliance" data-variantitemid="{3D0340A3-11B8-4D82-952C-413480F830F6}" data-variantfieldname="Link">Compliance</a>
+      </div>
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/about-piedmont-healthcare/joint-notices/joint-notices" data-variantitemid="{3D0340A3-11B8-4D82-952C-413480F830F6}" data-variantfieldname="Link">Joint Notice</a>
+      </div>
+      <div class="ftr-btm-links">
+        <a href="https://www.piedmont.org/about-piedmont-healthcare/social-media-policy" data-variantitemid="{3D0340A3-11B8-4D82-952C-413480F830F6}" data-variantfieldname="Link">Social Media</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end childReplacement site_footer -->

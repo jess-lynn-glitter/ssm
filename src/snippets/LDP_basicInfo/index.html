@@ -1,0 +1,92 @@
+{doNotWomp}
+<div id="divLocDetTop" class="{{#ImageUrl}} hero-padding {{/ImageUrl}}">
+  <h1 id="locTitle"
+      data-test="title">{{Name}}</h1>
+  <div class="addr mt-15 line-h-24 txt-lg">
+      <span>
+        {{Street1}}, {{#Street2}}{{Street2}},{{/Street2}} {{City}}, {{Region}} {{PostalCode}}
+      </span>
+      <div class="flx between-xs middle-xs mt-15">
+        {{#distanceMilesStr}}
+        <span class="bold txt-sm">
+          {{distanceMilesStr}}
+        </span>
+        {{/distanceMilesStr}}
+        <a id="addrBlock"
+            class="btn-primary flx xs-middle"
+            data-test="addr"
+            on="tap:AMP.scrollTo(id='mapDirections', position='center')"
+            tabindex="0"
+            aria-label="map link">
+            <svg id="icoMapBtn">
+              <use xlink:href="#icon-map"></use>
+            </svg>
+            <span>
+              See on Map
+            </span>
+        </a>
+      </div>
+  </div>
+  <div class="hrs light flx flx-wrap mt-4"
+      data-test="hours">
+          {{#collapsedOpenHours}}
+            <div class="flx flx-col">
+              {{^sameEveryDay}}
+                <span class="bold">{{day}}</span>
+              {{/sameEveryDay}}
+              <span class="normal">
+                {{^closed}}
+                {{hours}}
+                {{/closed}}
+                {{#closed}}
+                  <span class="x-closed-hours normal">Closed</span>
+                {{/closed}}
+                {{#sameEveryDay}}
+                , <span class="nowrap normal">seven days a week</span>
+                {{/sameEveryDay}}
+              </span>
+            </div>
+          {{/collapsedOpenHours}}
+
+    <div class="flx flx-col">
+      <span class="bold">
+        Phone Number
+      </span>
+      <a class="underline nowrap"
+          href="tel:{{Phone}}"
+          data-vars-phone-link="{{Phone}}" data-test="phone">
+        {{Phone}}
+      </a>
+    </div>
+    {{#Fax}}
+      <div class="flx flx-col">
+        <span class="bold">
+          Fax Number
+        </span>
+        <span class="nowrap">
+          {{Fax}}
+        </span>
+      </div>
+    {{/Fax}}
+  </div>
+  <ul class="bkng-types-loc">
+    {{#AcceptingNewPatients}}
+      <li class="flx">
+        <svg id="icoChk" class="ico-chk my-auto mr-1">
+          <use xlink:href="#icon-checkmark"></use>
+        </svg>
+        <span>New Patient Visits</span>
+      </li>
+    {{/AcceptingNewPatients}}
+    {{#VirtualCare}}
+      <li>Virtual Visits</li>
+    {{/VirtualCare}}
+    {{#UrlName}}
+    <li>Online Booking</li>
+    {{/UrlName}}
+    {{#WalkInsWelcome}}
+      <li>Walk-Ins Welcome</li>
+    {{/WalkInsWelcome}}
+  </ul>
+</div>
+{endDoNotWomp}

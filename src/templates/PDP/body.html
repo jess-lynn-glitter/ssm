@@ -1,0 +1,820 @@
+{base_scrollToTop}
+{site_header}
+{analytics_amp}
+
+
+<main class="container">
+  {base_modal(wData.videoModalContent)}
+  {base_modal(wData.careTeamModalContent)}
+  {site_breadcrumbs(wData.breadcrumbsContent)}
+  <div id="divListWrapper">
+    <w-render data="wData.provider">
+      <div id="divProviderDet" class="relative">
+        {doNotWomp}
+        <div id="hero" class="tab-flx">
+          <div>
+            <div id="divProviderHdr" class="relative tab-hidden">
+              <h1 class="bold">~~providerName~~</h1>
+              <h2 class="mt-05 txt-xl">
+                {{ProviderTitle}}
+              </h2>
+            </div>
+            <div id="imgPrimaryCont">
+              <img id="imgPrimary" class="cover" src="~~providerImageUrl~~" alt="~~providerName~~" width="300"
+                height="400" />
+                <div id="divProviderRatingsWrapper" class="{{^isInNetwork}} flx-just-ctr {{/isInNetwork}}">
+                  {{#isInNetwork}}
+                  <div class="prov-bdg">
+                    <svg class="no-tap">
+                      <use xlink:href="#piedmontMember"></use>
+                    </svg>                  
+                  </div>
+                  {{/isInNetwork}}
+                  {{#Rating}}
+                  <div id="divProviderRatingGroup" class="{{^isInNetwork}} mt-1 {{/isInNetwork}}">
+                    <div>
+                      <!-- replace link and stars -->
+                      <span class="rating">{{Rating}}</span>
+                      <div class="stars" style="--rating: {{Rating}};"
+                        aria-label="Rating of this provider is {{Rating}} out of 5."></div>
+                    </div>
+                    {{#RatingCount}}
+                    <div id="divProviderRatingData" class="flx inline-flx flx-nowrap">
+                      <div id="divProviderRatingCnt">{{RatingCount}} Ratings</div>
+                    </div>
+                    {{/RatingCount}}
+                  </div>
+                  {{/Rating}}
+                </div>
+              </div>
+              {{#RatingCount}}
+              <a w-if="wData.hasReviews" href="~~origin~~~~pathname~~#details" class="btn-primary mx-auto toAmpPage relative z-50 {{^isInNetwork}} mt-1 {{/isInNetwork}}" alt="See Reviews" role="button" on="tap:AMP.setState({ reviews: 'accordion', aboutMe: null})">
+                <svg id="svgIcoReviews">
+                  <use xlink:href="#icon-reviews"></use>
+                </svg>
+                See Reviews
+              </a>
+              {{/RatingCount}}
+            
+          </div>
+          <div id="divProviderDetTop" class="flx-grow">
+            <h1 id="providerName" class="tab-only mt-0 mb-05">~~providerName~~</h1>
+            <h2 id="PrimarySpecialties" class="mt-0 hidden">
+              {{ProviderTitle}}
+              {{#hasMultipleLocations}}
+                &bull; {{locationsCount}} Locations
+              {{/hasMultipleLocations}}
+            </h2>
+            <h2 id="secondarySpecialties" class="mt-0">
+              {{SecondarySpecialties}}
+            </h2>
+            <!-- {{#Rating}}
+            <div id="divProviderRatingGroup" class="mt-2 mobW-hidden">
+              <div class="div-provider-ratings">
+                <a href="~~origin~~~~pathname~~#ratingsSection"
+                  on="tap:AMP.setState({ reviews: 'accordion' }),ratingsSection.scrollTo(duration=200)"
+                  class="toAmpPage">{{Rating}}</a>
+                <div class="stars" style="--rating: {{Rating}};"
+                  aria-label="Rating of this provider is {{Rating}} out of 5."></div>
+              </div>
+              {{#RatingCount}}
+              <div id="divProviderRatingData" class="mt-05 flx flx-nowrap">
+                <div id="divProviderRatingCnt">{{RatingCount}} Ratings</div>
+              </div>
+              {{/RatingCount}}
+            </div>
+            {{/Rating}}  -->
+            {{#Addresses.0}}
+            <div class="addr mt-175">
+              {{#hasMultipleLocations}}
+                {{#locations.0}}
+                  <div id="locationSelector" class="loc-select-wrap">
+                    <div class="selector-dropdown relative w100 btn flx" data-value="{{id}}" role="menu">
+                      <span id="locName" class="selected-option semibold no-tap">
+                        {{Name}}
+                      </span>
+                      <svg class="no-tap loc-chevron">
+                        <use xlink:href="#fa-chevron-down"/>
+                      </svg>
+                    </div>
+                    <div class="relative h-0">
+                      <ul class="selector-options w100 hidden">
+                        {{#locations}}
+                          {{#.}}
+                            <li class="selector-option-wrapper w100">
+                              <button id="cb_{{id}}" class="location-select btn p-0 hidden" name="{{Name}}" value="{{id}}" data-phone="{{Phone}}" data-fax="{{Fax}}" data-address="{{Address}}" data-street="{{Street1}}" data-suite="{{Street2}}" data-city="{{City}}" data-region="{{Region}}" data-postal="{{PostalCode}}" data-distance="{{distance}}" data-url="{{Url}}"></button>
+                              <label class="cursor-pointer btn-label w100 block" for="cb_{{id}}" role="menuitem" aria-label="select {{Name}}">
+                                {{Name}}<br/>
+                                <small>
+                                  {{cleanAddress}}
+                                </small>
+                              </label>
+                            </li>
+                          {{/.}}
+                        {{/locations}}
+                      </ul>
+                    </div>
+                  </div>
+                {{/locations.0}}
+              {{/hasMultipleLocations}}
+              {{^hasMultipleLocations}}
+                {{#LocationNames.0}}
+                <span id="locName" class="mb-15 bold">{{LocationNames.0}}</span>
+                {{/LocationNames.0}}
+              {{/hasMultipleLocations}}
+              <span class="a-block mt-1 semibold addr loc-address">
+                ~~providerAddressStreet~~, ~~providerAddressCity~~, ~~providerAddressState~~ ~~providerAddressZip~~
+              </span>
+            </div>
+            {{/Addresses.0}}
+
+            {{^Addresses}}
+              <div class="addr bold mt-175">
+                {{#LocationNames.0}}
+                <span id="locName" class="mb-15 bold">{{LocationNames.0}}</span>
+                {{/LocationNames.0}}
+                <span class="a-block mt-1 semibold">
+                  {{Street1}}, {{#Street2}}{{Street2}},{{/Street2}} {{City}}, {{Region}} {{PostalCode}}
+                </span>
+              </div>
+            {{/Addresses}}
+
+            <div class="flx flx-row flx-algn-ctr flx-just-spce-b flx-wrap flx-gap-2 mt-1 dist-row">
+              <div class="dist">{{Distance}} miles</div>
+              <div class="flx flx-row flx-gap-1 dist-btn-row">
+                {{#LocationUrl}}
+                  <a id="locUrl" class="btn-primary mt-auto" href="{{LocationUrl}}" target="{{#isExternalUrl}}_blank{{/isExternalUrl}}" rel="{{#isExternalUrl}}noopener noreferrer{{/isExternalUrl}}">
+                      <svg>
+                        <use xlink:href="#icon-building"></use>
+                      </svg>
+                    <span>
+                      See Location
+                    </span>
+                  </a>
+                {{/LocationUrl}}
+                <a id="addrBlock"
+                class="btn-primary flx xs-middle ml-auto toAmpPage local"
+                on="tap:AMP.scrollTo(id='mapDirections', position='center')"
+                data-test="addr"
+                tabindex="0"
+                aria-label="{{Addresses.0}}">
+                  <svg id="icoMapBtn">
+                    <use xlink:href="#icon-map"></use>
+                  </svg>
+                  <span>
+                    See on Map
+                  </span>
+                </a>
+              </div>
+            </div>
+            {{#Phones.0}}
+            <div class="phone">
+              <p class="semibold mt-05">Office Number</p>
+              <a id="phoneLink" class="nowrap phone-num" href="tel:{{.}}" data-vars-phone-link="{{.}}">
+                {{.}}
+              </a>
+            </div>
+            {{/Phones.0}}
+
+            {{#Fax}}
+            <div class="phone mt-1">
+              <p class="semibold mt-05">Fax Number</p>
+              <p id="fax" class="nowrap phone-num mt-0">
+                {{Fax}}
+              </p>
+            </div>
+            {{/Fax}}
+            
+            <!-- TODO: Update with correct booking options once available -->
+            <ul class="bkng-types">
+              {{#AcceptingNewPatients}}
+              <li class="flx">
+                <svg id="icoChk" class="ico-chk my-auto mr-05">
+                  <use xlink:href="#icon-checkmark"></use>
+                </svg>
+                <span>New Patient Visits</span>
+              </li>
+              {{/AcceptingNewPatients}}
+              {{#VirtualCare}}
+                <li>Virtual Visits</li>
+              {{/VirtualCare}}
+              <!-- <li>Online Booking</li> -->
+              {{#WalkInsWelcome}}
+                <li>Walk-Ins Welcome</li>
+              {{/WalkInsWelcome}}
+            </ul>
+
+            {{#PagesUrl}}
+              <div class="mb-1">
+                <amp-youtube 
+                  data-videoid={{PagesUrl}}
+                  layout="responsive"
+                  width="480"
+                  height="270"
+                ></amp-youtube>
+              </div>
+            {{/PagesUrl}}
+
+            <div>{{{Bio}}}</div>
+            </div>
+        </div>
+
+        <div id="widgets">
+          <div class="widget-booking tabv-fl flx flx-just-ctr">
+            <!-- childReplacement pdpTimeslots -->
+            <provider-timeslots
+              context="details"
+              api-key="~~apiDexCareSlotsV5Key~~"
+              provider="{{Npi}}"
+              brand="piedmont"
+              fallback-html="insOpt01"
+              id="primaryTimeslots"
+              phone="{{Phones.0}}"
+              api-origin="~~apiDexCareNoProtocol~~"
+              schedule-origin="~~apiOriginScheduling~~"
+              location="{{City}}, {{Region}}"
+            >
+            </provider-timeslots>
+            <!-- end childReplacement pdpTimeslots -->
+          </div>
+        </div>
+
+        {endDoNotWomp}
+
+        <div id="details">
+          <div w-if="wData.hasAboutMe">{base_accordion(aboutMe)}</div>
+          <div w-if="wData.hasReviews">{base_accordion(reviews)}</div>
+          <div w-if="wData.hasInsurance">
+            {base_accordion(insuranceSection)}
+          </div>
+
+          <div w-if="wData.hasLocation" id="mapDirections" class="mt-32">
+            <h3>Map and Directions</h3>
+            <div class="ctnt flx map-wrapper">
+              {doNotWomp}
+              {{#locations}}
+              <div class="loc-info {{#hidden}}hidden{{/hidden}}" id="{{id}}">
+                <div>
+                  {{#Name}}
+                  <h4 class="bold">{{Name}}</h4>
+                  {{/Name}}
+                  {{#Address}}
+                    <p class="mt-05"> {{Street1}}, {{#Street2}}{{Street2}},{{/Street2}} {{City}}, {{Region}} {{PostalCode}} </p>
+                  {{/Address}}
+                  <div class="mt-2">{{Distance}} Miles</div>
+                  <div class="hrs light flx flx-wrap flx-grow flx-gap-2 mt-1">
+
+                    {{#LocationOpenHours}}
+                      {{#hours}}
+                      <div class="flx-split-2-gap">
+                        <div class="collapsed-days bold nowrap">{{day}}</div>
+                        <div class="collapsed-hours nowrap light-semibold">
+                          {{^closed}}
+                            {{hours}}
+                          {{/closed}}
+                          {{#closed}}
+                            <span class="closed-hours light-semibold">Closed</span>
+                          {{/closed}}
+                        </div>
+                      </div>
+                    {{/hours}}
+                    {{/LocationOpenHours}}
+
+                    {{#Phone}}
+                      <div class="flx-split-2-gap flx flx-col">
+                        <span class="bold">
+                          Office Number
+                        </span>
+                        <a class="nowrap underline light-semibold"
+                            href="tel:{{Phone}}"
+                            data-vars-phone-link="{{Phone}}" data-test="phone">
+                          {{Phone}}
+                        </a>
+                      </div>
+                    {{/Phone}}
+
+                    {{#Fax}}
+                    <div class="flx-split-2-gap">
+                      <span class="bold">
+                        Fax Number
+                      </span>
+                      <p class="mt-0">
+                        {{Fax}}
+                      </p>
+                    </div>
+                    {{/Fax}}
+                  </div>
+                </div>
+                <div class="w100 flx map-btn my-2">
+                  <a href="https://google.com/maps/place/{{googleAddress}}" class="btn-primary mt-05" role="button" aria-label="Get Directions to Location" alt="Get Directions" target="_blank" data-track-directions>
+                    <svg id="icoDirect">
+                      <use xlink:href="#icon-directions"></use>
+                    </svg>
+                    Get Directions
+                  </a>
+                </div>
+              </div>
+              {{/locations}}
+              {endDoNotWomp}
+              {script_map(mapConfigOverride)}
+            </div>
+          </div>
+
+          {doNotWomp}
+          {{#PrimaryCare}}
+          <div id="similarProvs" class="mt-4" w-if="wData.hasSimilarProviders">
+            <h3>Similar providers at this location</h3>
+            <h3 class="nxt-avb-tme">Next available times</h3>
+            <div id="provsWrapper" class="mt-2">
+              {{#similarProviders}}
+              <div id="{{Npi}}-{{LocationId}}" class="card card-body provider">
+                <div class="prov-info w100">
+                  <div class="flx-grow prov-name">
+                    <div>
+                      <h3 class="bold mt-0">
+                        <a href="~~origin~~{{ProfileUrl}}" aria-label="go to Provider detail page" alt="go to Provider detail page">{{Name}}{{#Degrees}}, {{.}}{{/Degrees}}</a>
+                      </h3>
+                      <p class="prov-descr mt-05 mb-1">{{PrimarySpecialties.0}}</p>
+                    </div>
+                  </div>
+                  <div class="prov-wrap flx flx-wrap flx-gap-1">
+                    <div class="prov-img">
+                      <div class="relative">
+                        {{#hasVideoBio}}
+                        <a class="lnk-play-video" href="https://www.youtube.com/watch?v={{VideoBio}}" aria-label="watch Provider video" alt="watch Provider video" target="_blank">
+                          <svg class="svg-ico-play-video no-tap" title="play video icon">
+                            <use class="no-tap" xlink:href="#icon-play-video"></use>
+                          </svg>
+                        </a>
+                        {{/hasVideoBio}}
+                        
+                          <img class="provider-img rad12" src="{{ImageUrl}}" alt="{{Name}}, {{DegreesString}}">
+                      </div>
+                    </div>
+                    <div class="prov-det txt-sm flx flx-col flx-grow">
+                      <div class="prov-btns mt-1">
+                        <a href="~~origin~~{{ProfileUrl}}" class="btn-primary map-hddn" role="button" aria-label="See Provider Details Page" alt="See Provider Details Page">
+                          <svg id="icon-person" class="no-tap" viewBox="0 0 14 16" fill="none">
+                            <path d="M7 0C4.79086 0 3 1.79086 3 4C3 6.20914 4.79086 8 7 8C9.20914 8 11 6.20914 11 4C11 1.79086 9.20914 0 7 0ZM4 4C4 2.34315 5.34315 1 7 1C8.65685 1 10 2.34315 10 4C10 5.65685 8.65685 7 7 7C5.34315 7 4 5.65685 4 4ZM2.00873 9C0.903151 9 0 9.88687 0 11C0 12.6912 0.83281 13.9663 2.13499 14.7966C3.41697 15.614 5.14526 16 7 16C8.85474 16 10.583 15.614 11.865 14.7966C13.1672 13.9663 14 12.6912 14 11C14 9.89557 13.1045 9.00001 12 9.00001L2.00873 9ZM1 11C1 10.4467 1.44786 10 2.00873 10L12 10C12.5522 10 13 10.4478 13 11C13 12.3088 12.3777 13.2837 11.3274 13.9534C10.2568 14.636 8.73511 15 7 15C5.26489 15 3.74318 14.636 2.67262 13.9534C1.62226 13.2837 1 12.3088 1 11Z" fill="white"/>
+                          </svg>
+                          See Profile
+                        </a>
+                      </div>
+                    </div>
+                    <!-- childReplacement pdpTimeslots -->
+                    <provider-timeslots 
+                      context="details"
+                      api-key="~~apiDexCareSlotsV5Key~~"
+                      provider="{{Npi}}"
+                      brand="piedmont"
+                      phone="{{Phones.0}}"
+                      fallback-html="insOpt01"
+                      api-origin="~~apiDexCareNoProtocol~~"
+                      schedule-origin="~~apiOriginScheduling~~"
+                      location="{{Addresses.0}}"
+                    >
+                    </provider-timeslots>
+                    <!-- end childReplacement pdpTimeslots -->
+                    <!-- {{#VirtualCare}}
+                    <div class="prov-care">
+                    </div>
+                    {{/VirtualCare}}
+                    {{^VirtualCare}}
+                      <div class="prov-care mx-auto my-2">
+                        <div class="w100 h100 flx-col flx-mid-ctr">
+                          <p class="mb-1 txt-sm">Call Us to Schedule</p>
+                          <a href="tel:{{Phone}}" class="btn-primary" role="button" aria-label="Call Provider" alt="Call Provider">
+                            <svg class="no-tap" width="16" height="22" viewBox="0 0 16 22" fill="none">
+                              <path d="M3.05694 1.41807L4.22394 1.06631C5.54645 0.667673 6.95945 1.31191 7.5258 2.57174L8.42747 4.57746C8.91021 5.65129 8.65582 6.91329 7.79476 7.71624L6.30046 9.1097C6.25678 9.15042 6.22913 9.20544 6.2225 9.26479C6.17814 9.66193 6.44737 10.4353 7.06763 11.5097C7.51868 12.2909 7.92693 12.8388 8.27442 13.1469C8.51653 13.3616 8.6498 13.408 8.70654 13.3911L10.7169 12.7765C11.8425 12.4324 13.0623 12.8428 13.751 13.7973L15.0317 15.5723C15.8378 16.6895 15.6928 18.2308 14.6926 19.1781L13.8062 20.0175C12.8498 20.9232 11.4882 21.2608 10.2195 20.9066C7.46539 20.1379 4.99608 17.8138 2.78421 13.9827C0.56926 10.1463 -0.207932 6.84186 0.50852 4.07007C0.836389 2.80158 1.80252 1.79619 3.05694 1.41807ZM3.48984 2.85425C2.73719 3.08112 2.15751 3.68435 1.96079 4.44544C1.35814 6.77696 2.047 9.70581 4.08325 13.2327C6.11678 16.7549 8.30572 18.8151 10.6227 19.4619C11.384 19.6743 12.2009 19.4718 12.7748 18.9284L13.6611 18.089C14.1158 17.6584 14.1817 16.9578 13.8153 16.4499L12.5346 14.675C12.2215 14.2411 11.667 14.0546 11.1554 14.211L9.14007 14.8271C7.97036 15.1758 6.90869 14.2344 5.7686 12.2597C5.00029 10.9289 4.6422 9.90024 4.73177 9.09829C4.77817 8.68286 4.97174 8.29775 5.27746 8.01267L6.77176 6.61921C7.16315 6.25423 7.27878 5.68059 7.05936 5.19249L6.15769 3.18677C5.90026 2.61412 5.25798 2.32129 4.65684 2.50248L3.48984 2.85425Z" fill="white"/>
+                            </svg>
+                            {{Phones.0}}
+                          </a>
+                        </div>
+                      </div>
+                    {{/VirtualCare}} -->
+                  </div>
+                </div>
+              </div>
+              {{/similarProviders}}
+            </div>
+            <!-- TODO - We need a link to the location, but PracticeGroupId is not the correct Id to use. -->
+            <!-- <div w-if="wData.seeMoreProvs" class="block mt-2 mb-24">
+              {doNotWomp}
+              <a href="~~origin~~/locations/location-details/practice/{{PracticeGroupId}}"
+                  id="seeMoreProvs"
+                  class="btn-primary"
+                  target="_blank">See More Providers</a>
+              {endDoNotWomp}
+            </div> -->
+          </div>
+          {{/PrimaryCare}}
+          {endDoNotWomp}
+
+          <!-- <div id="locationsSection"
+              w-if="wData.hasMultipleLocations"
+              class="mb-24">
+            {doNotWomp}
+            <h3 class="mb-2">More locations for {{Name}}</h3>
+            {{#locations}}
+            <div class="mx-2 mb-2 pb-1 border-b-grey">
+              <div class="bold">{{Name}}</div>
+              <div class="mt-1">{{Street1}}, {{#Street2}}{{Street2}},{{/Street2}} {{City}}, {{Region}} {{PostalCode}}</div>
+              <div class="more-loc-det flx flx-gap-2 mt-2">
+                <div class="open-hours-wrapper flx flx-gap-2 flx-wrap flx-grow">
+                  {{#OpenHourDay}}
+                    {{#CloseHourDay}}
+                      {{#Days}}
+                        <div>
+                          {{OpenHourDay}} - {{CloseHourDay}}, {{Days}}
+                        </div>
+                      {{/Days}}
+                    {{/CloseHourDay}}
+                  {{/OpenHourDay}}
+                
+                  {{^OpenHourDay}}
+                    {{#collapsedOpenHours}}
+                      {{#hours}}
+                        <div>
+                          <div class="collapsed-days bold nowrap">{{day}}</div>
+                          <div class="collapsed-hours nowrap">
+                            {{^closed}}
+                              {{hours}}
+                            {{/closed}}
+                            {{#closed}}
+                              <span class="closed-hours">Closed</span>
+                            {{/closed}}
+                          </div>
+                        </div>
+                      {{/hours}}
+                    {{/collapsedOpenHours}}
+                  {{/OpenHourDay}}
+                
+                  {{#Phone}}
+                    <div>
+                      <span class="txt-black bold">Office Number</span>
+                      <a class="block nowrap underline" href="tel:{{Phone}}" data-vars-phone-link="{{Phone}}">
+                        {{Phone}}
+                      </a>
+                    </div>
+                  {{/Phone}}
+
+                  {{#Fax}}
+                  <div>
+                    <span class="bold">
+                      Fax Number
+                    </span>
+                    <p class="mt-0">
+                      {{Fax}}
+                    </p>
+                  </div>
+                  {{/Fax}}
+                </div>
+                <div class="mx-2 flx flx-just-ctr flx-algn-end">
+                  {{#Url}}
+                    <a class="btn-primary mt-auto"
+                        href="{{Url}}">
+                      <svg class="no-tap"
+                          title="see location">
+                        <use class="no-tap"
+                            xlink:href="#seeLocationIcon"></use>
+                      </svg>
+                      See Location
+                    </a>
+                  {{/Url}}
+                </div>
+              </div>
+            </div>
+            {{/locations}}
+            {endDoNotWomp}
+          </div> -->
+        </div>
+      </div>
+    </w-render>
+  </div>
+</main>
+
+{site_footer}
+{analytics_script}
+{script_bookingCustomElements}
+{base_svgIcons}
+{womp_amp_cleanup}
+
+<!-- The schema graph will be plugged in here, and script will get type=application/ld+json -->
+<script id="schema"></script>
+
+<script w-if="!wData.isGoogleBot" id="clickMarker" type="text/javascript" defer>
+  const addrBlock = document.getElementById("addrBlock");
+  const selector = document.querySelector('.selector-dropdown');
+  addrBlock?.addEventListener("click", () => {
+    if (google.maps) {
+      const id = selector
+        ? selector.dataset.value
+        : window.search.helpers.state.visibleResults.results[0].id;
+        
+      window.search.helpers.map.selectMarker(id);
+    }
+  });
+  const locName = document.getElementById("locName");
+  locName?.addEventListener("click", () => {
+    if (!locName?.classList.contains('selected-option') && google.maps) {
+      window.search.helpers.map.selectMarker(
+        window.search.helpers.state.visibleResults.results[0].id
+      );
+    }
+  });
+</script>
+
+<!-- Add doNotWomp tag to prevent breaking template literals -->
+{doNotWomp}
+<script w-if="!wData.isGoogleBot" type="text/javascript">
+  try {
+    /* Primary Elements */
+    const locationSelector = document.querySelector('#locationSelector');
+    const dropdownEl = document.querySelector('.selector-dropdown');
+    const selectedLocationEl = document.querySelector('.selected-option');
+    const optionWrappers = document.querySelectorAll('.selector-option-wrapper');
+
+    /* Search Origin */
+    const origin = "~~apiWompHealthSearch~~";
+
+    if (locationSelector) {
+      locationSelector.addEventListener('click', handleDropdown);
+    };
+
+
+    async function handleDropdown(e) {
+      try {
+        const options = document.querySelector('.selector-options');
+
+        /* Handles toggling dropdown */
+        if (e.target.classList.contains('selector-dropdown')) {
+          toggleHidden(options);
+        };
+
+        /* Handles selecting location */
+        if (e.target.classList.contains('location-select')) {
+          const selectedLocation = {
+            id: e.target.value,
+            name: e.target.name,
+            phone: e.target.dataset.phone,
+            fax: e.target.dataset.fax,
+            url: e.target.dataset.url,
+            address: {
+              street1: e.target.dataset.street,
+              street2: e.target.dataset.suite,
+              city: e.target.dataset.city,
+              region: e.target.dataset.region,
+              postal: e.target.dataset.postal,
+              full: e.target.dataset.address
+            },
+            distance: parseFloat(e.target.dataset.distance).toFixed(2) || null
+          };
+
+          /* Set dropdown text and styles */
+          optionWrappers.forEach((option) => option.classList.remove('selected'));
+          e.target.parentElement.classList.add('selected');
+          selectedLocationEl.innerText = selectedLocation.name;
+          dropdownEl.dataset.value = selectedLocation.id;
+          toggleHidden(options);
+
+          /* Update elements */
+          updateLocationElements(selectedLocation);
+          /* Select pin on map */
+          /*if (google.maps) {
+            window.search.helpers.map.selectMarker(selectedLocation.id);
+          }*/
+          try {
+            await updateSimilarProvider(selectedLocation);
+          } catch (err) {
+            console.error('Error updating similar provider: ', err);
+          }
+        }
+      } catch (err) {
+        console.error('Error handling dropdown: ', err);
+      }
+      
+    }
+
+    function updateLocationElements(location) {
+      /* Declare elements to update */
+      const locationsInfo = document.querySelectorAll('.loc-info');
+      const address = document.querySelector('.loc-address');
+      const distance = document.querySelector('.dist');
+      const addressBlock = document.querySelector('#addrBlock');
+      const locationLink = document.querySelector('#locUrl');
+      const phoneLink = document.querySelector('#phoneLink');
+      const fax = document.querySelector('#fax');
+      const primaryTimeslots = document.querySelector('#primaryTimeslots');
+      const primaryTimeslotsParent = document.querySelector('.widget-booking');
+
+      /* Create content to populate */
+      const addressContent = /* HTML */ `
+        <span class="a-block mt-1 semibold addr">
+          ${location.address.street1}, 
+          ${location.address.street2.length 
+              ? /* HTML */`<span class="nowrap"> ${location.address.street2}</span>,`
+              : ''
+           } ${location.address.city},
+          ${location.address.region}
+          ${location.address.postal}
+        </span>
+      `;
+
+      const distanceContent = location.distance
+        ? `${location.distance} miles`
+        : '';
+      
+      /* Update declared elements with created content */
+      /* Info Boxes */
+      if (locationsInfo.length) {
+        locationsInfo.forEach(loc => {
+          if (loc.id !== location.id) {
+            loc.classList.add('hidden');
+          } else {
+            loc.classList.remove('hidden');
+          }
+        })
+      }
+
+      /* Address */
+      if (address) {
+        address.innerHTML = addressContent;
+      }
+
+      if (distance) {
+        distance.innerText = distanceContent;
+      }
+
+      if (addressBlock) {
+        addressBlock.ariaLabel = location.address.full;
+      }
+
+      /* Location URL */
+      if (locationLink) {
+        locationLink.href = location.url;
+      }
+
+      /* Phone */
+      if (phoneLink) {
+        phoneLink.innerText = location.phone;
+        phoneLink.href = 'tel:' + location.phone;
+        phoneLink.dataset.varsPhoneLink = location.phone;
+      }
+
+      /* Fax */
+      if (fax) {
+        fax.innerText = location.fax;
+      }
+
+      /* Timeslots */
+      if (primaryTimeslots) {
+        primaryTimeslots.setAttribute('location', location.address.full);
+        primaryTimeslots.setAttribute('phone', location.phone);
+        primaryTimeslotsParent.style.minHeight = primaryTimeslots.offsetHeight.toString() + 'px';
+        primaryTimeslots.outerHTML = primaryTimeslots.outerHTML;
+        setTimeout(() => {
+          primaryTimeslotsParent.style.minHeight = "auto";
+        }, 200);
+      }
+    }
+
+    async function updateSimilarProvider(location) {
+      const similarProvEl = document.querySelector('#provsWrapper');
+      try {
+        if (similarProvEl) {
+          /* Get top 4 similar providers at this location */
+          similarProvEl.innerHTML = /* HTML*/ `
+          <div class="w100">
+            <div class="loader mx-a">
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+          `;
+          const providers = await fetch(
+            `${origin}?locations=false&type=search&brand=thr&search=&LocationId=${location.id}&top=4`
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.results) {
+                /* Remove current provider from list */
+                res.results = res.results.filter((item) => {
+                  return item.id !== wData.provider.id;
+                });
+                /* Add the distance to location */
+                const distance = res.info.locations[0].distance;
+              
+                /* Shorten list to show top 3 providers. If results are longer than 3, we render "see more providers" button. */
+                if (res.results.length > 3) {
+                  res.results = res.results.slice(0,3);
+                }
+                /* Handle the case in which filtering above results in zero similar providers */
+                if (res.results.length) {
+                  console.log(res.results);
+                  return res.results;
+                }
+              }
+            });
+          
+          if (providers?.length) { 
+            let similarProvidersTemplate = '';
+            providers.forEach((provider) => {
+
+              const degreesString = provider.Degrees.length > 1
+                ? `${provider.Degrees[0]} ${provider.Degrees[1]}`
+                : provider.Degrees[0];
+              similarProvidersTemplate += /* HTML */ `
+              <div id="${provider.Npi}-${provider.LocationId}" class="card card-body provider">
+                <div class="prov-info w100">
+                  <div class="flx-grow prov-name">
+                    <div>
+                      <h3 class="bold mt-0">
+                        <a href="~~origin~~${provider.ProfileUrl}" aria-label="go to Provider detail page" alt="go to Provider detail page">${provider.Name}
+                          ${
+                            degreesString
+                          }
+                        </a>
+                      </h3>
+                      <p class="prov-descr mt-05 mb-1">${provider.PrimarySpecialties[0]}</p>
+                    </div>
+                  </div>
+                  <div class="prov-wrap flx flx-wrap flx-gap-1">
+                    <div class="prov-img">
+                      <div class="relative">
+                        ${provider.VideoBio.length
+                          ? /* HTML */ `
+                            <a class="lnk-play-video" href="https://www.youtube.com/watch?v=${provider.VideoBio}" aria-label="watch Provider video" alt="watch Provider video" target="_blank">
+                              <svg class="svg-ico-play-video no-tap" title="play video icon">
+                                <use class="no-tap" xlink:href="#icon-play-video"></use>
+                              </svg>
+                            </a>
+                          `
+                          : ''
+                        }
+                          <img class="provider-img rad12" src="${provider.ImageUrl}" alt="${provider.Name}, ${degreesString}">
+                      </div>
+                    </div>
+                    <div class="prov-det txt-sm flx flx-col flx-grow">
+                      <div class="prov-btns mt-1">
+                        <a href="~~origin~~${provider.ProfileUrl}" class="btn-primary map-hddn" role="button" aria-label="See Provider Details Page" alt="See Provider Details Page">
+                          <svg id="icon-person" class="no-tap" viewBox="0 0 14 16" fill="none">
+                            <path d="M7 0C4.79086 0 3 1.79086 3 4C3 6.20914 4.79086 8 7 8C9.20914 8 11 6.20914 11 4C11 1.79086 9.20914 0 7 0ZM4 4C4 2.34315 5.34315 1 7 1C8.65685 1 10 2.34315 10 4C10 5.65685 8.65685 7 7 7C5.34315 7 4 5.65685 4 4ZM2.00873 9C0.903151 9 0 9.88687 0 11C0 12.6912 0.83281 13.9663 2.13499 14.7966C3.41697 15.614 5.14526 16 7 16C8.85474 16 10.583 15.614 11.865 14.7966C13.1672 13.9663 14 12.6912 14 11C14 9.89557 13.1045 9.00001 12 9.00001L2.00873 9ZM1 11C1 10.4467 1.44786 10 2.00873 10L12 10C12.5522 10 13 10.4478 13 11C13 12.3088 12.3777 13.2837 11.3274 13.9534C10.2568 14.636 8.73511 15 7 15C5.26489 15 3.74318 14.636 2.67262 13.9534C1.62226 13.2837 1 12.3088 1 11Z" fill="white"/>
+                          </svg>
+                          See Profile
+                        </a>
+                      </div>
+                    </div>
+                    <provider-timeslots 
+                      context="details"
+                      api-key="~~apiDexCareSlotsV5Key~~"
+                      provider="${provider.Npi}"
+                      brand="piedmont"
+                      phone="${location.phone}"
+                      fallback-html="insOpt01"
+                      api-origin="~~apiDexCareNoProtocol~~"
+                      schedule-origin="~~apiOriginScheduling~~"
+                      location="${location.address.full}"
+                    >
+                    </provider-timeslots>
+                  </div>
+                </div>
+              </div>
+              `;
+            });
+            
+            
+            similarProvEl.innerHTML = similarProvidersTemplate;
+          } else {
+            similarProvEl.innerHTML = 'No similar providers found for this location.';
+          }
+        }
+      } catch (err) {
+        similarProvEl.innerHTML = /* HTML */ `
+          <p class='txt-ctr'>
+            No simliar providers at this location were found.
+          </p>
+        `;
+        console.error('Error building similar provider: ', err);
+      }
+    }
+
+    function toggleHidden(el) {
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+</script>
+{endDoNotWomp}
+
+{#wompQuit}
+{#wompInvalidAmpOK}

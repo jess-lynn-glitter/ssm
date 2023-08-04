@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+#divLocDetTop .hrs {
+  flex-direction: row;
+  gap: 2rem;
+}
+#divLocDetTop .collapsed-days {
+  width: 130px;
+}
+#divLocDetTop .collapsed-hours {
+  white-space: nowrap;
+}
+#divLocDetTop .closed-hours {
+  color: #909090;
+}
+
+.bkng-types-loc {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  color: #535353;
+}
+.bkng-types-loc li {
+  font-weight: 700;
+  float: left;
+}
+.bkng-types-loc li:first-of-type {
+  margin-left: 0;
+}
+.bkng-types-loc li:not(:first-of-type):before {
+  content: "●";
+  margin: 0 8px;
+}
+.bkng-types-loc .ico-chk {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-padding {
+  padding-top: 181px;
+}
+
+/* MEDIA QUERIES */
+/* up to phone */
+@media screen and (max-width: 375.98px) {
+  #divLocDetTop .collapsed-days {
+    width: 100px;
+  }
+  #divLocDetTop .collapsed-days, #divLocDetTop .collapsed-hours {
+    font-size: 2.2rem;
+  }
+  #divLocDetTop .collapsed-hours {
+    white-space: normal;
+  }
+}
+/* phone */
+@media (min-width: 576px) {
+  #divLocDetTop .collapsed-days {
+    width: 145px;
+  }
+}
+/* lg tablet */
+@media (min-width: 992px) {
+  #divLocDetTop {
+    max-width: calc(100% - 220px);
+  }
+  .hero-padding {
+    padding-top: 0;
+  }
+}

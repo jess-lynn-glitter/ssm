@@ -1,0 +1,73 @@
+<!--
+  NOTE 
+
+  This script is meant to be used with careTile_timeslots_nearestLocation.
+
+  Place at the top of the page where the widget is used.
+
+-->
+
+
+<amp-script id="script_nearestTimeslots" script="getNearestTimeslots" nodom></amp-script>
+
+<script id="getNearestTimeslots" type="text/plain" target="amp-script" defer>
+  const getNearestTimeslots = async () => {
+    /* nearby locations fetched server-side */
+    const locationsResponse = ~~nearbyLocationsResponseStringified~~;
+
+    let availableDays = [], closestLocation;
+    for(const location of locationsResponse.locations) {
+      if (!availableDays.length && (location.UrlName != '~~UrlName~~') && location.distance < 10) {
+        availableDays = await fetchAvailableDays(location.UrlName);
+        if (availableDays.length) {
+          closestLocation = location;
+        }
+      }
+    };
+
+    availableDays.forEach(day=>{
+      day.formattedDate = (new Date(day.date).toLocaleDateString("en", {
+        dateStyle: "full",
+       })).replace(/, [0-9]+$/, '');
+       
+      day.dayId = 'day' + new Date(day.date).getTime();
+
+      for(const slot of day.timeSlots){
+        slot.formattedTime = (new Date(slot.slotDateTime).toLocaleTimeString("en-US", {timeZone: 'America/Chicago'})).replace(/:[0-9]+\s(AM|PM)/i, ' $1');
+      }
+    });
+
+    if (closestLocation && closestLocation.distance){
+      closestLocation.milesAway = closestLocation.distance.toFixed(0);
+      closestLocation.textMiles = closestLocation.milesAway == 1 ? 'mile' : 'miles'
+    };
+
+    return {
+      closestLocation: { ...closestLocation },
+      scheduleDays: availableDays,
+    };
+  };
+  
+  async function fetchAvailableDays(UrlName) {
+    try{
+      const closestTimeslotsResponse = await fetch(
+        "~~apiDexCare~~/v1/departments/" +
+          UrlName +
+          "/timeslots"
+      );
+      
+      const json = await closestTimeslotsResponse.json();
+
+      if (closestTimeslotsResponse.status != 200){
+        throw new Error('timeslots api error.');
+      };
+      return json.scheduleDays.filter((x) => x.timeSlots.length);
+    }catch(err){
+      console.error(err);
+      return [];
+    }
+  }
+  
+  exportFunction("getNearestTimeslots", getNearestTimeslots);
+  
+</script>

@@ -1,0 +1,38 @@
+/* Brand-Specific Colors*/
+body {
+  --clr-primary: #C14E2D;
+  --clr-alt: #C14E2D;
+  --clr-secondary: #E18E33;
+  --clr-link-hover: #C14E2D;
+  --clr-tertiary: #F4BA46;
+  --clr-quarternary: #A43535;
+}
+
+/** childReplacement brand_specific_colors **/
+/** end childReplacement brand_specific_colors **/
+.accordion {
+  border-bottom: 1px solid #B2B2B2;
+}
+.accordion .accordion-icon {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+}
+.accordion .accordion-heading {
+  cursor: pointer;
+}
+.accordion .accordion-heading:hover .svg-round {
+  color: var(--clr-secondary);
+}
+.accordion .accordion-heading h3 {
+  font-size: 30px;
+  line-height: 41px;
+  font-weight: 300;
+}
+
+.accordion-content {
+  padding-top: 20px;
+}
+.accordion-content ul:first-child {
+  margin-top: 0;
+}
